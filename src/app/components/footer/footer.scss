@@ -1,0 +1,131 @@
+#footer {
+  // padding-top: 1em;
+  margin-top: 200px;
+  background: url("/b/dot.png"),
+    linear-gradient(to right, var(--lblue), var(--blue));
+  color: white;
+
+  background-size: 10px, 100%;
+
+  border-radius: 4em 4em 0 0;
+  position: relative;
+  filter: drop-shadow(0px -10px 15px #4ec3e079);
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 0%;
+    width: 100%;
+    height: 30px;
+    border-radius: 5em 5em 0 0;
+    background: var(--lime);
+    scale: 0.7 1;
+  }
+  .confine {
+    .f-t {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+      padding: 3em;
+      gap: 3em;
+      .l {
+        .logo {
+          width: 250px;
+        }
+        p {
+          color: white;
+          margin: 1em 0;
+          font-size: 1.2rem;
+          filter: var(--dd);
+        }
+      }
+      .r {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1em;
+        height: 100%;
+        gap: 1em;
+        align-content: flex-start;
+
+        position: relative;
+        z-index: 1;
+        &::before {
+          content: "";
+          position: absolute;
+          top: -12%;
+          left: -20%;
+          width: 100%;
+          height: 100%;
+          background: white;
+          opacity: 0.2;
+          scale: 1 1.4;
+          transform: skew(20deg);
+          transform-origin: top;
+          mix-blend-mode: overlay;
+          z-index: -1;
+        }
+        .btn-foot {
+          font-size: 1.4rem;
+          position: relative;
+          filter: var(--dd);
+          &::before {
+            content: "";
+            position: absolute;
+            top: 120%;
+            left: 0%;
+            width: 0px;
+            height: 2px;
+            background: white;
+            transition: inherit;
+          }
+
+          &:hover {
+            &::before {
+              width: 60px;
+            }
+          }
+        }
+      }
+    }
+
+    .f-b {
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
+      border-top: 4px solid white;
+      p,
+      a {
+        color: white;
+        font-weight: bold;
+        font-family: var(--fontH);
+        font-size: 1.4rem;
+        font-weight: lighter;
+        filter: var(--dd);
+      }
+    }
+    // display: grid;
+
+    // grid-template-columns: 1fr 1fr;
+  }
+}
+.ft-contact {
+  display: flex;
+  gap: 1em;
+  padding: 1em 0;
+  .btn-fc {
+    font-size: 2rem;
+    outline: 2px solid white;
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: var(--dd);
+    padding: 0.15em 1em;
+    color: white;
+    &:hover {
+      scale: 1.12;
+      background: white;
+      color: var(--blue);
+    }
+  }
+}

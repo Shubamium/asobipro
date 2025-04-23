@@ -1,0 +1,126 @@
+#p_talent {
+  #tl-l {
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      .btn-gen {
+        color: white;
+        padding: 0.25em 1em;
+        font-size: 1.5rem;
+        font-family: var(--fontP);
+        outline: 3px solid var(--lime);
+        color: var(--lime);
+
+        border: none;
+        margin: 1em 0;
+        border-radius: 2em;
+        box-shadow: 0px 2px 10px #4ee0b4af;
+
+        transition: all 200ms ease;
+        background: white;
+
+        font-weight: bold;
+        &.act,
+        &:hover {
+          color: white;
+          background: linear-gradient(to right, var(--blue), var(--lime));
+          outline: 3px transparent;
+        }
+      }
+    }
+
+    .list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4em;
+      margin: 3em;
+      min-height: 1000px;
+      align-items: flex-start;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -40%;
+        left: 0%;
+        width: 100vw;
+        height: 140%;
+        background: url("/b/dot3.png");
+        // mix-blend-mode: luminosity;
+        opacity: 0.5;
+        background-size: 100%;
+        z-index: -2;
+        mask-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          white 25%,
+          white 85%,
+          transparent
+        );
+        // filter: blur(1px);
+      }
+      .tc {
+        position: relative;
+        filter: var(--dd);
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0%;
+          left: 0%;
+          width: 100%;
+          height: 100%;
+          background: var(--blue);
+          rotate: -4deg;
+          border-radius: 1em;
+          transition: all 500ms var(--es1);
+        }
+        &:hover {
+          &::before {
+            scale: 1.05;
+            rotate: -6deg;
+          }
+        }
+        .wrapper {
+          width: 350px;
+          min-height: 400px;
+          background: white;
+          padding: 1em;
+          border: 3px solid var(--lime);
+          border-radius: 1em;
+          transition: all 500ms var(--es1);
+          position: relative;
+
+          &:hover {
+            scale: 1.02;
+          }
+          img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 1em;
+          }
+
+          .name {
+            background: linear-gradient(to right, var(--blue), var(--lime));
+            text-align: center;
+            border-radius: 1em;
+            padding: 0.3em 0;
+            h2 {
+              color: white;
+              font-size: 1.5rem;
+            }
+            margin-top: 1em;
+          }
+          .name-dec {
+            width: 70%;
+            background: #c9ecff;
+            height: 10px;
+            margin: 0 auto;
+            border-radius: 0 0 1em 1em;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.brand-strip {
+  background: url("/b/zig10.png"),
+    linear-gradient(to right, var(--lime), var(--blue));
+  position: relative;
+  z-index: 1;
+  .wrapper {
+    display: flex;
+    gap: 2em;
+    // flex-wrap: nowrap;
+    .scroller {
+      flex-shrink: 0;
+      display: flex;
+      gap: 2em;
+      align-items: center;
+      h2 {
+        font-size: 3rem;
+        font-family: var(--fontP);
+        color: white;
+        filter: var(--dd);
+        padding: 0.25em 0;
+        font-weight: bolder;
+      }
+      .ho {
+        color: transparent;
+        font-weight: bold;
+        text-stroke: 1px white;
+        -webkit-text-stroke: 1px white;
+      }
+    }
+  }
+}
