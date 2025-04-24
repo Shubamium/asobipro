@@ -38,7 +38,7 @@ export default function HomeParticle({}: Props) {
             fpsLimit: 60,
             particles: {
               color: {
-                value: "#ffffff",
+                value: "#ffffff46",
               },
               // links: {
               //   color: "#ffffff",
@@ -57,7 +57,7 @@ export default function HomeParticle({}: Props) {
                 },
 
                 speed: {
-                  max: 4,
+                  max: 2,
                   min: 0.02,
                 },
 
@@ -80,7 +80,7 @@ export default function HomeParticle({}: Props) {
               },
 
               number: {
-                value: 55,
+                value: 40,
               },
               opacity: {
                 value: {
@@ -89,7 +89,7 @@ export default function HomeParticle({}: Props) {
                 },
               },
               stroke: {
-                width: 0.5,
+                width: 1,
                 color: "#ffffff",
               },
               // tilt: {
@@ -103,13 +103,13 @@ export default function HomeParticle({}: Props) {
               },
               rotate: {
                 value: {
-                  min: 0,
+                  min: -350,
                   max: 360,
                 },
 
                 animation: {
                   enable: true,
-                  speed: 10,
+                  speed: 15,
                 },
                 direction: "random",
                 random: true,

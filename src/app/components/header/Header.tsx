@@ -41,7 +41,7 @@ export default function Header({}: Props) {
             <Link
               href="/schedule"
               className={`btn btn-nav ${
-                path.includes("Schedule") ? "act" : ""
+                path.includes("schedule") ? "act" : ""
               }`}
             >
               <span>Schedule</span>

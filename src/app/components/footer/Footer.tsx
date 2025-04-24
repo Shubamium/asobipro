@@ -53,6 +53,9 @@ export default function Footer({}: Props) {
               News
             </Link>
             <Link href={"/audisi"} className="btn btn-foot">
+              Schedule
+            </Link>
+            <Link href={"/audisi"} className="btn btn-foot">
               Audisi
             </Link>
           </div>
