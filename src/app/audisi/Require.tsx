@@ -8,7 +8,7 @@ export default async function Require({}: Props) {
     <section id="a-require" className="a-panel">
       <div className="confine">
         <div className="g-h">
-          <h2>Require</h2>
+          <h2>Requirements</h2>
           <p>Jangan lewatkan informasi menarik!</p>
         </div>
         <div className="r-l">

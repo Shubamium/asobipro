@@ -33,7 +33,8 @@ export default function Home() {
       <BrandStrip />
 
       <section id="audition">
-        <div className="bg-line"></div>
+        <div className="bg-line ni"></div>
+        <img src="/g/icon-only.png" alt="" className="de aso-ico ni" />
         <div className="confine">
           <div className="audi">
             <div className="he">

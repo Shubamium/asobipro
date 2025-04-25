@@ -8,6 +8,9 @@ type Props = {};
 export default function HomeFAQ({}: Props) {
   return (
     <section id="h-faq" className="">
+      <div className="dzig t"></div>
+      <div className="dzig b"></div>
+
       <div className="question-container">
         <Question />
         <Question />

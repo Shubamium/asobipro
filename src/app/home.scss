@@ -219,6 +219,13 @@
   }
 
   #audition {
+    position: relative;
+    .aso-ico {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      opacity: 0.2;
+    }
     .confine {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -375,26 +382,26 @@
           );
           position: relative;
           &.y {
-            background: url("/b/dot.png"),
-              linear-gradient(to bottom, #dc2626, #e98686);
+            background:
+              url("/b/dot.png"), linear-gradient(to bottom, #dc2626, #e98686);
             --accent: #f1582c;
             background-size: 12px;
           }
           &.x {
-            background: url("/b/dot.png"),
-              linear-gradient(to bottom, #27353f, #707070);
+            background:
+              url("/b/dot.png"), linear-gradient(to bottom, #27353f, #707070);
             --accent: #27353f;
             background-size: 12px;
           }
           &.i {
-            background: url("/b/dot.png"),
-              linear-gradient(to bottom, #f43f5e, #e27b8c);
+            background:
+              url("/b/dot.png"), linear-gradient(to bottom, #f43f5e, #e27b8c);
             --accent: #e27b8c;
             background-size: 12px;
           }
           &.f {
-            background: url("/b/dot.png"),
-              linear-gradient(to bottom, #2563eb, #7fa6f9);
+            background:
+              url("/b/dot.png"), linear-gradient(to bottom, #2563eb, #7fa6f9);
             --accent: #2563eb;
             background-size: 12px;
           }
@@ -543,18 +550,37 @@
   }
 
   #h-faq {
-    background: url("/b/dot.png"),
-      linear-gradient(to right, var(--lime), var(--blue));
+    background:
+      url("/b/dot25.png"), linear-gradient(to right, var(--lime), var(--blue));
 
     background-size: 10px, 100%;
 
     display: grid;
     grid-template-columns: 1fr 1.1fr;
-    padding-left: 5%;
-    padding-top: 2em;
-    gap: 5%;
+    gap: 2%;
     min-height: 1000px;
     padding: 1em 0;
+    padding-left: 5%;
+    padding-top: 100px;
+
+    position: relative;
+    .dzig {
+      position: absolute;
+      width: 250px;
+      height: 50px;
+      opacity: 0.1;
+      mix-blend-mode: color-burn;
+      &.t {
+        top: -2%;
+        left: 2%;
+      }
+      &.b {
+        width: 350px;
+        bottom: -20px;
+        right: 2%;
+      }
+    }
+
     .fq-h {
       background: white;
       position: relative;
@@ -564,6 +590,8 @@
       padding: 2em 3em;
       border-radius: 2em 0 0 2em;
 
+      position: sticky;
+      top: 5%;
       // filter: var(--dd);
       box-shadow: 0px 8px 0px #6077bbd6;
       .hs {
@@ -585,6 +613,9 @@
         opacity: 0.4;
         mask-image: linear-gradient(to right, transparent 40%, white);
       }
+    }
+    .question-container {
+      margin-top: -30px;
     }
   }
 }

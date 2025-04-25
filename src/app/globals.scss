@@ -131,7 +131,8 @@ button {
 
   background: linear-gradient(to right, var(--blue), var(--lblue), var(--lime));
   &.zg {
-    background: url("/b/zig35.png"),
+    background:
+      url("/b/zig35.png"),
       linear-gradient(to right, var(--blue), var(--lblue), var(--lime));
     background-clip: text;
   }
@@ -209,5 +210,22 @@ button {
         font-size: 1.3rem;
       }
     }
+  }
+}
+.dzig {
+  background: url("/d/dzig.png");
+  animation: bganim 55s infinite linear;
+}
+
+.ni {
+  user-select: none;
+  pointer-events: none;
+}
+@keyframes bganim {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: 3000px;
   }
 }

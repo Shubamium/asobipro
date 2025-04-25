@@ -1,17 +1,91 @@
 #p_talentd {
   #talent-hero {
     height: 800px;
-
+    .side-l {
+      position: absolute;
+      bottom: 0%;
+      left: 0%;
+      height: 40px;
+      width: 30vw;
+      background: var(--lime);
+      border-radius: 0 150px 0 0;
+    }
+    .side-r {
+      position: absolute;
+      bottom: 0%;
+      right: 0%;
+      height: 40px;
+      width: 20vw;
+      background: var(--lime);
+      border-radius: 150px 0 0 0;
+    }
+    position: relative;
     .confine {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
       gap: 2em;
       align-items: center;
       height: 100%;
+
+      position: relative;
+
+      .ring {
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        bottom: 0%;
+        // background: green;
+        border-radius: 150px 150px 0 0;
+        outline: 50px solid var(--lblue);
+        scale: 1.4;
+        opacity: 0.2;
+        z-index: -150;
+        mix-blend-mode: multiply;
+      }
+      .sidepan {
+        position: absolute;
+        left: 40%;
+        bottom: 0%;
+        width: 100%;
+        height: 80%;
+        background:
+          url("/b/dot.png"),
+          linear-gradient(to right, var(--lblue), var(--blue));
+        background-size: 10px, 100%;
+        border-radius: 600px 0 0 0;
+        opacity: 1;
+        z-index: -50;
+        opacity: 0.6;
+        backdrop-filter: blur(100px);
+        // mix-blend-mode: color;
+      }
+      .bg-blurs {
+        position: absolute;
+
+        top: 0%;
+        left: -10%;
+        width: 100%;
+        height: 100%;
+        scale: 1.8;
+        opacity: 0.2;
+        z-index: -20;
+        filter: blur(1500px);
+      }
       .l {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
+        position: relative;
+        .nzig {
+          width: 200px;
+          height: 50px;
+          position: absolute;
+          top: 7%;
+          left: -5%;
+          opacity: 0.05;
+        }
+
         .btn-ret {
           // background: white;
           border: 2px solid var(--lblue);
@@ -107,6 +181,20 @@
         // background: red;
         width: 100%;
         height: 100%;
+
+        .tn-big {
+          position: absolute;
+
+          background: none;
+          font-size: 12rem;
+          line-height: 80%;
+          position: absolute;
+          transform-origin: left;
+          rotate: 90deg;
+          left: 100%;
+          top: -10%;
+          z-index: -20;
+        }
         .tal-arts {
           z-index: -2;
           width: 800px;
@@ -121,8 +209,8 @@
     }
   }
   #vocal {
-    background: url("/b/dot.png"),
-      linear-gradient(to right, var(--lblue), var(--blue));
+    background:
+      url("/b/dot.png"), linear-gradient(to right, var(--lblue), var(--blue));
     background-size: 8px, 100%;
 
     position: relative;
@@ -370,6 +458,21 @@
         }
         .r {
           position: relative;
+
+          .dzig {
+            position: absolute;
+            width: 250px;
+            height: 50px;
+            left: 85%;
+            z-index: -2;
+            opacity: 0.05;
+            &.b {
+              height: 40px;
+              top: 10%;
+              width: 150px;
+              left: 120%;
+            }
+          }
           .fb-art {
             position: absolute;
             width: 600px;
@@ -385,14 +488,36 @@
   }
 
   #tv {
-    background: url("/b/zig90.png"),
-      linear-gradient(to right, var(--lblue), var(--blue));
+    background:
+      url("/b/zig90.png"), linear-gradient(to right, var(--lblue), var(--blue));
     background-blend-mode: multiply;
 
     display: grid;
     grid-template-columns: 1fr 2fr;
     padding: 2em 0;
     gap: 4em;
+    position: relative;
+    .bgspir {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      background: var(--lime);
+      z-index: -2;
+      &.a {
+        rotate: -2deg;
+        // border-top-right-radius:;
+      }
+      &.b {
+        rotate: -3deg;
+        opacity: 0.6;
+      }
+      &.c {
+        rotate: -4deg;
+        opacity: 0.33;
+      }
+    }
     .l {
       background: white;
       height: max-content;

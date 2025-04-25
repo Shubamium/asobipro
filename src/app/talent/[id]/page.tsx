@@ -13,11 +13,18 @@ export default function Page({}: Props) {
   return (
     <TransitionContainer key={"talent-name"} id="p_talentd">
       <section id="talent-hero">
+        {" "}
+        <div className="side-l"></div>
+        <div className="side-r"></div>
         <div className="confine">
+          <div className="ring"></div>
+          <div className="sidepan"></div>
+          <img src="/d/glow.svg" alt="" className="bg-blurs bg-blur" />
           <div className="l">
             <Link href={"/talents"} className="btn hv btn-ret">
               <IoReturnUpBack /> Talent List
             </Link>
+            <div className="dzig nzig"></div>
             <h2 className="hs">NAMA TALENT</h2>
             <p className="desc">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -52,6 +59,7 @@ export default function Page({}: Props) {
           </div>
           <div className="r">
             <img src="/g/tal1by1.png" alt="" className="tal-arts" />
+            <h2 className="hs tn-big">TALENT NAME</h2>
           </div>
         </div>
       </section>
@@ -169,12 +177,17 @@ export default function Page({}: Props) {
             </div>
             <div className="r">
               <img src="/g/model.png" alt="" className="fb-art" />
+              <div className="dzig t"></div>
+              <div className="dzig b"></div>
             </div>
           </div>
         </div>
       </section>
 
       <section id="tv">
+        <div className="bgspir a ni"></div>
+        <div className="bgspir b ni"></div>
+        <div className="bgspir c ni"></div>
         <div className="l">
           <h2 className="hs"> VIDEO</h2>
           <p>Beli merchandise dari Stars kesayangan kamu!</p>
