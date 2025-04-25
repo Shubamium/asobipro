@@ -7,9 +7,12 @@ import { IoReturnUpBack } from "react-icons/io5";
 
 import "./talent.scss";
 import AudioButton from "./AudioButton";
+import { getTranslations } from "next-intl/server";
 type Props = {};
 
-export default function Page({}: Props) {
+export default async function Page({}: Props) {
+  const t = await getTranslations("talent");
+
   return (
     <TransitionContainer key={"talent-name"} id="p_talentd">
       <section id="talent-hero">
@@ -88,7 +91,7 @@ export default function Page({}: Props) {
           <div className="wrapper">
             <div className="l">
               <div className="td-h">
-                <p className="sh"> PROFILE TALENT</p>
+                <p className="sh">{t("talent_top")}</p>
                 <h2 className="hmain">NAMA TALENT</h2>
               </div>
 
@@ -189,8 +192,8 @@ export default function Page({}: Props) {
         <div className="bgspir b ni"></div>
         <div className="bgspir c ni"></div>
         <div className="l">
-          <h2 className="hs"> VIDEO</h2>
-          <p>Beli merchandise dari Stars kesayangan kamu!</p>
+          <h2 className="hs">{t("video")}</h2>
+          <p>{t("video_sub")}</p>
         </div>
         <div className="r">
           <div className="ytembed">

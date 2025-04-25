@@ -8,7 +8,9 @@ import { FaXTwitter } from "react-icons/fa6";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import HomeFAQ from "./HomeFAQ";
 import TransitionContainer from "./components/PageTransitionWrapper/TransitionContainer";
-export default function Home() {
+import { getTranslations } from "next-intl/server";
+export default async function Home() {
+  const t = await getTranslations("home");
   return (
     <TransitionContainer key={"home"} id={"p_home"}>
       <section id="hero">
@@ -20,11 +22,9 @@ export default function Home() {
           <div className="bg-panel de"></div>
 
           <img src="/g/icon.png" alt="" className="aso-ico" />
-          <h2 className="ho">AGENSI VIRTUAL</h2>
-          <h3 className="hs zg">YOUTUBER INDONESIA</h3>
-          <p className="tagline">
-            Tagline utama - Temukan Stars Kesayangan kamu!
-          </p>
+          <h2 className="ho">{t("hero_topText")}</h2>
+          <h3 className="hs zg">{t("hero_bottomText")}</h3>
+          <p className="tagline">{t("hero_tagline")}</p>
           <HomeParticle />
         </article>
       </section>
@@ -38,25 +38,25 @@ export default function Home() {
         <div className="confine">
           <div className="audi">
             <div className="he">
-              <h2 className="hs">AUDISI</h2>
-              <p>Kamu juga bisa jadi Virtual Youtuber!</p>
+              <h2 className="hs">{t("audisi_title")}</h2>
+              <p>{t("audisi_sub")}</p>
             </div>
 
             <div className="point">
               <div className="pp">
                 <img src="/g/note.svg" alt="" />
                 <h2>01</h2>
-                <p>Daftar Audisi</p>
+                <p>{t("audisi_step1")}</p>
               </div>
               <div className="pp">
                 <img src="/g/comment.svg" alt="" />
                 <h2>02</h2>
-                <p>Diskusi Karakter</p>
+                <p>{t("audisi_step2")}</p>
               </div>
               <div className="pp">
                 <img src="/g/location.svg" alt="" />
                 <h2>03</h2>
-                <p>Daftar Audisi</p>
+                <p>{t("audisi_step3")}</p>
               </div>
             </div>
           </div>
@@ -65,11 +65,10 @@ export default function Home() {
           </div>
         </div>
         <div className="audi-footer">
-          <p className="pt">
-            Wow! Hanya dengan 3 langkah* kamu bisa menjadi Virtual YouTuber
-          </p>
+          <p className="pt">{t("audisi_noteTop")}</p>
           <p className="pb">
-            (*) Proses sampai debut dapat memakan waktu hingga 1 tahun.
+            {t("audisi_noteBot")}
+            {/* (*) Proses sampai debut dapat memakan waktu hingga 1 tahun. */}
           </p>
         </div>
       </section>
@@ -79,8 +78,8 @@ export default function Home() {
       <section id="social">
         <div className="ms confine">
           <div className="ms-h social-h">
-            <h2 className="hs">MEDIA SOCIAL</h2>
-            <p>Jangan lewatkan informasi menarik!</p>
+            <h2 className="hs">{t("media_title")}</h2>
+            <p>{t("media_sub")}</p>
           </div>
           <div className="ms-l">
             <div className="sc y">
@@ -125,8 +124,8 @@ export default function Home() {
 
         <div className="mc confine">
           <div className="mc-h social-h">
-            <h2 className="hs">MERCHANDISE</h2>
-            <p>Beli merchandise dari Stars kesayangan kamu!</p>
+            <h2 className="hs">{t("merch_title")}</h2>
+            <p>{t("merch_sub")}</p>
           </div>
 
           <div className="mc-l">
@@ -137,7 +136,7 @@ export default function Home() {
                 <a href="https://tokopedia.com">https://www.tokopedia.com/</a>
               </div>
               <a href={"https://x.com"} className="btn hv btn-subs">
-                Beli Sekarang
+                {t("merch_buy")}
               </a>
             </div>
             <div className="si s">
@@ -147,7 +146,7 @@ export default function Home() {
                 <a href="https://tokopedia.com">https://www.tokopedia.com/</a>
               </div>
               <a href={"https://x.com"} className="btn hv btn-subs">
-                Beli Sekarang
+                {t("merch_buy")}
               </a>
             </div>
           </div>

@@ -5,11 +5,14 @@ import useMeasure from "react-use-measure";
 import useInfiniteScroll from "./useInfiniteScroll";
 import { BiStar } from "react-icons/bi";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 type Props = {};
 
 export default function HomeTalent({}: Props) {
   const { pageRef: ref, animateScope: scope, x } = useInfiniteScroll(3, 10);
+
+  const t = useTranslations("home");
   return (
     <section id="h-talent" ref={scope}>
       <div className="tl-text">
@@ -22,12 +25,12 @@ export default function HomeTalent({}: Props) {
               <BiStar />
             </div>
           </div>
-          <p>Temukan Stars Kesayangan kamu!</p>
+          <p>{t("talent_stars")}</p>
         </div>
         <div className="tl-f">
           <Link href={"/talents"} className="btn btn-tal">
-            <span className="ho">MEET OUR</span>
-            <span className="hs">TALENTS!</span>
+            <span className="ho">{t("talent_meet")}</span>
+            <span className="hs">{t("talent_tal")}</span>
             <svg
               width="82"
               height="52"

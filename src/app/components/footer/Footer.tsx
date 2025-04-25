@@ -5,20 +5,19 @@ import { FaXTwitter } from "react-icons/fa6";
 import { RiFacebookCircleFill } from "react-icons/ri";
 
 import "./footer.scss";
+import { useTranslations } from "next-intl";
 type Props = {};
 
 export default function Footer({}: Props) {
+  const t = useTranslations("footer");
+  const th = useTranslations("header");
   return (
     <footer id="footer">
       <div className="confine">
         <div className="f-t">
           <div className="l">
             <img src="/g/logo-w.png" alt="" className="logo" />
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
+            <p>{t("mini_about")}</p>
             <div className="ft-contact">
               <a href="#" target="_blank" className="btn btn-fc">
                 {" "}
@@ -41,28 +40,28 @@ export default function Footer({}: Props) {
           </div>
           <div className="r">
             <Link href={"/"} className="btn btn-foot">
-              Tentang
+              {th("about")}
             </Link>
             <Link href={"#"} className="btn btn-foot">
-              Shop
+              {th("shop")}
             </Link>
             <Link href={"/talents"} className="btn btn-foot">
-              Talent Kami
+              {th("talent")}
             </Link>
             <Link href={"/news"} className="btn btn-foot">
-              News
+              {th("news")}
+            </Link>
+            <Link href={"/schedule"} className="btn btn-foot">
+              {th("schedule")}
             </Link>
             <Link href={"/audisi"} className="btn btn-foot">
-              Schedule
-            </Link>
-            <Link href={"/audisi"} className="btn btn-foot">
-              Audisi
+              {th("audition")}
             </Link>
           </div>
         </div>
         <div className="f-b">
-          <p className="copy">©ASOBI PRODUCTION 2025 ALL RIGHTS RESERVED</p>
-          <a href="https://x.com/shubamium2">WEBSITE DESIGN by SHUBAMIUM</a>
+          <p className="copy">{t("copyright")}</p>
+          <a href="https://x.com/shubamium2">{t("attribution")} SHUBAMIUM</a>
         </div>
       </div>
     </footer>

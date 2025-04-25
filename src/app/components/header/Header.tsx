@@ -4,17 +4,21 @@ import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import "./header.scss";
 import { usePathname } from "next/navigation";
-import { FaLanguage } from "react-icons/fa6";
-import { IoLanguage } from "react-icons/io5";
-import { BiGlobe } from "react-icons/bi";
-import { CgGlobe } from "react-icons/cg";
+
 import { CiGlobe } from "react-icons/ci";
+import { useLocale, useTranslations } from "next-intl";
+import { setUserLocale } from "@/services/locale";
 type Props = {};
 
 export default function Header({}: Props) {
-  const [eng, setEng] = useState(false);
-
   const path = usePathname();
+  const locale = useLocale();
+  const switchLang = async (lang: "en" | "id") => {
+    await setUserLocale(lang);
+  };
+  const [eng, setEng] = useState(locale == "en");
+
+  const t = useTranslations("header");
   return (
     <header id="header">
       <div className="confine">
@@ -27,16 +31,16 @@ export default function Header({}: Props) {
               href="/"
               className={`btn btn-nav ${path === "/" ? "act" : ""}`}
             >
-              <span>Tentang</span>
+              <span>{t("about")}</span>
             </Link>
             <Link href="#" className={`btn btn-nav`}>
-              <span>Shop</span>
+              <span>{t("shop")}</span>
             </Link>
             <Link
               href="/talents"
               className={`btn btn-nav ${path.includes("talent") ? "act" : ""}`}
             >
-              <span>Talent Kami</span>
+              <span>{t("talent")}</span>
             </Link>
             <Link
               href="/schedule"
@@ -44,19 +48,19 @@ export default function Header({}: Props) {
                 path.includes("schedule") ? "act" : ""
               }`}
             >
-              <span>Schedule</span>
+              <span>{t("schedule")}</span>
             </Link>
             <Link
               href="/news"
               className={`btn btn-nav ${path.includes("news") ? "act" : ""}`}
             >
-              <span>News</span>
+              <span>{t("news")}</span>
             </Link>
             <Link
               href="/team"
               className={`btn btn-nav ${path.includes("team") ? "act" : ""}`}
             >
-              <span>Team</span>
+              <span>{t("team")}</span>
             </Link>
           </div>
         </nav>
@@ -66,7 +70,10 @@ export default function Header({}: Props) {
           </div>
           <div
             className={`btn language-switcher ${eng ? "eng" : "ind"}`}
-            onClick={() => setEng(!eng)}
+            onClick={() => {
+              setEng(!eng);
+              switchLang(!eng ? "en" : "id");
+            }}
           >
             <div className="wrapper">
               <button className="btn btn-lang i act">
@@ -80,7 +87,7 @@ export default function Header({}: Props) {
           <div className="audition">
             <Link href={"/audisi"} className="btn hv btn-audition">
               <span>
-                AUDISI <FaStar />
+                {t("audition").toUpperCase()} <FaStar />
               </span>
             </Link>
           </div>

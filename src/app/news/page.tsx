@@ -3,14 +3,16 @@ import TransitionContainer from "../components/PageTransitionWrapper/TransitionC
 
 import "./news.scss";
 import News from "./News";
+import { getTranslations } from "next-intl/server";
 type Props = {};
 
-export default function Page({}: Props) {
+export default async function Page({}: Props) {
+  const t = await getTranslations("news");
   return (
     <TransitionContainer key={"news"} id="p_news">
       <section id="tl-h" className="general-h">
-        <h2 className="hs">NEWS</h2>
-        <p>Klik untuk Memilih Talent Kesayangan kamu!</p>
+        <h2 className="hs">{t("name")}</h2>
+        <p>{t("sub")}</p>
       </section>
 
       {/* News Featured */}

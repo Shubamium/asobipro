@@ -1,0 +1,81 @@
+{
+  "header": {
+    "about": "About",
+    "shop": "Shop",
+    "talent": "Our Talents",
+    "schedule": "Schedules",
+    "news": "News",
+    "team": "Team",
+    "audition": "AUDITION"
+  },
+
+  "home": {
+    "hero_topText": "INDONESIAN VIRTUAL",
+    "hero_bottomText": "YOUTUBER AGENCY",
+    "hero_tagline": "Tagline utama - Temukan Stars Kesayangan kamu!",
+    "talent_stars": "Temukan Stars Kesayangan kamu!",
+    "talent_meet": "MEET OUR",
+    "talent_tal": "TALENTS!",
+    "audisi_title": "AUDISI",
+    "audisi_sub": "Kamu juga bisa jadi Virtual Youtuber!",
+    "audisi_step1": "Daftar Audisi",
+    "audisi_step2": "Diskusi Karakter",
+    "audisi_step3": "Daftar Audisi",
+    "audisi_noteTop": "Wow! Hanya dengan 3 langkah* kamu bisa menjadi Virtual YouTuber",
+    "audisi_noteBot": "(*) Proses sampai debut dapat memakan waktu hingga 1 tahun.",
+    "media_title": "MEDIA SOCIAL",
+    "media_sub": "Jangan lewatkan informasi menarik!",
+    "merch_title": "MERCHANDISE",
+    "merch_sub": "Beli merchandise dari Stars kesayangan kamu!",
+    "merch_buy": "Beli Sekarang",
+    "faq_sub": "Beli merchandise dari Stars kesayangan kamu!"
+  },
+  "talent": {
+    "list_sub": "Klik untuk Memilih Talent Kesayangan kamu!",
+    "talent_top": "PROFILE TALENT!",
+    "video": "VIDEO",
+    "video_sub": "Beli merchandise dari Stars kesayangan kamu!"
+  },
+  "schedule": {
+    "schedule_sub": "Klik untuk Memilih Talent Kesayangan kamu!",
+    "vp": "VIEW PROFILE",
+    "vs": "VIEW STREAM"
+  },
+  "news": {
+    "name": "NEWS",
+    "sub": "Klik untuk Memilih Talent Kesayangan kamu!",
+    "list": "NEWS LIST",
+    "scroll": "SCROLL TO TOP"
+  },
+  "team": {
+    "name": "TEAM",
+    "sub": "Klik untuk Memilih Talent Kesayangan kamu!"
+  },
+  "audisi": {
+    "name": "AUDISI",
+    "sub": "Klik untuk Memilih Talent Kesayangan kamu!",
+    "gtitle": "Guidelines",
+    "gsub": "Jangan lewatkan informasi menarik!",
+    "rtitle": "Requirement",
+    "rsub": "Jangan lewatkan informasi menarik!",
+    "apply": "Apply",
+    "faq": "AUDISI FAQ",
+    "faqsub": "Jangan lewatkan informasi menarik!",
+    "answer": "ANSWER:"
+  },
+  "form": {
+    "ftitle": "Form Audisi",
+    "fsub": "Jangan lewatkan informasi menarik!",
+    "name": "Nama",
+    "name_ph": "placeholder nama",
+    "email": "Email",
+    "email_ph": "placeholder email",
+    "age": "Umur",
+    "age_ph": "placholder umur",
+    "gen": "Generasi",
+    "gen_ph": "placeholder gen",
+    "bio": "About you",
+    "bio_ph": "Introduce yourself . . .",
+    "apply": "Apply"
+  }
+}

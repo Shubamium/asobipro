@@ -3,11 +3,12 @@ import React, { useRef } from "react";
 import { FaArrowLeft, FaArrowRight, FaPlay } from "react-icons/fa";
 
 import "./sched.scss";
+import { useTranslations } from "next-intl";
 type Props = {};
 
 export default function SchedRow({}: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
-
+  const t = useTranslations("schedule");
   const doScroll = (px: number) => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
@@ -23,7 +24,7 @@ export default function SchedRow({}: Props) {
           <div className="wrapper">
             <img src="/g/htal2.png" alt="" className="pfp" />
             <h2 className="n">Mithya Badford</h2>
-            <button className="btn hv view"> VIEW PROFILE</button>
+            <button className="btn hv view">{t("vp")}</button>
           </div>
         </div>
         <div className="control">
@@ -58,10 +59,11 @@ export default function SchedRow({}: Props) {
           <h2 className="title">Stream Title</h2>
           <p className="d">Sat, 20 Feb 14:00</p>
           <a href="#" className="btn hv btn-vs">
-            View Stream <FaPlay />
+            {t("vs")}
+            <FaPlay />
           </a>
         </div>
-        <div className="scard">
+        {/* <div className="scard">
           <div className="collab-list">
             <img src="/g/htal1.png" alt="" className="collab" />
             <img src="/g/htal1.png" alt="" className="collab" />
@@ -116,7 +118,7 @@ export default function SchedRow({}: Props) {
           <a href="#" className="btn hv btn-vs">
             View Stream <FaPlay />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

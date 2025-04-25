@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Guidelines from "./Guidelines";
+import { useTranslations } from "next-intl";
 type Props = {};
 
 type pageData = "guide" | "require" | "apply";
@@ -14,6 +15,8 @@ export default function AudisiControl({ guide, require, apply }: any) {
 
   const [active, setActive] = useState("guide");
   const [process, setProcess] = useState(1);
+
+  const t = useTranslations("audisi");
   return (
     <div id="audition-switch">
       <div className="controls">
@@ -24,7 +27,7 @@ export default function AudisiControl({ guide, require, apply }: any) {
             setProcess(1);
           }}
         >
-          Guidelines
+          {t("gtitle")}
         </button>
         <hr className={`${process >= 2 ? "act" : ""}`} />
         <button
@@ -34,7 +37,7 @@ export default function AudisiControl({ guide, require, apply }: any) {
             setActive("require");
           }}
         >
-          Requirements
+          {t("rtitle")}
         </button>
         <hr className={`${process >= 3 ? "act" : ""}`} />
 
@@ -45,7 +48,7 @@ export default function AudisiControl({ guide, require, apply }: any) {
             setProcess(3);
           }}
         >
-          Apply
+          {t("apply")}
         </button>
       </div>
       <img src="/d/glow.svg" alt="" className="bg-blur" />

@@ -5,6 +5,9 @@ import { CSSProperties } from "react";
 import Header from "./components/header/Header";
 import PageTransitionWrapper from "./components/PageTransitionWrapper/PageTransitionWrapper";
 import Footer from "./components/footer/Footer";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import { getUserLocale } from "@/services/locale";
 
 const protest = Protest_Strike({
   variable: "--fontH",
@@ -22,13 +25,15 @@ export const metadata: Metadata = {
   description: "A place for all things Asobi",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages({ locale: locale });
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={""}
         style={
@@ -38,9 +43,11 @@ export default function RootLayout({
           } as CSSProperties
         }
       >
-        <Header />
-        <div>{children}</div>
-        <Footer />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Header />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -6,15 +6,17 @@ import Guidelines from "./Guidelines";
 import Require from "./Require";
 import Apply from "./Apply";
 import AudisiFAQ from "./AudisiFAQ";
+import { getTranslations } from "next-intl/server";
 type Props = {};
 
-export default function Page({}: Props) {
+export default async function Page({}: Props) {
+  const t = await getTranslations("audisi");
   return (
     <TransitionContainer key={"audisi"} id="p_audisi">
       <div className="bg-hd">
         <section id="tl-h" className="general-h">
-          <h2 className="hs">AUDISI</h2>
-          <p>Jangan lewatkan informasi menarik!!</p>
+          <h2 className="hs">{t("name")}</h2>
+          <p>{t("sub")}</p>
         </section>
       </div>
 

@@ -3,14 +3,16 @@ import TransitionContainer from "../components/PageTransitionWrapper/TransitionC
 
 import "./talents.scss";
 import RouterLink from "../components/routerLink/RouterLink";
+import { getTranslations } from "next-intl/server";
 type Props = {};
 
-export default function Page({}: Props) {
+export default async function Page({}: Props) {
+  const t = await getTranslations("talent");
   return (
     <TransitionContainer key={"talent"} id="p_talent">
       <section id="tl-h" className="general-h">
         <h2 className="hs">TALENT</h2>
-        <p>Klik untuk Memilih Talent Kesayangan kamu!</p>
+        <p>{t("list_sub")}</p>
       </section>
 
       <section id="tl-l">

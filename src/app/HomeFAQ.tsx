@@ -1,11 +1,13 @@
 "use client";
 import { motion, AnimatePresence } from "motion/react";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { GoTriangleDown } from "react-icons/go";
 
 type Props = {};
 
 export default function HomeFAQ({}: Props) {
+  const t = useTranslations("home");
   return (
     <section id="h-faq" className="">
       <div className="dzig t"></div>
@@ -21,7 +23,7 @@ export default function HomeFAQ({}: Props) {
       </div>
       <div className="fq-h">
         <h2 className="hs"> FAQ</h2>
-        <p>Beli merchandise dari Stars kesayangan kamu!</p>
+        <p>{t("faq_sub")}</p>
         <img src="/g/htal2.png" alt="" className="bg-img" />
       </div>
     </section>
@@ -30,6 +32,7 @@ export default function HomeFAQ({}: Props) {
 
 export function Question() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("audisi");
   return (
     <div
       className="q"
@@ -51,7 +54,7 @@ export function Question() {
             exit={{ x: 100, opacity: 0, scaleY: 0 }}
             className="q-bar"
           >
-            <h3>Answer:</h3>
+            <h3>{t("answer")}:</h3>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text

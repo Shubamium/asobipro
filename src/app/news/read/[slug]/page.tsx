@@ -10,7 +10,11 @@ import { GrReturn } from "react-icons/gr";
 import { RiArrowUpLine, RiFacebookCircleFill } from "react-icons/ri";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
-export default function NewsRead({}: Props) {
+import { getTranslations } from "next-intl/server";
+export default async function NewsRead({}: Props) {
+  const t = await getTranslations("news");
+  const tf = await getTranslations("footer");
+
   return (
     <TransitionContainer key={"news-read"} id="p_read">
       <div id="top"></div>
@@ -44,7 +48,7 @@ export default function NewsRead({}: Props) {
         <div className="l">
           <Link href={"/news"} className="btn btn-ret">
             <GrReturn />
-            NEWS LIST
+            {t("list")}
           </Link>
         </div>
         <article className="at">
@@ -100,10 +104,10 @@ export default function NewsRead({}: Props) {
             <div className="t">
               <div className="l">
                 <Link href={"/news"} className="btn hv btn-rf">
-                  <GrReturn /> NEWS LIST
+                  <GrReturn /> {t("list")}
                 </Link>
                 <Link href={"#top"} className="btn hv btn-rf">
-                  <RiArrowUpLine /> SCROLL TO TOP
+                  <RiArrowUpLine /> {t("scroll")}
                 </Link>
               </div>
               <div className="r">
@@ -112,7 +116,7 @@ export default function NewsRead({}: Props) {
             </div>
 
             <div className="b">
-              <h2>©ASOBI PRODUCTION 2025 ALL RIGHTS RESERVED</h2>
+              <h2>{tf("copyright")}</h2>
 
               <div className="ct">
                 <div className="ft-contact">

@@ -94,7 +94,8 @@
         gap: 1em;
         margin: 2em 0;
         .g {
-          background: url("/b/dot.png"),
+          background:
+            url("/b/dot.png"),
             linear-gradient(to right, var(--lblue), var(--blue));
           background-size: 10px, 100%;
           border: 2px solid white;
@@ -152,7 +153,8 @@
           .wrapper {
             width: 100%;
             height: 100%;
-            background: url("/b/dot.png"),
+            background:
+              url("/b/dot.png"),
               linear-gradient(to right, var(--lblue), var(--blue));
             background-size: 10px, 100%;
 
@@ -202,6 +204,56 @@
       grid-template-columns: 1fr 3fr;
       overflow: hidden;
 
+      .form-load {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background: rgba(19, 31, 71, 0.413);
+        z-index: 50;
+        opacity: 1;
+        backdrop-filter: blur(20px);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        svg {
+          width: 80px;
+          height: 80px;
+          color: white;
+          animation: speen 1.2s infinite var(--es1);
+        }
+        p {
+          margin: 1em;
+          font-size: 2rem;
+        }
+
+        &.vis {
+          opacity: 1;
+          user-select: initial;
+          pointer-events: initial;
+        }
+        transition: all 500ms ease;
+        &.hid {
+          opacity: 0;
+          pointer-events: none;
+          user-select: none;
+        }
+        @keyframes speen {
+          from {
+            rotate: 0deg;
+          }
+          to {
+            rotate: 360deg;
+          }
+        }
+        p {
+          color: white;
+          text-align: center;
+        }
+      }
       img {
         width: 100%;
         height: 100%;
@@ -255,7 +307,7 @@
           input,
           textarea {
             background: white;
-            border: 2px solid var(--blue);
+            border: 3px solid var(--blue);
             font-family: var(--fontP);
             padding: 0.5em 0.75em;
             resize: none;
@@ -282,8 +334,8 @@
     margin: 150px auto;
 
     .l {
-      background: url("/b/dot.png"),
-        linear-gradient(to right, var(--lblue), var(--blue));
+      background:
+        url("/b/dot.png"), linear-gradient(to right, var(--lblue), var(--blue));
       background-size: 10px, 100%;
 
       border: 4px solid white;
