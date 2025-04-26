@@ -1,12 +1,12 @@
 import React, { useTransition } from "react";
 import TransitionContainer from "../components/PageTransitionWrapper/TransitionContainer";
 import SchedRow from "./SchedRow";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 type Props = {};
 
 export default async function Page({}: Props) {
-  const t = useTranslations("schedule");
+  const t = await getTranslations("schedule");
   return (
     <TransitionContainer key={"sched"} id="p_sched">
       <section className="general-h">
