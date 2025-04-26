@@ -32,7 +32,7 @@ export default async function Page({}: Props) {
       </section>
       <section id="s-list">
         {s?.map((sd: any, id: number) => {
-          return <SchedRow sd={sd} key={sd._id + "-" + id} />;
+          return <SchedRow sd={sd} key={sd._key + "-" + id} />;
         })}
         {/* <SchedRow /> */}
         {/* <SchedRow /> */}

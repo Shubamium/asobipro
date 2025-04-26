@@ -80,7 +80,7 @@ export default function HomeParticle({}: Props) {
               },
 
               number: {
-                value: 40,
+                value: 20,
               },
               opacity: {
                 value: {

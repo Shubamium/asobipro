@@ -1,6 +1,7 @@
+@import "mixins";
 .brand-strip {
-  background: url("/b/zig10.png"),
-    linear-gradient(to right, var(--lime), var(--blue));
+  background:
+    url("/b/zig10.png"), linear-gradient(to right, var(--lime), var(--blue));
   position: relative;
   z-index: 1;
   .wrapper {
@@ -16,6 +17,13 @@
         font-size: 3rem;
         font-family: var(--fontP);
         color: white;
+        @include mq(768) {
+          font-size: 2rem;
+        }
+
+        @include mq(420) {
+          font-size: 1.2rem;
+        }
         filter: var(--dd);
         padding: 0.25em 0;
         font-weight: bolder;

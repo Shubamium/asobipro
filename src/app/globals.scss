@@ -1,3 +1,4 @@
+@import "mixins";
 html,
 body {
   max-width: 100vw;
@@ -155,6 +156,9 @@ button {
   gap: 1em;
 
   padding: 2em;
+  @include mq(1024) {
+    padding: 0.25em;
+  }
   .q {
     background: #dffff5;
     border: 4px solid var(--lblue);
@@ -170,6 +174,10 @@ button {
       display: flex;
       justify-content: space-between;
       padding: 1em 1.5em;
+
+      @include mq(550) {
+        padding: 1em 1em;
+      }
       h2 {
         color: var(--grey);
         // font-size: 2rem;
@@ -177,6 +185,9 @@ button {
         // letter-spacing: 1px;
         // opacity: 0.7;
         font-weight: lighter;
+        @include mq(1280) {
+          font-size: 1rem;
+        }
       }
       align-items: center;
       .btn-arr {
@@ -191,6 +202,19 @@ button {
           width: 50px;
           height: 50px;
         }
+        @include mq(1280) {
+          svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+        @include mq(550) {
+          padding: 0 0.5em;
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
       }
       // padding: 1em 1.5em;
     }
@@ -201,13 +225,29 @@ button {
       padding: 3em;
       margin-bottom: 3em;
       transform-origin: top center;
+      @include mq(420) {
+        padding: 1.25em;
+        margin-bottom: 1.2em;
+      }
       h3 {
         font-weight: lighter;
         color: var(--grey);
         font-size: 2rem;
+        @include mq(1280) {
+          font-size: 1.5rem;
+        }
+        @include mq(420) {
+          font-size: 1rem;
+        }
       }
       p {
         font-size: 1.3rem;
+        @include mq(1280) {
+          font-size: 1.1rem;
+        }
+        @include mq(420) {
+          font-size: 1rem;
+        }
       }
     }
   }

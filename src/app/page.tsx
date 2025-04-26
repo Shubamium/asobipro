@@ -15,7 +15,6 @@ export default async function Home() {
   const hd = await fetchData<any>(`
 		*[_type == 'home' && preset == 'main'][0]{...}
 	`);
-  console.log(hd);
   return (
     <TransitionContainer key={"home"} id={"p_home"}>
       <section id="hero">
@@ -118,7 +117,9 @@ export default async function Home() {
               <RiFacebookCircleFill />
               <div className="ac">
                 <h2 className="n">Facebook</h2>
-                <Link href={"https://x.com"} className="btn hv btn-subs"></Link>
+                <Link href={"https://x.com"} className="btn hv btn-subs">
+                  Like
+                </Link>
               </div>
             </div>
           </div>
