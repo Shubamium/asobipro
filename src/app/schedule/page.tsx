@@ -8,7 +8,7 @@ type Props = {};
 export default async function Page({}: Props) {
   const t = useTranslations("schedule");
   return (
-    <TransitionContainer key={"base"} id="p_sched">
+    <TransitionContainer key={"sched"} id="p_sched">
       <section className="general-h">
         <h2 className="hs">SCHEDULE</h2>
         <p>{t("schedule_sub")}</p>
