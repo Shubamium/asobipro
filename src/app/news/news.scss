@@ -121,8 +121,6 @@
           gap: 1em;
         }
       }
-      .r {
-      }
     }
   }
 
@@ -154,6 +152,15 @@
         // width: auto;
         width: 100%;
         min-height: 350px;
+      }
+      .empty {
+        text-align: center;
+        background: #09184725;
+        width: 100%;
+        grid-column: span 4;
+        border-radius: 2em;
+        opacity: 0.65;
+        padding: 1em;
       }
     }
   }

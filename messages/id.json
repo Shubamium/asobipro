@@ -32,8 +32,7 @@
     "merch_title": "MERCHANDISE",
     "merch_sub": "Beli merchandise dari Stars kesayangan kamu!",
     "merch_buy": "Beli Sekarang",
-    "faq_sub": "Beli merchandise dari Stars kesayangan kamu!",
-    "answer": "ANSWER:"
+    "faq_sub": "Beli merchandise dari Stars kesayangan kamu!"
   },
   "talent": {
     "list_sub": "Klik untuk Memilih Talent Kesayangan kamu!",
@@ -50,7 +49,8 @@
     "name": "NEWS",
     "sub": "Klik untuk Memilih Talent Kesayangan kamu!",
     "list": "NEWS LIST",
-    "scroll": "SCROLL TO TOP"
+    "scroll": "SCROLL TO TOP",
+    "empty": " There are currently no news in this category, please check back later!"
   },
   "team": {
     "name": "TEAM",
@@ -78,7 +78,7 @@
     "age": "Umur",
     "age_ph": "placholder umur",
     "gen": "Generasi",
-    "generation": "placeholder gen",
+    "gen_ph": "placeholder gen",
     "bio": "About you",
     "bio_ph": "Introduce yourself . . .",
     "apply": "Apply"

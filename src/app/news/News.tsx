@@ -7,15 +7,18 @@ type Props = {
   title: string;
   tags: string[];
   img: string;
+  slug: {
+    current: string;
+  };
 };
 
-export default function News({ excerpt, title, tags, img }: Props) {
+export default function News({ excerpt, title, tags, img, slug }: Props) {
   const router = useRouter();
   return (
     <div
       className="news"
       onClick={() => {
-        router.push("news/read/" + "slug");
+        router.push("news/read/" + slug.current);
       }}
     >
       <div className="wrapper">

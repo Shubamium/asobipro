@@ -7,10 +7,16 @@ import Require from "./Require";
 import Apply from "./Apply";
 import AudisiFAQ from "./AudisiFAQ";
 import { getTranslations } from "next-intl/server";
+import { fetchData } from "../db/sanity";
 type Props = {};
 
 export default async function Page({}: Props) {
   const t = await getTranslations("audisi");
+  const a = await fetchData<any>(`
+		*[_type == 'audisi' && preset == 'main'][0]{
+			...
+		}
+	`);
   return (
     <TransitionContainer key={"audisi"} id="p_audisi">
       <div className="bg-hd">
@@ -22,12 +28,12 @@ export default async function Page({}: Props) {
 
       <img src="/d/glow.svg" alt="" className="bg-blur" />
       <AudisiControl
-        guide={<Guidelines />}
-        require={<Require />}
+        guide={<Guidelines g={a.gl} />}
+        require={<Require r={a.rq} />}
         apply={<Apply />}
       />
 
-      <AudisiFAQ />
+      <AudisiFAQ faq={a.faq} />
     </TransitionContainer>
   );
 }

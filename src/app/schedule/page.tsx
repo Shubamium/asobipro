@@ -2,11 +2,28 @@ import React, { useTransition } from "react";
 import TransitionContainer from "../components/PageTransitionWrapper/TransitionContainer";
 import SchedRow from "./SchedRow";
 import { getTranslations } from "next-intl/server";
+import { fetchData } from "../db/sanity";
 
 type Props = {};
 
 export default async function Page({}: Props) {
   const t = await getTranslations("schedule");
+  const s = await fetchData<any[]>(`*[_type == 'schedules']{
+		...,
+		talent -> {
+			name,
+			pfp,
+			slug
+		},
+		schedule_list[]{
+			...,
+			ml[] ->{
+				pfp,
+				name
+			}
+		}
+	}`);
+  console.log(s);
   return (
     <TransitionContainer key={"sched"} id="p_sched">
       <section className="general-h">
@@ -14,10 +31,12 @@ export default async function Page({}: Props) {
         <p>{t("schedule_sub")}</p>
       </section>
       <section id="s-list">
-        <SchedRow />
-        <SchedRow />
-        <SchedRow />
-        <SchedRow />
+        {s?.map((sd: any, id: number) => {
+          return <SchedRow sd={sd} key={sd._id + "-" + id} />;
+        })}
+        {/* <SchedRow /> */}
+        {/* <SchedRow /> */}
+        {/* <SchedRow /> */}
       </section>
     </TransitionContainer>
   );

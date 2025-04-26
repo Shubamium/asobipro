@@ -1,25 +1,24 @@
 "use client";
 import { motion, AnimatePresence } from "motion/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { PortableText } from "next-sanity";
 import React, { useState } from "react";
 import { GoTriangleDown } from "react-icons/go";
 
 type Props = {};
 
-export default function HomeFAQ({}: Props) {
+export default function HomeFAQ({ faq }: any) {
   const t = useTranslations("home");
+
   return (
     <section id="h-faq" className="">
       <div className="dzig t"></div>
       <div className="dzig b"></div>
 
       <div className="question-container">
-        <Question />
-        <Question />
-        <Question />
-        <Question />
-        <Question />
-        <Question />
+        {faq?.map((f: any, index: number) => {
+          return <Question d={f} key={f._key} />;
+        })}
       </div>
       <div className="fq-h">
         <h2 className="hs"> FAQ</h2>
@@ -30,9 +29,10 @@ export default function HomeFAQ({}: Props) {
   );
 }
 
-export function Question() {
+export function Question({ d }: any) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("audisi");
+  const locale = useLocale();
   return (
     <div
       className="q"
@@ -41,7 +41,7 @@ export function Question() {
       }}
     >
       <div className="q-h">
-        <h2 className="question">Q: What is your question here?</h2>
+        <h2 className="question">Q: {locale === "en" ? d.qen : d.qid}</h2>
         <div className="btn btn-arr">
           <GoTriangleDown />
         </div>
@@ -54,12 +54,10 @@ export function Question() {
             exit={{ x: 100, opacity: 0, scaleY: 0 }}
             className="q-bar"
           >
-            <h3>{t("answer")}:</h3>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
+            <h3>{t("answer")}</h3>
+            <PortableText
+              value={locale === "en" ? d.aen : d.aid}
+            ></PortableText>
           </motion.div>
         )}
       </AnimatePresence>

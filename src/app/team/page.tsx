@@ -3,10 +3,16 @@ import TransitionContainer from "../components/PageTransitionWrapper/TransitionC
 
 import "./team.scss";
 import { getTranslations } from "next-intl/server";
+import { fetchData, urlFor } from "../db/sanity";
+import { time } from "console";
+import TeamList from "./TeamList";
 type Props = {};
 
 export default async function Page({}: Props) {
   const t = await getTranslations("team");
+
+  const td = await fetchData<any[]>(`*[_type == 'team']{
+		...}`);
   return (
     <TransitionContainer key={"team"} id="p_team">
       <section id="tl">
@@ -16,71 +22,7 @@ export default async function Page({}: Props) {
             <h2 className="hs">{t("name")}</h2>
             <p>{t("sub")}</p>
           </section>
-          <div className="list">
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-            <div className="team">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="pfp" />
-                <h2 className="handle">@handle_name</h2>
-                <p className="title">title atau role</p>
-              </div>
-            </div>
-          </div>
+          <TeamList td={td} />
         </div>
       </section>
     </TransitionContainer>

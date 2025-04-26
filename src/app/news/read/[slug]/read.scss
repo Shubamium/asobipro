@@ -101,6 +101,7 @@
       padding: 1em;
       font-size: 1.3rem;
 
+      padding-bottom: 250px;
       p {
         text-align: justify;
         font-size: inherit;
@@ -163,8 +164,8 @@
       scale: 1 0.8;
     }
     .wrapper {
-      background: url("/b/dot.png"),
-        linear-gradient(to right, var(--lblue), var(--blue));
+      background:
+        url("/b/dot.png"), linear-gradient(to right, var(--lblue), var(--blue));
       background-size: 10px, 100%;
 
       padding: 2em;

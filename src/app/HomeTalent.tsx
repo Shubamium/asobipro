@@ -6,11 +6,16 @@ import useInfiniteScroll from "./useInfiniteScroll";
 import { BiStar } from "react-icons/bi";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { urlFor } from "./db/sanity";
 
 type Props = {};
 
-export default function HomeTalent({}: Props) {
-  const { pageRef: ref, animateScope: scope, x } = useInfiniteScroll(3, 10);
+export default function HomeTalent({ tal }: any) {
+  const {
+    pageRef: ref,
+    animateScope: scope,
+    x,
+  } = useInfiniteScroll(tal?.length ?? 3, 10);
 
   const t = useTranslations("home");
   return (
@@ -49,37 +54,37 @@ export default function HomeTalent({}: Props) {
       <div className="tl">
         <motion.div className="wrapper" style={{ x: x }}>
           <div className="scroller" ref={ref}>
-            <div className="tl-s">
-              <img src="/g/htal1.png" alt="" />
-            </div>
-            <div className="tl-s">
+            {tal?.map((t: any) => {
+              return (
+                <div className="tl-s" key={"tal-one" + t._key}>
+                  <img src={urlFor(t).height(1000).url()} alt="" />
+                </div>
+              );
+            })}
+            {/* <div className="tl-s">
               <img src="/g/htal2.png" alt="" />
             </div>
             <div className="tl-s">
               <img src="/g/htal3.png" alt="" />
-            </div>
+            </div> */}
           </div>
           <div className="scroller">
-            <div className="tl-s">
-              <img src="/g/htal1.png" alt="" />
-            </div>
-            <div className="tl-s">
-              <img src="/g/htal2.png" alt="" />
-            </div>
-            <div className="tl-s">
-              <img src="/g/htal3.png" alt="" />
-            </div>
+            {tal?.map((t: any) => {
+              return (
+                <div className="tl-s" key={"tal-two" + t._key}>
+                  <img src={urlFor(t).height(1000).url()} alt="" />
+                </div>
+              );
+            })}
           </div>
           <div className="scroller">
-            <div className="tl-s">
-              <img src="/g/htal1.png" alt="" />
-            </div>
-            <div className="tl-s">
-              <img src="/g/htal2.png" alt="" />
-            </div>
-            <div className="tl-s">
-              <img src="/g/htal3.png" alt="" />
-            </div>
+            {tal?.map((t: any) => {
+              return (
+                <div className="tl-s" key={"tal-three" + t._key}>
+                  <img src={urlFor(t).height(1000).url()} alt="" />
+                </div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

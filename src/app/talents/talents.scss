@@ -27,6 +27,11 @@
           background: linear-gradient(to right, var(--blue), var(--lime));
           outline: 3px transparent;
         }
+        &.act {
+          // scale: 1.1 1;
+          outline: 2px solid var(--lime);
+          outline-offset: 5px;
+        }
       }
     }
 
@@ -63,6 +68,7 @@
       .tc {
         position: relative;
         filter: var(--dd);
+        z-index: 1;
         &::before {
           content: "";
           position: absolute;

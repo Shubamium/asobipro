@@ -4,10 +4,77 @@ import TransitionContainer from "../components/PageTransitionWrapper/TransitionC
 import "./news.scss";
 import News from "./News";
 import { getTranslations } from "next-intl/server";
-type Props = {};
+import { fetchData, urlFor } from "../db/sanity";
+import NewsCategory from "./NewsCategory";
+type Props = {
+  searchParams: Promise<{
+    c: string;
+  }>;
+};
 
-export default async function Page({}: Props) {
+// fn_lbb ->,
+// 			fn_lt ->,
+// 			fn_r ->
+export default async function Page({ searchParams }: Props) {
   const t = await getTranslations("news");
+  const nl = await fetchData<any>(`
+		*[_type == 'news_featured' && preset == 'main'][0]{
+			fn_lt ->{
+				title,
+				excerpt,
+				banner,
+				slug,
+				tags,
+				category->
+			},
+			fn_lba ->{
+				title,
+				banner,
+				slug,
+				tags,
+				category->
+			},
+			fn_lbb ->{
+				title,
+				banner,
+				slug,
+				tags,
+				category->
+			},
+			fn_r ->{
+				title,
+				banner,
+				excerpt,
+				slug,
+				tags,
+				category->
+			}
+		}
+	`);
+
+  const nc = await fetchData<any>(`
+		*[_type == 'news_category']{
+			...
+		}
+	`);
+
+  const activeC = (await searchParams).c ?? nc[0].slug.current;
+  console.log(activeC);
+  const newsList = await fetchData<any>(`
+		*[_type == 'news' && category->slug.current == '${activeC}']{
+				title,
+				excerpt,
+				banner,
+				slug,
+				tags,
+				category->
+		} 
+	`);
+  const fn_lt = nl?.fn_lt;
+  const fn_lba = nl?.fn_lba;
+  const fn_lbb = nl?.fn_lbb;
+  const fn_r = nl?.fn_r;
+
   return (
     <TransitionContainer key={"news"} id="p_news">
       <section id="tl-h" className="general-h">
@@ -20,193 +87,49 @@ export default async function Page({}: Props) {
         <div className="confine">
           <div className="l">
             <div className="t">
-              <News
-                title={"News Title Here"}
-                excerpt="[excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad"
-                img="/g/nthumb.png"
-                tags={["Tags", "Category"]}
-              />
+              {fn_lt && (
+                <News
+                  title={fn_lt.title}
+                  excerpt={fn_lt.excerpt}
+                  img={urlFor(fn_lt.banner).height(800).url()}
+                  tags={[fn_lt.category.name, ...fn_lt.tags]}
+                  slug={fn_lt.slug}
+                />
+              )}
             </div>
             <div className="b">
-              <News
-                title={"News Title Here"}
-                img="/g/nthumb.png"
-                tags={["Tags", "Category"]}
-              />
-              <News
-                title={"News Title Here"}
-                img="/g/nthumb.png"
-                tags={["Tags", "Category"]}
-              />
+              {fn_lba && (
+                <News
+                  title={fn_lba.title}
+                  img={urlFor(fn_lba.banner).height(800).url()}
+                  tags={[fn_lba.category.name, ...fn_lba.tags]}
+                  slug={fn_lba.slug}
+                />
+              )}
+              {fn_lbb && (
+                <News
+                  title={fn_lbb.title}
+                  img={urlFor(fn_lbb.banner).height(800).url()}
+                  tags={[fn_lbb.category.name, ...fn_lbb.tags]}
+                  slug={fn_lbb.slug}
+                />
+              )}
             </div>
           </div>
           <div className="r">
-            <News
-              title={"News Title Here"}
-              excerpt="[excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad"
-              img="/g/nthumb.png"
-              tags={["Tags", "Category"]}
-            />
+            {fn_r && (
+              <News
+                title={fn_r.title}
+                excerpt={fn_r.excerpt}
+                img={urlFor(fn_r.banner).height(800).url()}
+                tags={[fn_r.category.name, ...fn_r.tags]}
+                slug={fn_r.slug}
+              />
+            )}
           </div>
         </div>
       </section>
-
-      <section id="nct">
-        <div className="confine">
-          <nav className="main-nav gb">
-            <div className="wrapper">
-              <button className={`btn btn-nav ${false ? "act" : ""} act`}>
-                <span>Category 1</span>
-              </button>
-              <button className={`btn btn-nav ${false ? "act" : ""}`}>
-                <span>Category 2</span>
-              </button>
-              <button className={`btn btn-nav ${false ? "act" : ""}`}>
-                <span>Category 3</span>
-              </button>
-              <button className={`btn btn-nav ${false ? "act" : ""}`}>
-                <span>Category4</span>
-              </button>
-            </div>
-          </nav>
-          <div className="news-list">
-            <img src="/d/glow.svg" alt="" className="bg-blur" />
-            <div className="news">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="nimg" />
-                <h2 className="nt">News Title Here</h2>
-                <p className="excerpt">
-                  [excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad
-                </p>
-                <div className="tags">
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="news">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="nimg" />
-                <h2 className="nt">News Title Here</h2>
-                <p className="excerpt">
-                  [excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad
-                </p>
-                <div className="tags">
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="news">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="nimg" />
-                <h2 className="nt">News Title Here</h2>
-                <p className="excerpt">
-                  [excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad
-                </p>
-                <div className="tags">
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="news">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="nimg" />
-                <h2 className="nt">News Title Here</h2>
-                <p className="excerpt">
-                  [excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad
-                </p>
-                <div className="tags">
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="news">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="nimg" />
-                <h2 className="nt">News Title Here</h2>
-                <p className="excerpt">
-                  [excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad
-                </p>
-                <div className="tags">
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="news">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="nimg" />
-                <h2 className="nt">News Title Here</h2>
-                <p className="excerpt">
-                  [excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad
-                </p>
-                <div className="tags">
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="news">
-              <div className="wrapper">
-                <img src="/g/nthumb.png" alt="" className="nimg" />
-                <h2 className="nt">News Title Here</h2>
-                <p className="excerpt">
-                  [excerpt] Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad
-                </p>
-                <div className="tags">
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                  <div className="t">
-                    <p>Tags/category</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <NewsCategory cat={nc} active={activeC} nl={newsList} />
     </TransitionContainer>
   );
 }

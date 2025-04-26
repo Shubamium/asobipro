@@ -7,11 +7,36 @@ import { IoReturnUpBack } from "react-icons/io5";
 
 import "./talent.scss";
 import AudioButton from "./AudioButton";
-import { getTranslations } from "next-intl/server";
-type Props = {};
+import { getLocale, getTranslations } from "next-intl/server";
+import { fetchData, urlFor } from "@/app/db/sanity";
+import { redirect } from "next/navigation";
+import TalentContact from "./TalentContact";
+type Props = {
+  params: Promise<{ id: string }>;
+};
 
-export default async function Page({}: Props) {
+export default async function Page({ params }: Props) {
   const t = await getTranslations("talent");
+  const locale = await getLocale();
+  const ct = (await params).id;
+
+  const td = await fetchData<any>(`
+		*[_type == 'talent' && slug.current == '${ct}'][0]{
+			...,
+			vo{
+				d,
+				vf{
+					asset->{
+						url
+					}
+				}
+			}
+		}
+	`);
+
+  if (!td) {
+    redirect("/talents");
+  }
 
   return (
     <TransitionContainer key={"talent-name"} id="p_talentd">
@@ -28,57 +53,71 @@ export default async function Page({}: Props) {
               <IoReturnUpBack /> Talent List
             </Link>
             <div className="dzig nzig"></div>
-            <h2 className="hs">NAMA TALENT</h2>
-            <p className="desc">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.{" "}
-            </p>
+            <h2 className="hs">{td.name}</h2>
+            <p className="desc">{td.intro}</p>
 
-            <div className="ytembed">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/QfGuQELt1Tk?si=8Vo7KhL1AS2Hdh-2"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
-            </div>
+            {td.trailer && (
+              <div className="ytembed">
+                <iframe
+                  width="560"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${td.trailer}`}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            )}
             <div className="mini-contact">
-              <a href="#" className="btn hv  btn-mc">
-                <FaYoutube />
-              </a>
-              <a href="#" className="btn hv  btn-mc">
-                <FaInstagram />
-              </a>
-              <a href="#" className="btn hv  btn-mc">
-                <FaXTwitter />
-              </a>
-              <a href="#" className="btn  hv btn-mc">
-                <FaDiscord />
-              </a>
+              {td.contact.yt && (
+                <a
+                  href={td.contact.yt.l}
+                  target="_blank"
+                  className="btn hv  btn-mc"
+                >
+                  <FaYoutube />
+                </a>
+              )}
+              {td.contact.ig && (
+                <a
+                  href={td.contact.ig.l}
+                  target="_blank"
+                  className="btn hv  btn-mc"
+                >
+                  <FaInstagram />
+                </a>
+              )}
+              {td.contact.x && (
+                <a href={td.contact.x.l} className="btn  hv btn-mc">
+                  <FaDiscord />
+                </a>
+              )}
             </div>
           </div>
           <div className="r">
-            <img src="/g/tal1by1.png" alt="" className="tal-arts" />
-            <h2 className="hs tn-big">TALENT NAME</h2>
+            <img
+              src={td.art?.hbm && urlFor(td.art.hbm).url()}
+              alt=""
+              className="tal-arts"
+            />
+            <h2 className="hs tn-big">{td.name.toUpperCase()}</h2>
           </div>
         </div>
       </section>
       <div id="vocal">
-        <img src="/g/htal2.png" alt="" className="bg-side" />
+        <img
+          src={td.art?.vb && urlFor(td.art.vb).url()}
+          alt=""
+          className="bg-side"
+        />
         <div className="confine">
           <div className="l"></div>
           <div className="r">
             <div className="panel">
               <div className="wrapper">
-                <p className="dia">
-                  “Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s.”
-                </p>
-                <AudioButton />
+                <p className="dia">{td.vo.d}</p>
+                {td.vo.vf && <AudioButton file={td.vo.vf.asset.url} />}
               </div>
             </div>
           </div>
@@ -92,94 +131,41 @@ export default async function Page({}: Props) {
             <div className="l">
               <div className="td-h">
                 <p className="sh">{t("talent_top")}</p>
-                <h2 className="hmain">NAMA TALENT</h2>
+                <h2 className="hmain">{td.name}</h2>
               </div>
 
               <div className="bio-p">
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.{" "}
-                </p>
-                <img src="/g/vlogo.png" alt="" />
+                <p>{td.bio}</p>
+                <img
+                  src={td.art.logo && urlFor(td.art.logo).height(700).url()}
+                  alt=""
+                />
               </div>
 
               <div className="td-d">
                 <div className="info-list">
-                  <div className="i">
+                  {td.il?.map((il: any) => {
+                    return (
+                      <div className="i" key={il._key}>
+                        <h2>{locale && "en" ? il.ten : il.tid}</h2>
+                        <p>{il.v}</p>
+                      </div>
+                    );
+                  })}
+                  {/* <div className="i">
                     <h2>Info Title</h2>
                     <p>Info Description</p>
-                  </div>
-                  <div className="i">
-                    <h2>Info Title</h2>
-                    <p>Info Description</p>
-                  </div>
-                  <div className="i">
-                    <h2>Info Title</h2>
-                    <p>Info Description</p>
-                  </div>
-                  <div className="i">
-                    <h2>Info Title</h2>
-                    <p>Info Description</p>
-                  </div>
-                  <div className="i">
-                    <h2>Info Title</h2>
-                    <p>Info Description</p>
-                  </div>
-                  <div className="i">
-                    <h2>Info Title</h2>
-                    <p>Info Description</p>
-                  </div>
-                  <div className="i">
-                    <h2>Info Title</h2>
-                    <p>Info Description</p>
-                  </div>
-                  <div className="i">
-                    <h2>Info Title</h2>
-                    <p>Info Description</p>
-                  </div>
+                  </div> */}
                 </div>
-                <div className="social-count">
-                  <div className="btn hv sc y">
-                    <div className="d">
-                      <h2>12.4K+</h2>
-                      <p>YOUTUBE</p>
-                    </div>
-                    <div className="ic">
-                      <FaYoutube />
-                    </div>
-                  </div>
-                  <div className="btn hv sc d">
-                    <div className="d">
-                      {/* <h2>12.4K+</h2> */}
-                      <p>DISCORD</p>
-                    </div>
-                    <div className="ic x">
-                      <FaDiscord />
-                    </div>
-                  </div>
-                  <div className="btn hv sc i">
-                    <div className="d">
-                      <h2>12.4K+</h2>
-                      <p>INSTAGRAM</p>
-                    </div>
-                    <div className="ic x">
-                      <FaInstagram />
-                    </div>
-                  </div>
-                  <div className="btn hv sc x">
-                    <div className="d">
-                      <h2>12.4K+</h2>
-                      <p>X</p>
-                    </div>
-                    <div className="ic x">
-                      <FaXTwitter />
-                    </div>
-                  </div>
-                </div>
+                <TalentContact td={td} />
               </div>
             </div>
             <div className="r">
-              <img src="/g/model.png" alt="" className="fb-art" />
+              <img
+                src={td.art.fb && urlFor(td.art.fb).url()}
+                alt=""
+                className="fb-art"
+              />
               <div className="dzig t"></div>
               <div className="dzig b"></div>
             </div>
@@ -196,7 +182,22 @@ export default async function Page({}: Props) {
           <p>{t("video_sub")}</p>
         </div>
         <div className="r">
-          <div className="ytembed">
+          {td.fv?.map((v: any, index: number) => {
+            return (
+              <div className="ytembed" key={v + "" + index}>
+                <iframe
+                  width="560"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${v}`}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            );
+          })}
+          {/* <div className="ytembed">
             <iframe
               width="560"
               height="315"
@@ -239,18 +240,7 @@ export default async function Page({}: Props) {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
-          </div>
-          <div className="ytembed">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/QfGuQELt1Tk?si=8Vo7KhL1AS2Hdh-2"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </div>
+          </div> */}
         </div>
       </section>
     </TransitionContainer>

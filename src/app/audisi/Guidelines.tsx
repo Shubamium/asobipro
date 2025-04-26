@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-export default async function Apply({}: Props) {
+export default async function Guidelines({ g }: any) {
   return (
     <section id="a-guide" className="a-panel">
       <div className="confine">
@@ -11,7 +11,15 @@ export default async function Apply({}: Props) {
           <p>Jangan lewatkan informasi menarik!</p>
         </div>
         <div className="g-l">
-          <div className="g">
+          {g?.map((gd: any) => {
+            return (
+              <div className="g" key={gd._key}>
+                <h2>{gd.t}</h2>
+                <p>{gd.v}</p>
+              </div>
+            );
+          })}
+          {/* <div className="g">
             <h2>Guide Title</h2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -45,14 +53,7 @@ export default async function Apply({}: Props) {
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.{" "}
             </p>
-          </div>
-          <div className="g">
-            <h2>Guide Title</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.{" "}
-            </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

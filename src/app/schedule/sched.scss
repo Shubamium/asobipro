@@ -119,7 +119,8 @@
         .scard {
           width: 300px;
           height: 350px;
-          background: url("/b/dot.png"),
+          background:
+            url("/b/dot.png"),
             linear-gradient(to right, var(--lblue), var(--blue));
           background-size: 10px, 100%;
 
@@ -161,13 +162,17 @@
           .title {
             color: white;
             margin-top: 0.5em;
-            font-size: 2rem;
+            font-size: 1.8rem;
             text-shadow: 0px 2px 5px var(--blue);
+            line-height: 0.9;
           }
           .d {
             color: white;
             text-shadow: 0px 2px 5px var(--blue);
             font-weight: bold;
+            margin: 0.25em 0;
+            // opacity: 0.8;
+            color: var(--lime);
           }
 
           .btn-vs {

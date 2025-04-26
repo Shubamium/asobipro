@@ -8,7 +8,11 @@
     "team": "Team",
     "audition": "AUDITION"
   },
-
+  "footer": {
+    "mini_about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "copyright": "©ASOBI PRODUCTION 2025 ALL RIGHTS RESERVED",
+    "attribution": "WEBSITE DESIGN by"
+  },
   "home": {
     "hero_topText": "INDONESIAN VIRTUAL",
     "hero_bottomText": "YOUTUBER AGENCY",
@@ -45,7 +49,8 @@
     "name": "NEWS",
     "sub": "Klik untuk Memilih Talent Kesayangan kamu!",
     "list": "NEWS LIST",
-    "scroll": "SCROLL TO TOP"
+    "scroll": "SCROLL TO TOP",
+    "empty": " There are currently no news in this category, please check back later!"
   },
   "team": {
     "name": "TEAM",
