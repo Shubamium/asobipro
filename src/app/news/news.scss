@@ -1,3 +1,4 @@
+@import "mixins";
 #p_news {
   .news {
     width: 100%;
@@ -8,9 +9,15 @@
     cursor: pointer;
     h2 {
       color: white;
+      @include mq(550) {
+        font-size: 1rem;
+      }
     }
     p {
       color: white;
+      @include mq(550) {
+        font-size: 0.8rem;
+      }
     }
     &:hover {
       .nimg {
@@ -82,6 +89,7 @@
       display: flex;
       gap: 0.25em;
       margin: 0.5em 0;
+      flex-wrap: wrap;
       .t {
         p {
           font-size: 0.8rem;
@@ -102,6 +110,11 @@
   #nft {
     background: url("/b/audi-bg.png");
     background-size: 100% 100%;
+
+    @include mq(1024) {
+      max-width: 95%;
+      margin: 0 auto;
+    }
     .confine {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -111,14 +124,57 @@
 
       min-height: 700px;
       gap: 1em;
+
+      @include mq(1024) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include mq(768) {
+        display: flex;
+        flex-direction: column;
+        min-height: 1200px;
+      }
+
+      @include mq(550) {
+        min-height: initial;
+        display: flex;
+        flex-direction: column;
+        .t {
+          .news {
+            height: 400px;
+          }
+        }
+      }
       .l {
         gap: 1em;
         display: grid;
         grid-template-rows: 2fr 1fr;
+
+        @include mq(550) {
+          display: flex;
+          flex-direction: column;
+        }
+
         .b {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 1em;
+          @include mq(768) {
+            .news {
+              height: 300px;
+            }
+          }
+          @include mq(550) {
+            grid-template-columns: 1fr;
+            display: none;
+          }
+        }
+      }
+
+      .r {
+        .news {
+          @include mq(768) {
+            height: 400px;
+          }
         }
       }
     }
@@ -129,6 +185,17 @@
     .main-nav {
       button {
         border: none;
+      }
+
+      @include mq(1024) {
+        width: 100%;
+
+        .wrapper {
+          flex-shrink: 0;
+          overflow-x: scroll;
+          width: 100%;
+          padding: 0.25em;
+        }
       }
     }
 
@@ -141,6 +208,23 @@
       align-content: flex-start;
 
       position: relative;
+
+      @include mq(1280) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      @include mq(1024) {
+        grid-template-columns: 1fr 1fr;
+        padding: 1em;
+      }
+      @include mq(420) {
+        padding: 0em;
+        padding-top: 1em;
+      }
+
+      @include mq(550) {
+        padding: 0.25em;
+        grid-template-columns: 1fr;
+      }
       .bg-blur {
         position: absolute;
         top: -10%;

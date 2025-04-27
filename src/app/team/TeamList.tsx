@@ -23,8 +23,10 @@ export default function TeamList({ td }: { td: any }) {
                 alt=""
                 className="pfp"
               />
-              <h2 className="handle">{tim.n}</h2>
-              <p className="title">{tim.r}</p>
+              <div className="r">
+                <h2 className="handle">{tim.n}</h2>
+                <p className="title">{tim.r}</p>
+              </div>
             </div>
           </div>
         );

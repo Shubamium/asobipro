@@ -36,6 +36,18 @@ export default function NewsCategory({ cat, active, nl }: any) {
                 </button>
               );
             })}
+            <button className={`btn btn-nav`}>
+              <span>c.name</span>
+            </button>
+            <button className={`btn btn-nav`}>
+              <span>c.name</span>
+            </button>
+            <button className={`btn btn-nav`}>
+              <span>c.name</span>
+            </button>
+            <button className={`btn btn-nav`}>
+              <span>c.name</span>
+            </button>
             {/* <button className={`btn btn-nav ${false ? "act" : ""}`}>
               <span>Category 2</span>
             </button>

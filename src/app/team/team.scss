@@ -23,12 +23,20 @@
     padding: 2em 0;
     text-align: left;
     align-items: flex-start;
+
     .hs {
       text-align: left;
       font-size: 5rem;
+      @include mq(420) {
+        text-align: center;
+        width: 100%;
+      }
     }
     p {
       text-align: left;
+      @include mq(420) {
+        text-align: center;
+      }
     }
   }
 
@@ -37,10 +45,18 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 4em 0;
+    @include mq(1024) {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
     .list {
       display: flex;
       gap: 1em;
       flex-wrap: wrap;
+      @include mq(768) {
+        justify-content: center;
+      }
       .team {
         width: 200px;
         height: 200px;
@@ -48,6 +64,12 @@
         position: relative;
         box-shadow: 0px 4px 5px rgba(8, 114, 195, 0.596);
         padding: 0.25em;
+
+        @include mq(420) {
+          width: 100%;
+          display: grid;
+          height: auto;
+        }
         &:hover {
           scale: 1.04;
         }
@@ -65,6 +87,12 @@
 
           border-radius: 2em;
 
+          @include mq(420) {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1em;
+            padding: 1em;
+          }
           &::before {
             content: "";
             position: absolute;
