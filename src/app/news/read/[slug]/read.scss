@@ -1,3 +1,4 @@
+@import "mixins";
 #p_read {
   #r-h {
     .banner {
@@ -10,6 +11,17 @@
         height: 100%;
       }
       // box-shadow: 0px 0px 10px #4e7ae0;
+
+      @include mq(1024) {
+        height: 500px;
+      }
+      @include mq(550) {
+        height: 300px;
+      }
+      @include mq(420) {
+        height: auto;
+        width: 100%;
+      }
     }
 
     .confine {
@@ -28,19 +40,32 @@
         opacity: 0.1;
       }
       padding: 2em;
+      @include mq(550) {
+        padding: 0.55em;
+      }
       .t {
         h2 {
           font-size: 2rem;
           color: var(--grey);
+          @include mq(550) {
+            font-size: 1.2rem;
+          }
         }
         margin: 0.5em 0;
       }
       .b {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        @include mq(420) {
+          flex-direction: column-reverse;
+          align-items: flex-start;
+        }
         .tlist {
           display: flex;
           gap: 0.5em;
+          flex-wrap: wrap;
+
           .t {
             font-size: 1rem;
             background: linear-gradient(to right, var(--blue), var(--lblue));
@@ -49,6 +74,10 @@
             border-radius: 1em;
             display: block;
             color: white;
+
+            @include mq(550) {
+              font-size: 0.7rem;
+            }
           }
         }
         .date {
@@ -65,6 +94,12 @@
     max-width: min(800px, 80%);
     margin: 0 auto;
     position: relative;
+    @include mq(550) {
+      max-width: 90%;
+    }
+    @include mq(420) {
+      max-width: 95%;
+    }
     .l {
       padding-top: 1em;
       position: absolute;
@@ -95,6 +130,10 @@
         background: var(--lblue);
         color: white;
       }
+
+      @include mq(1280) {
+        display: none;
+      }
     }
 
     article {
@@ -102,6 +141,10 @@
       font-size: 1.3rem;
 
       padding-bottom: 250px;
+
+      @include mq(768) {
+        font-size: 1rem;
+      }
       p {
         text-align: justify;
         font-size: inherit;
@@ -131,11 +174,12 @@
       }
       img {
         font-size: 1.5rem;
-        height: 400px;
+        // height: 400px;
         width: 100%;
         background: rgba(51, 60, 81, 0.326);
         // border: 2px solid var(--lime);
         margin: 2em 0;
+        height: auto;
       }
 
       ul {
@@ -172,16 +216,26 @@
       border-radius: 2em;
 
       .t {
+        @include mq(550) {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+          gap: 1em;
+        }
         .l {
           display: flex;
           flex-direction: column;
           gap: 0.5em;
+          @include mq(768) {
+            flex-direction: column;
+          }
           .btn-rf {
             color: white;
             border: 2px solid white;
             border-radius: 1em;
             padding: 0.25em 1.5em;
 
+            white-space: nowrap;
             &:hover {
               background: white;
               color: var(--blue);
@@ -207,10 +261,22 @@
         margin-top: 1em;
         align-items: center;
 
+        @include mq(768) {
+          display: flex;
+          flex-direction: column-reverse;
+        }
+        @include mq(420) {
+          .ct {
+            display: none;
+          }
+        }
         h2 {
           color: white;
           font-weight: lighter;
           font-size: 1.2rem;
+          @include mq(420) {
+            font-size: 1rem;
+          }
         }
       }
     }
