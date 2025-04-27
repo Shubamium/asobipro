@@ -1,9 +1,15 @@
+@import "mixins";
 #p_talent {
   #tl-l {
     .controls {
       display: flex;
       justify-content: center;
       gap: 1em;
+      @include mq(420) {
+        // display: flex;
+        flex-direction: column;
+        padding: 2em;
+      }
       .btn-gen {
         color: white;
         padding: 0.25em 1em;
@@ -12,6 +18,10 @@
         outline: 3px solid var(--lime);
         color: var(--lime);
 
+        @include mq(420) {
+          width: 100%;
+          margin: 0;
+        }
         border: none;
         margin: 1em 0;
         border-radius: 2em;
@@ -21,6 +31,10 @@
         background: white;
 
         font-weight: bold;
+        @include mq(550) {
+          font-size: 1rem;
+        }
+
         &.act,
         &:hover {
           color: white;
@@ -90,6 +104,7 @@
         .wrapper {
           width: 350px;
           min-height: 400px;
+
           background: white;
           padding: 1em;
           border: 3px solid var(--lime);
@@ -97,12 +112,19 @@
           transition: all 500ms var(--es1);
           position: relative;
 
+          @include mq(768) {
+            width: 300px;
+            min-height: initial;
+          }
           &:hover {
             scale: 1.02;
           }
           img {
             width: 100%;
             height: 300px;
+            @include mq(768) {
+              height: 230px;
+            }
             object-fit: cover;
             border-radius: 1em;
           }

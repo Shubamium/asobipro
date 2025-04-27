@@ -42,8 +42,11 @@
   },
   "schedule": {
     "schedule_sub": "Klik untuk Memilih Talent Kesayangan kamu!",
-    "vp": "VIEW PROFILE",
-    "vs": "VIEW STREAM"
+    "vp": "View Profile",
+    "vs": "View Stream",
+    "ss": "Show Schedule",
+    "w": "WATCH",
+    "cs": "Close Schedule"
   },
   "news": {
     "name": "NEWS",

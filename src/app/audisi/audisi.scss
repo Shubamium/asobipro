@@ -1,3 +1,4 @@
+@import "mixins";
 #p_audisi {
   .bg-hd {
     width: 100%;
@@ -37,6 +38,15 @@
         border-radius: 0.5em;
         position: relative;
         z-index: 10;
+
+        @include mq(1024) {
+          padding: 0.25em 1em;
+        }
+
+        @include mq(550) {
+          font-size: 1.3rem;
+          padding: 0.25em 0.5em;
+        }
       }
       hr {
         height: 15px;
@@ -45,6 +55,13 @@
         background: #c1e1e8;
         position: relative;
         z-index: --2;
+
+        @include mq(1024) {
+          width: 40px;
+        }
+        @include mq(550) {
+          width: 20px;
+        }
         &::before {
           content: "";
           position: absolute;
@@ -76,12 +93,29 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @include mq(768) {
+          flex-direction: column;
+        }
         h2 {
           color: var(--grey);
           font-size: 4rem;
+          @include mq(1024) {
+            font-size: 3rem;
+          }
+          @include mq(420) {
+            font-size: 2.5rem;
+          }
         }
         p {
           font-size: 1.5rem;
+          text-align: right;
+          @include mq(1024) {
+            font-size: 1.2rem;
+          }
+          @include mq(420) {
+            font-size: 1rem;
+          }
         }
       }
     }
@@ -93,6 +127,9 @@
         grid-template-columns: 1fr 1fr;
         gap: 1em;
         margin: 2em 0;
+        @include mq(1024) {
+          grid-template-columns: 1fr;
+        }
         .g {
           background:
             url("/b/dot.png"),
@@ -106,6 +143,11 @@
           filter: var(--dd);
           transition: all 500ms var(--es1);
 
+          @include mq(550) {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+          }
           &:hover {
             scale: 1.02;
           }
@@ -129,6 +171,16 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 2em;
         margin: 1em 0;
+        @include mq(1280) {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        @include mq(1024) {
+          grid-template-columns: 1fr 1fr;
+        }
+        @include mq(768) {
+          display: flex;
+          flex-direction: column;
+        }
         .r {
           border-radius: 1em;
           filter: var(--dd);
@@ -160,19 +212,35 @@
 
             transition: all 500ms var(--es1);
             border-bottom: 5px solid white;
-            padding: 2em 2em;
+            padding: 2em;
             border-radius: inherit;
+
+            @include mq(420) {
+              padding: 1em;
+            }
             h2 {
               color: white;
               width: 100%;
+              margin-bottom: 0.5em;
             }
             p {
               color: white;
+              @include mq(550) {
+                font-size: 1rem;
+              }
+              @include mq(420) {
+                font-size: 0.9rem;
+              }
             }
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+
+            @include mq(550) {
+              display: flex;
+              // flex-direction: column;
+            }
             .icon {
               background: white;
               padding: 1em;
@@ -181,6 +249,12 @@
               border: 1em;
               border-radius: 50%;
               margin: 2em 0;
+
+              @include mq(768) {
+                width: 80px;
+                height: 80px;
+                margin: 1em 0;
+              }
               img {
                 height: 100%;
                 width: 100%;
@@ -204,6 +278,24 @@
       grid-template-columns: 1fr 3fr;
       overflow: hidden;
 
+      @include mq(1024) {
+        display: flex;
+        flex-direction: column;
+        .l {
+          height: 200px;
+          img {
+            max-height: 100%;
+            object-position: 0% 30%;
+          }
+        }
+      }
+
+      @include mq(768) {
+        max-width: 90%;
+      }
+      @include mq(550) {
+        max-width: 95%;
+      }
       .form-load {
         position: absolute;
         top: 0%;
@@ -263,6 +355,12 @@
       .r {
         padding: 3em;
 
+        @include mq(550) {
+          padding: 2em;
+        }
+        @include mq(420) {
+          padding: 1em;
+        }
         .btn-sub {
           background: linear-gradient(to right, var(--blue), var(--lime));
           color: white;
@@ -272,6 +370,12 @@
           border: 3px solid var(--white);
           border-radius: 2em;
           filter: var(--dd);
+          @include mq(550) {
+            width: 100%;
+          }
+          @include mq(420) {
+            font-size: 1.5rem;
+          }
         }
         .f-h {
           font-size: 2rem;
@@ -280,9 +384,18 @@
             background: var(--grad1);
             color: transparent;
             background-clip: text;
+
+            @include mq(550) {
+              font-size: 2rem;
+              text-align: center;
+            }
           }
           p {
             font-size: 1.4rem;
+            @include mq(550) {
+              text-align: center;
+              font-size: 1.2rem;
+            }
           }
         }
 
@@ -291,6 +404,11 @@
           grid-template-columns: 1fr 1fr;
           gap: 1em;
           margin: 1em 0;
+
+          @include mq(768) {
+            display: flex;
+            flex-direction: column;
+          }
         }
         .i {
           display: flex;
@@ -303,6 +421,9 @@
             font-size: 1.5rem;
             margin: 0.25em 0;
             // filter: var(--dd);
+            @include mq(550) {
+              font-size: 1.2rem;
+            }
           }
           input,
           textarea {
@@ -318,6 +439,11 @@
             &::placeholder {
               opacity: 0.4;
             }
+            @include mq(420) {
+              font-size: 1rem;
+              border-width: 2px;
+              border-radius: 0 1em 1em 0;
+            }
           }
           textarea {
             min-height: 350px;
@@ -332,7 +458,10 @@
     grid-template-columns: 1fr 2fr;
     gap: 2em;
     margin: 150px auto;
-
+    @include mq(1024) {
+      display: flex;
+      flex-direction: column;
+    }
     .l {
       background:
         url("/b/dot.png"), linear-gradient(to right, var(--lblue), var(--blue));
@@ -345,11 +474,26 @@
       top: 5%;
       padding: 3em;
       border-radius: 2em;
+
+      @include mq(1024) {
+        position: relative;
+        top: 0%;
+      }
+      @include mq(420) {
+        padding: 1.5em;
+      }
       h2 {
         color: white;
         font-size: 3rem;
+
+        @include mq(550) {
+          font-size: 2.4rem;
+        }
         svg {
           font-size: 2.3rem;
+          @include mq(550) {
+            font-size: 1.9rem;
+          }
         }
       }
       p {

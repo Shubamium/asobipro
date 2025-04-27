@@ -1,13 +1,25 @@
+@import "mixins";
 #p_sched {
   #s-list {
     max-width: min(1880px, 80%);
     margin: 0 auto;
+
+    @include mq(550) {
+      max-width: 95%;
+    }
     .s-rw {
       display: grid;
       grid-template-columns: 350px 1fr;
       gap: 1em;
+      @include mq(1024) {
+        display: flex;
+        flex-direction: column;
+      }
       .tl-card {
         padding-top: 150px;
+        @include mq(420) {
+          padding-top: 20px;
+        }
         .card {
           // margin-top: 150px;
           background: url("/b/dot.png"), #f6fafb;
@@ -17,6 +29,11 @@
           border-radius: 2em;
           height: 230px;
           position: relative;
+
+          @include mq(420) {
+            // transform: translateY(0%);
+            height: auto;
+          }
           &::before {
             content: "";
             position: absolute;
@@ -38,6 +55,31 @@
             padding: 1em;
 
             transform: translateY(-35%);
+
+            @include mq(420) {
+              display: grid;
+              grid-template-columns: 1fr 3fr;
+            }
+            @include mq(420) {
+              transform: translateY(0%);
+              .r {
+                width: 100%;
+              }
+            }
+
+            .r {
+              width: 100%;
+            }
+            .action {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              align-items: center;
+              justify-content: center;
+              @include mq(1024) {
+                justify-content: space-between;
+              }
+            }
             .n {
               background: linear-gradient(to right, var(--blue), var(--lime));
               color: white;
@@ -49,6 +91,10 @@
               font-family: var(--fontP);
               font-weight: bold;
               font-size: 1.2rem;
+
+              @include mq(420) {
+                font-size: 1rem;
+              }
             }
             .view {
               border: 2px solid var(--lblue);
@@ -57,9 +103,27 @@
               padding: 0.25em 1em;
               font-size: 0.9rem;
               border-radius: 2em;
+
+              @include mq(420) {
+                font-size: 0.8rem;
+              }
+              @include mq(380) {
+                font-size: 0.7rem;
+              }
               &:hover {
                 background: var(--lblue);
                 color: white;
+              }
+
+              &.viewvs {
+                background: var(--grad1);
+                color: white;
+                @include mq(1024) {
+                  display: block;
+                }
+                @include mq(1024, min) {
+                  display: none;
+                }
               }
             }
           }
@@ -71,6 +135,14 @@
             border-radius: 50%;
             margin: 0 auto;
             filter: var(--dd);
+            @include mq(420) {
+              width: 100%;
+              height: auto;
+              aspect-ratio: 1/1;
+            }
+          }
+          .pfp {
+            display: flex;
           }
         }
         .control {
@@ -78,6 +150,10 @@
           gap: 0.55em;
           justify-content: flex-end;
           padding: 1em;
+
+          @include mq(1024) {
+            display: none;
+          }
           .btn-c {
             color: white;
             background: linear-gradient(to bottom, var(--lblue), var(--blue));
@@ -116,6 +192,15 @@
           white 85%,
           transparent 100%
         );
+
+        @include mq(1024) {
+          flex-direction: column;
+          width: 100%;
+          mask-image: none;
+          padding: 0;
+          padding-top: 50px;
+          overflow: initial;
+        }
         .scard {
           width: 300px;
           height: 350px;
@@ -131,6 +216,23 @@
           border: 3px solid var(--lblue);
 
           position: relative;
+          @include mq(1024) {
+            width: 100%;
+            // padding-bottom: 3em;
+            height: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+            .r {
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+            }
+          }
+
+          @include mq(420) {
+            padding: 0.5em;
+          }
           filter: var(--dd);
           .collab-list {
             display: flex;
@@ -146,6 +248,12 @@
               height: 50px;
               object-fit: cover;
               border: 2px solid var(--blue);
+              @include mq(550) {
+                width: 35px;
+                height: 35px;
+              }
+              @include mq(420) {
+              }
             }
           }
 
@@ -158,6 +266,12 @@
             border: 2px solid var(--grey);
             filter: var(--dd);
             margin-top: 1em;
+            @include mq(1024) {
+              margin-top: 0;
+            }
+            @include mq(380) {
+              border-radius: 0.25em;
+            }
           }
           .title {
             color: white;
@@ -165,6 +279,13 @@
             font-size: 1.8rem;
             text-shadow: 0px 2px 5px var(--blue);
             line-height: 0.9;
+
+            @include mq(768) {
+              font-size: 1.4rem;
+            }
+            @include mq(550) {
+              font-size: 1rem;
+            }
           }
           .d {
             color: white;
@@ -173,6 +294,13 @@
             margin: 0.25em 0;
             // opacity: 0.8;
             color: var(--lime);
+
+            @include mq(768) {
+              font-size: 1rem;
+            }
+            @include mq(550) {
+              font-size: 0.9rem;
+            }
           }
 
           .btn-vs {
@@ -187,6 +315,16 @@
             border-radius: 2em;
             align-items: center;
             margin: 1em 0;
+
+            @include mq(768) {
+              font-size: 0.9rem;
+              align-self: flex-end;
+            }
+            @include mq(420) {
+              svg {
+                display: none;
+              }
+            }
           }
         }
       }

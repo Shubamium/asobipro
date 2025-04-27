@@ -1,3 +1,4 @@
+@import "mixins";
 #p_team {
   #tl {
     margin: 5em 0;
@@ -25,6 +26,9 @@
     .hs {
       text-align: left;
       font-size: 5rem;
+    }
+    p {
+      text-align: left;
     }
   }
 
