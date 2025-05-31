@@ -99,11 +99,18 @@ export default function SchedRow({ sd }: any) {
                     {/* <img src="/g/htal1.png" alt="" className="collab" /> */}
                     {scard.ml?.map((ml: any) => {
                       return (
-                        <img
-                          src={ml.pfp && urlFor(ml.pfp).url()}
-                          alt=""
-                          className="collab"
-                        />
+                        <a
+                          href={ml.link}
+                          className="btn hv"
+                          target="_blank"
+                          key={ml.name}
+                        >
+                          <img
+                            src={ml.pfp && urlFor(ml.pfp).url()}
+                            alt={ml.name}
+                            className="collab "
+                          />
+                        </a>
                       );
                     })}
                   </div>
@@ -117,6 +124,9 @@ export default function SchedRow({ sd }: any) {
                   <div className="r">
                     <h2 className="title">{scard.sn}</h2>
                     <p className="d">{new Date(scard.d).toDateString()}</p>
+                    {/* <p className="d member">
+                      {scard.ml?.map((ml: any) => ml.name).join(", ")}
+                    </p> */}
                     {scard.surl && (
                       <a
                         href={scard.surl}
@@ -132,6 +142,7 @@ export default function SchedRow({ sd }: any) {
               );
             })}
         </AnimatePresence>
+        <></>
       </div>
     </div>
   );

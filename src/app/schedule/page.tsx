@@ -10,6 +10,7 @@ export default async function Page({}: Props) {
   const t = await getTranslations("schedule");
   const s = await fetchData<any[]>(`*[_type == 'schedules']{
 		...,
+		_id,
 		talent -> {
 			name,
 			pfp,
@@ -17,9 +18,10 @@ export default async function Page({}: Props) {
 		},
 		schedule_list[]{
 			...,
-			ml[] ->{
+			ml[] {
 				pfp,
-				name
+				name,
+				link
 			}
 		}
 	}`);
