@@ -9,30 +9,31 @@
     "audition": "Audisi"
   },
   "footer": {
-    "mini_about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    "copyright": "©ASOBI PRODUCTION 2025 ALL RIGHTS RESERVED",
+    "mini_about": "Asobu Production adalah Agensi VTuber yang menghadirkan hiburan, inspirasi, dan senyum ke seluruh dunia melalui talenta virtual berbakat. Kami percaya pada kekuatan cerita, musik, dan komunitas. ",
+    "copyright": "©ASOBU PRODUCTION 2025 ALL RIGHTS RESERVED",
     "attribution": "WEBSITE DESIGN by"
   },
   "home": {
     "hero_topText": "AGENSI VIRTUAL",
-    "hero_bottomText": "YOUTUBER INDONESIA",
-    "hero_tagline": "Tagline utama - Temukan Stars Kesayangan kamu!",
-    "talent_stars": "Temukan Stars Kesayangan kamu!",
+    "hero_bottomText": "ASOBU PRODUCTION",
+    "hero_tagline": "Senyum Dan Kreatifitas Tanpa Batas",
+    "talent_stars": "Temukan Talent Kesayangan Kamu!",
     "talent_meet": "MEET OUR",
     "talent_tal": "TALENTS!",
     "audisi_title": "AUDISI",
-    "audisi_sub": "Kamu juga bisa jadi Virtual Youtuber!",
-    "audisi_step1": "Daftar Audisi",
+    "audisi_sub": "Siapa Saja Bisa Menjadi Virtual Youtuber!",
+    "audisi_step1": "Daftarkan Diri",
     "audisi_step2": "Diskusi Karakter",
-    "audisi_step3": "Daftar Audisi",
-    "audisi_noteTop": "Wow! Hanya dengan 3 langkah* kamu bisa menjadi Virtual YouTuber",
-    "audisi_noteBot": "(*) Proses sampai debut dapat memakan waktu hingga 1 tahun.",
+    "audisi_step3": "Debut",
+    "audisi_noteTop": "3 Langkah Menjadi Virtual YouTuber Asobu Production!",
+    "audisi_noteBot": "(*) Estimasi Proses Debut Bisa Sampai 1 Tahun.",
     "media_title": "MEDIA SOCIAL",
     "media_sub": "Jangan lewatkan informasi menarik!",
     "merch_title": "MERCHANDISE",
-    "merch_sub": "Beli merchandise dari Stars kesayangan kamu!",
+    "merch_sub": "Beli Merchandise Dari Talent Kesayangan Kamu!",
     "merch_buy": "Beli Sekarang",
-    "faq_sub": "Beli merchandise dari Stars kesayangan kamu!"
+    "faq_sub": "Apa Sih Asobu Itu? Asobu merupakan singkatan dari kata Asobi Raibu yang menggabungkan Hiburan & Pertunjukan. ",
+    "answer": "ANSWER:"
   },
   "talent": {
     "list_sub": "Klik untuk Memilih Talent Kesayangan kamu!",
@@ -42,48 +43,44 @@
   },
   "schedule": {
     "schedule_sub": "Klik untuk Memilih Talent Kesayangan kamu!",
-    "vp": "View Profile",
-    "vs": "View Stream",
-    "ss": "Show Schedule",
-    "cs": "Close Schedule",
-    "w": "WATCH"
+    "vp": "VIEW PROFILE",
+    "vs": "VIEW STREAM"
   },
   "news": {
     "name": "NEWS",
     "sub": "Klik untuk Memilih Talent Kesayangan kamu!",
     "list": "NEWS LIST",
-    "scroll": "SCROLL TO TOP",
-    "empty": " There are currently no news in this category, please check back later!"
+    "scroll": "SCROLL TO TOP"
   },
   "team": {
     "name": "TEAM",
-    "sub": "Klik untuk Memilih Talent Kesayangan kamu!"
+    "sub": "Temukan Talent Kesayangan Kalian!"
   },
   "audisi": {
     "name": "AUDISI",
-    "sub": "Klik untuk Memilih Talent Kesayangan kamu!",
+    "sub": "Jadilah Bagian Dari Asobu!",
     "gtitle": "Guidelines",
-    "gsub": "Jangan lewatkan informasi menarik!",
+    "gsub": "Agar Tidak Bingung Coba Dibaca Dahulu Ya!",
     "rtitle": "Requirement",
-    "rsub": "Jangan lewatkan informasi menarik!",
+    "rsub": "Coba Kirimkan Seberapa Menariknya Kamu!",
     "apply": "Apply",
     "faq": "AUDISI FAQ",
-    "faqsub": "Jangan lewatkan informasi menarik!",
+    "faqsub": "Silahkan Baca Ini Dahulu Ya!",
     "answer": "ANSWER:"
   },
   "form": {
     "ftitle": "Form Audisi",
-    "fsub": "Jangan lewatkan informasi menarik!",
+    "fsub": "Silahkan Di Lengkapi Form Data Diri Dibawah Ini Ya",
     "name": "Nama",
-    "name_ph": "placeholder nama",
+    "name_ph": "Nama Diri",
     "email": "Email",
-    "email_ph": "placeholder email",
+    "email_ph": "Email",
     "age": "Umur",
-    "age_ph": "placholder umur",
+    "age_ph": "Umur",
     "gen": "Generasi",
-    "gen_ph": "placeholder gen",
+    "generation": "Audisi Gen",
     "bio": "About you",
-    "bio_ph": "Introduce yourself . . .",
+    "bio_ph": "Coba Jelaskan Sedikit Tentang Kamu...",
     "apply": "Apply"
   }
 }

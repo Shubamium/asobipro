@@ -21,7 +21,7 @@ const merri = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Asobi Production",
+  title: "Asobu Production",
   description: "A place for all things Asobi",
 };
 
