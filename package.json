@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "type": "module",
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.63.0",
     "@payloadcms/next": "^3.63.0",

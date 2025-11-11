@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload";
 
-export const product: CollectionConfig = {
+export const Product: CollectionConfig = {
   slug: "product",
   admin: {
     group: "Shop",
@@ -30,13 +30,13 @@ export const product: CollectionConfig = {
       },
       hasMany: true,
     },
-    // {
-    // 	name: "categories",
-    // 	required: true,
-    // 	type: "relationship",
-    // 	relationTo: "ProductCategory",
-    // 	hasMany: true,
-    // },
+    {
+      name: "categories",
+      required: true,
+      type: "relationship",
+      relationTo: "product-category",
+      hasMany: true,
+    },
     {
       name: "variants",
       type: "text",
@@ -44,6 +44,7 @@ export const product: CollectionConfig = {
       admin: {
         description: "List of variants, has to be unique",
       },
+      unique: true,
     },
   ],
 };
