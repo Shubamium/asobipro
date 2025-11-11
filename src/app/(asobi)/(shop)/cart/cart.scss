@@ -1,0 +1,196 @@
+#p_cart {
+  position: relative;
+  z-index: 1;
+  #cart {
+    display: flex;
+    flex-direction: column;
+    max-width: min(900px, 80%);
+    margin: 0 auto;
+    padding: 50px 0;
+    gap: 1em;
+    .empty-cart {
+      background: whitesmoke;
+      text-align: center;
+      padding: 2em;
+      border-radius: 1em;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .cart-item {
+      background: white;
+      border: 3px solid var(--blue);
+      border-radius: 0.55em;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      padding: 1em;
+      gap: 2em;
+      .pimg {
+        width: 100%;
+        border-radius: 0.55em;
+        margin: 0.25em;
+        box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.149);
+      }
+      .pn {
+        font-size: 1.7rem;
+      }
+      .infos {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-evenly;
+      }
+      .cart-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        justify-self: flex-end;
+        .numput {
+          width: 80px;
+        }
+        .btn-remove {
+          font-family: var(--fontP);
+          font-size: 1.2rem;
+          color: var(--lblue);
+          border: none;
+          padding: 1em;
+          &:active {
+            scale: 0.9;
+          }
+        }
+        .price {
+          font-size: 1.9rem;
+          color: var(--blue);
+          font-weight: bold;
+          font-family: var(--fontH);
+        }
+      }
+    }
+
+    .checkout {
+      display: flex;
+      justify-content: flex-end;
+      .checkout-bar {
+        background: linear-gradient(to right, var(--blue, var(--lblue)));
+        display: flex;
+        color: white;
+        padding: 1em;
+        border-radius: 1em;
+        gap: 2em;
+        .total {
+          align-items: center;
+          font-weight: bold;
+          font-family: var(--fontH);
+          color: white;
+          font-size: 2.4rem;
+        }
+      }
+    }
+  }
+  #checkout {
+    max-width: min(900px, 80%);
+    margin: 0 auto;
+    padding: 50px 0;
+    position: relative;
+    .glow {
+      position: absolute;
+      left: calc(50% - 1500px);
+      z-index: -100;
+      top: 50%;
+      filter: blur(300px);
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    .checkout-h {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+
+      gap: 3em;
+      .l {
+        h2 {
+          font-size: 2.5rem;
+          color: var(--grey);
+          margin-bottom: 0.5em;
+        }
+      }
+      .r {
+        background:
+          url("/b/zig10.png"),
+          linear-gradient(to top, var(--lblue), var(--lime));
+        background-size: 30px, auto;
+        background-blend-mode: screen;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        border-radius: 1em;
+        border: 3px solid var(--blue);
+
+        .bn {
+          color: white;
+          font-size: 2rem;
+        }
+        .bi {
+          color: white;
+        }
+      }
+    }
+
+    .ch-form {
+      input::file-selector-button {
+        background: var(--lblue);
+        color: white;
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 0.55em;
+        cursor: pointer;
+        font-family: var(--fontH);
+      }
+    }
+  }
+
+  #confirm {
+    max-width: min(900px, 80%);
+    margin: 0 auto;
+    padding: 50px 0;
+
+    .order-status-panel {
+      background: url("/b/zig90.png"), #eeeeee;
+      padding: 2em;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.137);
+      border-radius: 1em;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      .status-icon {
+        font-size: 10rem;
+        color: var(--blue);
+        line-height: 1;
+      }
+      .head {
+        margin: 1em 0;
+        .oh {
+          font-size: 2.2rem;
+          color: var(--grey);
+        }
+        .oid {
+          font-size: 1.4rem;
+          color: var(--blue);
+          font-family: var(--fontH);
+        }
+      }
+
+      .note {
+        max-width: 70%;
+        font-size: 0.9rem;
+        min-height: 150px;
+      }
+    }
+  }
+  .audition-switch {
+    margin-top: 50px;
+  }
+}

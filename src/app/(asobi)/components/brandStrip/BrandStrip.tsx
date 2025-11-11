@@ -1,5 +1,5 @@
 "use client";
-import useInfiniteScroll from "@/app/useInfiniteScroll";
+import useInfiniteScroll from "@/app/(asobi)/useInfiniteScroll";
 import { motion } from "motion/react";
 import React from "react";
 import "./brandStrip.scss";

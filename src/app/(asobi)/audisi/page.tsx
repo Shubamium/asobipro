@@ -28,9 +28,14 @@ export default async function Page({}: Props) {
 
       <img src="/d/glow.svg" alt="" className="bg-blur" />
       <AudisiControl
-        guide={<Guidelines g={a.gl} />}
-        require={<Require r={a.rq} />}
-        apply={<Apply />}
+        // guide={<Guidelines g={a.gl} />}
+        // require={<Require r={a.rq} />}
+        // apply={<Apply />}
+        pages={{
+          guide: <Guidelines g={a.gl}></Guidelines>,
+          require: <Require r={a.rq}></Require>,
+          apply: <Apply />,
+        }}
       />
 
       <AudisiFAQ faq={a.faq} />

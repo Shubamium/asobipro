@@ -42,7 +42,7 @@ export default function Footer({}: Props) {
             <Link href={"/"} className="btn btn-foot">
               {th("about")}
             </Link>
-            <Link href={"#"} className="btn btn-foot">
+            <Link href={"/shop"} className="btn btn-foot">
               {th("shop")}
             </Link>
             <Link href={"/talents"} className="btn btn-foot">

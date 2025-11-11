@@ -8,7 +8,9 @@ import { usePathname } from "next/navigation";
 import { CiGlobe, CiMenuBurger } from "react-icons/ci";
 import { useLocale, useTranslations } from "next-intl";
 import { setUserLocale } from "@/services/locale";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiShoppingCart } from "react-icons/gi";
+import { LuShoppingCart } from "react-icons/lu";
+import { HiShoppingCart } from "react-icons/hi2";
 type Props = {};
 
 export default function Header({}: Props) {
@@ -37,7 +39,7 @@ export default function Header({}: Props) {
               >
                 <span>{t("about")}</span>
               </Link>
-              <Link href="#" className={`btn btn-nav`}>
+              <Link href="/shop" className={`btn btn-nav`}>
                 <span>{t("shop")}</span>
               </Link>
               <Link
@@ -88,12 +90,18 @@ export default function Header({}: Props) {
                 </button>
               </div>
             </div>
+            <Link href={"/cart"} className="btn hv btn-cart ">
+              <span>
+                <HiShoppingCart />
+              </span>
+            </Link>
             <div className="audition">
               <Link href={"/audisi"} className="btn hv btn-audition">
                 <span>
                   {t("audition").toUpperCase()} <FaStar />
                 </span>
               </Link>
+
               <div className="circle ni"></div>
               <button
                 className="btn hv btn-audition btn-menu"
@@ -125,9 +133,7 @@ export default function Header({}: Props) {
             >
               <span>{t("about")}</span>
             </Link>
-            <Link href="#" className={`btn btn-nav`}>
-              <span>{t("shop")}</span>
-            </Link>
+
             <Link
               href="/talents"
               className={`btn btn-nav ${path.includes("talent") ? "act" : ""}`}
@@ -157,6 +163,12 @@ export default function Header({}: Props) {
             <Link href={"/audisi"} className="btn btn-nav">
               <span>{t("audition")}</span>
             </Link>
+            <Link href="/shop" className={`btn btn-nav`}>
+              <span>{t("shop")}</span>
+            </Link>
+            {/* <Link href="/cart" className={`btn btn-nav`}>
+              <span>CART</span>
+            </Link> */}
           </div>
         </nav>
       </nav>

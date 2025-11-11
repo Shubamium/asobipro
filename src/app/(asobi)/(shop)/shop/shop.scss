@@ -1,0 +1,156 @@
+#p_shop {
+  .general-h {
+    position: relative;
+    .bg-slant {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #dff0f5;
+      z-index: -10;
+      top: 10%;
+      transform: skewY(-3deg);
+    }
+  }
+  #sh {
+    max-width: min(80%, 1280px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    .searchbar {
+      min-width: 30%;
+      background: white;
+      border: 4px solid var(--lblue);
+      border-radius: 1em;
+      &:has(input:focus) {
+        outline: 3px solid var(--lblue);
+      }
+
+      input {
+        width: 100%;
+        height: 100%;
+        background: none;
+        border: none;
+        padding: 0.55em;
+        padding-left: 2em;
+        font-family: var(--fontP);
+        color: var(--lblue);
+        font-size: 1.2rem;
+        &:focus {
+          outline: none;
+        }
+      }
+      position: relative;
+      .ico {
+        position: absolute;
+        width: 2em;
+        padding: 0.4em;
+        height: 100%;
+        color: var(--lblue);
+      }
+    }
+    .action {
+      display: flex;
+      gap: 1em;
+      .btn-shoph {
+        background: var(--lblue);
+        color: white;
+        padding: 0.25em 1em;
+        border: none;
+        min-width: 250px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.3rem;
+        border-radius: 0.25em;
+
+        &:hover {
+          scale: 1.05;
+        }
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+
+  #ph {
+    max-width: min(80%, 1280px);
+    margin: 0 auto;
+    // display: flex;
+    gap: 2em 1.2em;
+    // justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 20px;
+    .pcard {
+      position: relative;
+      box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.15);
+      .category {
+        right: 5%;
+        top: -15px;
+        position: absolute;
+        background: var(--lblue);
+        padding: 0.25em 1em;
+        border-radius: 1em;
+        p {
+          color: white;
+          font-size: 0.9rem;
+          font-weight: bold;
+          text-align: right;
+        }
+      }
+      border: 4px solid var(--lblue);
+      border-radius: 1em;
+      padding: 1em;
+      width: 100%;
+      background: url("/b/zig90.png"), white;
+      transition: all 300ms ease;
+      &:hover {
+        scale: 1.02;
+      }
+      .img {
+        height: 200px;
+        border-radius: 1em;
+        border: 2px solid rgba(128, 128, 128, 0.665);
+        overflow: hidden;
+        background: grey;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .info {
+        margin-top: 1em;
+        min-height: 100px;
+        .desc {
+          font-size: 0.8rem;
+          color: var(--lblue);
+        }
+      }
+      .paction {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .price {
+          font-size: 1.2rem;
+          font-weight: bolder;
+          font-family: var(--fontH);
+          background: linear-gradient(to top, var(--blue), var(--lblue));
+          background-clip: text;
+          color: transparent;
+        }
+        .btn-buy {
+          color: white;
+          font-size: 1.4rem;
+          background: linear-gradient(to right, var(--lblue), var(--blue));
+          border: none;
+          padding: 0.25em 1em;
+          border-radius: 1em;
+        }
+      }
+    }
+  }
+}
