@@ -4,7 +4,7 @@ type Props = {};
 import "./track.scss";
 import AudisiControl from "../../audisi/AudisiControl";
 import OrderSummary from "../orderSummary/OrderSummary";
-export default function Track({}: Props) {
+export default async function Track({}: Props) {
   return (
     <div id="track">
       <div className="general-h">

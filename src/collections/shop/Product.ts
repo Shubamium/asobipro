@@ -4,6 +4,14 @@ export const Product: CollectionConfig = {
   slug: "product",
   admin: {
     group: "Shop",
+    useAsTitle: "name",
+    defaultColumns: ["main-image", "name", "price", "categories"],
+  },
+  defaultPopulate: {
+    name: true,
+    price: true,
+    "main-image": true,
+    variants: true,
   },
   fields: [
     {
@@ -12,22 +20,38 @@ export const Product: CollectionConfig = {
       required: true,
     },
     {
+      name: "slug",
+      type: "text",
+      admin: {
+        description:
+          "Unique identifier for this product, no spaces and lowercases, example: product-name-here",
+      },
+      required: true,
+      unique: true,
+    },
+    {
       name: "price",
       required: true,
       type: "number",
+    },
+    {
+      name: "mini-description",
+      type: "text",
     },
     {
       name: "description",
       type: "richText",
     },
     {
-      name: "images",
+      name: "main-image",
       required: true,
       type: "upload",
       relationTo: "media",
-      admin: {
-        description: "First Image will be used for thumbnail",
-      },
+    },
+    {
+      name: "extra-image",
+      type: "upload",
+      relationTo: "media",
       hasMany: true,
     },
     {
@@ -35,7 +59,6 @@ export const Product: CollectionConfig = {
       required: true,
       type: "relationship",
       relationTo: "product-category",
-      hasMany: true,
     },
     {
       name: "variants",

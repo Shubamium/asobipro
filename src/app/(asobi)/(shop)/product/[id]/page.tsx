@@ -1,8 +1,33 @@
 import React from "react";
 
-type Props = {};
 import "./product.scss";
-export default function page({}: Props) {
+import payloadConfig from "@/payload.config";
+import { getPayload } from "payload";
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+export default async function page({ params }: Props) {
+  const { id } = await params;
+  const payload = await getPayload({
+    config: await payloadConfig,
+  });
+
+  const pd = await payload.find({
+    collection: "product",
+    where: {
+      slug: {
+        equals: id,
+      },
+    },
+  });
+  if (!pd) {
+    return (
+      <main id="p_product">
+        <p>Product not found</p>
+      </main>
+    );
+  }
   return (
     <main id="p_product">
       <div className="pd">

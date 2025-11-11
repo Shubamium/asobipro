@@ -1,16 +1,24 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, ImageUploadFormatOptions } from "payload";
+const formatOptions: ImageUploadFormatOptions = {
+  format: "webp",
+  options: {
+    quality: 80,
+  },
+};
 
 export const Media: CollectionConfig = {
-  slug: 'media',
+  slug: "media",
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'alt',
-      type: 'text',
+      name: "alt",
+      type: "text",
       required: true,
     },
   ],
-  upload: true,
-}
+  upload: {
+    formatOptions: formatOptions,
+  },
+};

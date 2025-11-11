@@ -1,4 +1,4 @@
-import TransitionContainer from "@/app/components/PageTransitionWrapper/TransitionContainer";
+import TransitionContainer from "@/app/(asobi)/components/PageTransitionWrapper/TransitionContainer";
 import React from "react";
 
 import "./read.scss";
@@ -9,7 +9,7 @@ import { RiArrowUpLine, RiFacebookCircleFill } from "react-icons/ri";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { getTranslations } from "next-intl/server";
-import { fetchData, urlFor } from "@/app/db/sanity";
+import { fetchData, urlFor } from "@/app/(asobi)/db/sanity";
 import { redirect } from "next/navigation";
 import { PortableText } from "next-sanity";
 

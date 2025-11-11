@@ -12,6 +12,7 @@ import { Media } from "./collections/Media";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { Product } from "./collections/shop/Product";
 import { ProdCategory } from "./collections/shop/ProductCategory";
+import Order from "./collections/shop/Order";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Product, ProdCategory],
+  collections: [Users, Media, Product, ProdCategory, Order],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

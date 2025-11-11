@@ -1,4 +1,4 @@
-import TransitionContainer from "@/app/components/PageTransitionWrapper/TransitionContainer";
+import TransitionContainer from "@/app/(asobi)/components/PageTransitionWrapper/TransitionContainer";
 import Link from "next/link";
 import React from "react";
 import { FaDiscord, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
@@ -8,7 +8,7 @@ import { IoReturnUpBack } from "react-icons/io5";
 import "./talent.scss";
 import AudioButton from "./AudioButton";
 import { getLocale, getTranslations } from "next-intl/server";
-import { fetchData, urlFor } from "@/app/db/sanity";
+import { fetchData, urlFor } from "@/app/(asobi)/db/sanity";
 import { redirect } from "next/navigation";
 import TalentContact from "./TalentContact";
 type Props = {
