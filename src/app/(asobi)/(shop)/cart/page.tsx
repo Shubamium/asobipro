@@ -98,7 +98,7 @@ export default function CartCheckoutConfirm({}: Props) {
   );
 }
 
-export function Cart({
+function Cart({
   onCheckout,
   items,
   pdl,
@@ -220,7 +220,7 @@ export function Cart({
   );
 }
 
-export function Checkout({
+function Checkout({
   onSubmit,
   cart,
   pdl,
