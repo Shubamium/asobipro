@@ -2,10 +2,15 @@ import React from "react";
 import { Question } from "../HomeFAQ";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { getTranslations } from "next-intl/server";
+import { Audition } from "@/payload-types";
 
 type Props = {};
 
-export default async function AudisiFAQ({ faq }: any) {
+export default async function AudisiFAQ({
+  faq,
+}: {
+  faq: Audition["audisi-faq"];
+}) {
   const t = await getTranslations("audisi");
 
   return (
@@ -18,8 +23,8 @@ export default async function AudisiFAQ({ faq }: any) {
         <p>{t("faqsub")}</p>
       </div>
       <div className="question-container r">
-        {faq?.map((q: any) => {
-          return <Question d={q} key={q._key}></Question>;
+        {faq?.map((q) => {
+          return <Question d={q} key={q.id}></Question>;
         })}
       </div>
     </section>

@@ -106,10 +106,12 @@ export interface Config {
   };
   globals: {
     Home: Home;
+    audition: Audition;
     'featured-news': FeaturedNew;
   };
   globalsSelect: {
     Home: HomeSelect<false> | HomeSelect<true>;
+    audition: AuditionSelect<false> | AuditionSelect<true>;
     'featured-news': FeaturedNewsSelect<false> | FeaturedNewsSelect<true>;
   };
   locale: null;
@@ -838,6 +840,67 @@ export interface Home {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audition".
+ */
+export interface Audition {
+  id: string;
+  guidelines?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  requirements?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  'audisi-faq'?:
+    | {
+        qid?: string | null;
+        aid?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        qen?: string | null;
+        aen?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "featured-news".
  */
 export interface FeaturedNew {
@@ -861,6 +924,39 @@ export interface HomeSelect<T extends boolean = true> {
         id?: T;
       };
   'home-faq'?:
+    | T
+    | {
+        qid?: T;
+        aid?: T;
+        qen?: T;
+        aen?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audition_select".
+ */
+export interface AuditionSelect<T extends boolean = true> {
+  guidelines?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  requirements?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  'audisi-faq'?:
     | T
     | {
         qid?: T;

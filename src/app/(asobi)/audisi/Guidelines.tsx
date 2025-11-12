@@ -1,8 +1,9 @@
+import { Audition } from "@/payload-types";
 import React from "react";
 
 type Props = {};
 
-export default async function Guidelines({ g }: any) {
+export default async function Guidelines({ g }: { g: Audition["guidelines"] }) {
   return (
     <section id="a-guide" className="a-panel">
       <div className="confine">
@@ -11,11 +12,11 @@ export default async function Guidelines({ g }: any) {
           <p>Jangan lewatkan informasi menarik!</p>
         </div>
         <div className="g-l">
-          {g?.map((gd: any) => {
+          {g?.map((gd) => {
             return (
-              <div className="g" key={gd._key}>
-                <h2>{gd.t}</h2>
-                <p>{gd.v}</p>
+              <div className="g" key={gd.id}>
+                <h2>{gd.title}</h2>
+                <p>{gd.description}</p>
               </div>
             );
           })}

@@ -21,6 +21,7 @@ import { NewsCategory } from "./collections/news/NewsCategory";
 import { FeaturedNews } from "./collections/news/Featured";
 import { Schedule } from "./collections/Schedule";
 import { Team } from "./collections/Team";
+import { Audition } from "./collections/globals/Audition";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -46,7 +47,7 @@ export default buildConfig({
     Users,
     Media,
   ],
-  globals: [Home, FeaturedNews],
+  globals: [Home, Audition, FeaturedNews],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
