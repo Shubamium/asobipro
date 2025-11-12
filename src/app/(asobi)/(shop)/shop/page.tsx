@@ -1,6 +1,5 @@
 import React from "react";
 
-type Props = {};
 import "./shop.scss";
 import { FaArrowRight, FaFilter, FaSearch } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -9,21 +8,49 @@ import { getPayload } from "payload";
 import payloadConfig from "@/payload.config";
 import { Media, Product, ProductCategory } from "@/payload-types";
 import { ToRupiahStr } from "@/services/currency";
-export default async function Shop({}: Props) {
+import FilterSearch from "./FilterSearch";
+
+type Props = {
+  searchParams: Promise<{
+    c?: string;
+    s?: string;
+  }>;
+};
+
+export default async function Shop({ searchParams }: Props) {
+  const sp = await searchParams;
   const payload = await getPayload({
     config: await payloadConfig,
   });
+  const category = await payload.find({
+    collection: "product-category",
+  });
+  const cl = category.docs;
 
+  const clKeyMap = new Map();
+  cl.forEach((c) => clKeyMap.set(c.name, c.id));
+
+  const searchCheck = sp.s
+    ? {
+        like: sp.s,
+      }
+    : {};
+  const categoryCheck =
+    sp.c && sp.c !== "all"
+      ? {
+          in: [clKeyMap.get(sp.c)],
+        }
+      : {};
   const product = await payload.find({
     collection: "product",
-    // where: {
-    //   name: {
-    //     like: "search",
-    //   },
-    // },
+    where: {
+      name: searchCheck,
+      categories: categoryCheck,
+    },
   });
 
   const toRender = product.docs;
+
   return (
     <main id="p_shop">
       <section id="tl-h" className="general-h">
@@ -31,21 +58,7 @@ export default async function Shop({}: Props) {
         <p>Placeholder text here!</p>
         <div className="bg-slant"></div>
       </section>
-      <section id="sh">
-        <div className="searchbar">
-          <FaSearch className="ico btn hv" />
-          <input type="search" />
-        </div>
-
-        <div className="action">
-          <Link href={"/track"} className="btn btn-shoph">
-            Track My Order <FaArrowRightLong />
-          </Link>
-          <button className="btn btn-shoph">
-            Category <FaFilter />
-          </button>
-        </div>
-      </section>
+      <FilterSearch cl={cl} />
 
       <section id="ph" className="product-list">
         {toRender.map((p: Product) => {

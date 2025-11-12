@@ -1,4 +1,13 @@
 #p_product {
+  .notfound {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 3rem;
+    font-weight: bold;
+  }
   .pd {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -22,10 +31,13 @@
         max-width: 100%;
         margin-top: 1em;
         gap: 1em;
+        justify-content: flex-start;
+        flex-basis: 80px;
         img {
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
           object-fit: cover;
-          width: 100%;
+          flex-grow: 1;
+          max-height: 100px;
           height: 100%;
         }
       }

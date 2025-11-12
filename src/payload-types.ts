@@ -193,7 +193,10 @@ export interface Product {
     [k: string]: unknown;
   } | null;
   'main-image': string | Media;
-  'extra-image'?: (string | Media)[] | null;
+  'extra-images': {
+    image?: (string | null) | Media;
+    id?: string | null;
+  }[];
   categories: string | ProductCategory;
   /**
    * List of variants, has to be unique
@@ -219,6 +222,7 @@ export interface ProductCategory {
 export interface Order {
   id: string;
   name: string;
+  'track-id'?: string | null;
   /**
    * Update the order status here!
    */
@@ -376,7 +380,12 @@ export interface ProductSelect<T extends boolean = true> {
   'mini-description'?: T;
   description?: T;
   'main-image'?: T;
-  'extra-image'?: T;
+  'extra-images'?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
   categories?: T;
   variants?: T;
   updatedAt?: T;
@@ -397,6 +406,7 @@ export interface ProductCategorySelect<T extends boolean = true> {
  */
 export interface OrderSelect<T extends boolean = true> {
   name?: T;
+  'track-id'?: T;
   status?: T;
   note?: T;
   email?: T;

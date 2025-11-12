@@ -13,6 +13,11 @@ const Order: CollectionConfig = {
       required: true,
     },
     {
+      name: "track-id",
+      label: "Tracking ID",
+      type: "text",
+    },
+    {
       name: "status",
       type: "select",
       admin: {

@@ -49,10 +49,16 @@ export const Product: CollectionConfig = {
       relationTo: "media",
     },
     {
-      name: "extra-image",
-      type: "upload",
-      relationTo: "media",
-      hasMany: true,
+      name: "extra-images",
+      type: "array",
+      required: true,
+      fields: [
+        {
+          name: "image",
+          type: "upload",
+          relationTo: "media",
+        },
+      ],
     },
     {
       name: "categories",

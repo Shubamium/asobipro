@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { getUserLocale } from "@/services/locale";
+import { CartProvider } from "./(shop)/CartProvider/CartProvider";
 
 const protest = Protest_Strike({
   variable: "--fontH",
@@ -44,9 +45,11 @@ export default async function RootLayout({
         }
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          {children}
-          <Footer />
+          <CartProvider>
+            <Header />
+            {children}
+            <Footer />
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

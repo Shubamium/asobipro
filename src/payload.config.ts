@@ -39,11 +39,13 @@ export default buildConfig({
     s3Storage({
       bucket: "asobumain",
       collections: {
-        media: true,
+        media: {
+          disablePayloadAccessControl: true,
+        },
       },
       config: {
         region: "eu-east-1",
-        endpoint: "http://api.minio.asobuproduction.com/",
+        endpoint: "http://newapi.minio.asobuproduction.com",
         credentials: {
           accessKeyId: process.env.MINIOA ?? "",
           secretAccessKey: process.env.MINIOK ?? "",
