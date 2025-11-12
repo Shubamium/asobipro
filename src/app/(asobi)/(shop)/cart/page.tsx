@@ -18,14 +18,6 @@ import { Media, Product } from "@/payload-types";
 import { ToRupiahStr } from "@/services/currency";
 import { FaSpinner } from "react-icons/fa6";
 
-export const cartTotal = (cart: CartItem[], pdl: Map<String, Product>) => {
-  let total = 0;
-  cart.forEach((i) => {
-    total += i.qty * (pdl.get(i.productId)?.price ?? 0);
-  });
-  return total;
-};
-
 export default function CartCheckoutConfirm({}: Props) {
   const [status, setStatus] = useState("Cart");
   const [orderID, setOrderID] = useState<null | string>(null);
@@ -97,6 +89,14 @@ export default function CartCheckoutConfirm({}: Props) {
     </main>
   );
 }
+
+export const cartTotal = (cart: CartItem[], pdl: Map<String, Product>) => {
+  let total = 0;
+  cart.forEach((i) => {
+    total += i.qty * (pdl.get(i.productId)?.price ?? 0);
+  });
+  return total;
+};
 
 function Cart({
   onCheckout,
