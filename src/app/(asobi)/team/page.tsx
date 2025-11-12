@@ -3,16 +3,23 @@ import TransitionContainer from "../components/PageTransitionWrapper/TransitionC
 
 import "./team.scss";
 import { getTranslations } from "next-intl/server";
-import { fetchData, urlFor } from "../db/sanity";
-import { time } from "console";
+
 import TeamList from "./TeamList";
+import { getPayload } from "payload";
+import payloadConfig from "@/payload.config";
 type Props = {};
 
 export default async function Page({}: Props) {
   const t = await getTranslations("team");
 
-  const td = await fetchData<any[]>(`*[_type == 'team']{
-		...}`);
+  // const td = await fetchData<any[]>(`*[_type == 'team']{
+  // 	...}`);
+  const p = await getPayload({
+    config: await payloadConfig,
+  });
+  const td = await p.find({
+    collection: "team",
+  });
   return (
     <TransitionContainer key={"team"} id="p_team">
       <section id="tl">
@@ -22,7 +29,7 @@ export default async function Page({}: Props) {
             <h2 className="hs">{t("name")}</h2>
             <p>{t("sub")}</p>
           </section>
-          <TeamList td={td} />
+          <TeamList td={td.docs} />
         </div>
       </section>
     </TransitionContainer>

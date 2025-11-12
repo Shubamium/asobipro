@@ -1,5 +1,6 @@
 "use client";
 
+import { Product } from "@/payload-types";
 import { createContext, use, useContext, useEffect, useState } from "react";
 
 export type CartItem = {
@@ -22,6 +23,14 @@ const CartContext = createContext<CartContext>({
   changeQty: () => {},
   clearCart: () => {},
 });
+
+export function cartTotal(cart: CartItem[], pdl: Map<String, Product>) {
+  let total = 0;
+  cart.forEach((i) => {
+    total += i.qty * (pdl.get(i.productId)?.price ?? 0);
+  });
+  return total;
+}
 export function CartProvider({ children }: any) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [initCart, setInitCart] = useState(false);

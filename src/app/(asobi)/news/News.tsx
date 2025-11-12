@@ -6,10 +6,8 @@ type Props = {
   excerpt?: string;
   title: string;
   tags: string[];
-  img: string;
-  slug: {
-    current: string;
-  };
+  img: string | undefined;
+  slug: string;
 };
 
 export default function News({ excerpt, title, tags, img, slug }: Props) {
@@ -18,7 +16,7 @@ export default function News({ excerpt, title, tags, img, slug }: Props) {
     <div
       className="news"
       onClick={() => {
-        router.push("news/read/" + slug.current);
+        router.push("news/read/" + slug);
       }}
     >
       <div className="wrapper">

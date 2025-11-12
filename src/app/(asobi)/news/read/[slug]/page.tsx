@@ -12,6 +12,11 @@ import { getTranslations } from "next-intl/server";
 import { fetchData, urlFor } from "@/app/(asobi)/db/sanity";
 import { redirect } from "next/navigation";
 import { PortableText } from "next-sanity";
+import { getPayload } from "payload";
+import payloadConfig from "@/payload.config";
+import { Media, NewsCategory } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 type Props = {
   params: Promise<{
@@ -24,19 +29,33 @@ export default async function NewsRead({ params }: Props) {
   const tf = await getTranslations("footer");
 
   const slug = (await params).slug;
-  const n = await fetchData<any>(
-    `*[_type == 'news' && slug.current == '${slug}']{...,category->}[0]`
-  );
+  // const n = await fetchData<any>(
+  //   `*[_type == 'news' && slug.current == '${slug}']{...,category->}[0]`
+  // );
+  const p = await getPayload({
+    config: await payloadConfig,
+  });
 
-  if (!n) {
+  const nd = await p.find({
+    collection: "news",
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  });
+
+  if (!nd || nd.docs.length === 0) {
     redirect("/news");
   }
+  const n = nd.docs[0];
   return (
     <TransitionContainer key={"news-read"} id="p_read">
       <div id="top"></div>
       <section id="r-h">
         <div className="banner">
-          <img src={n.banner && urlFor(n.banner).height(1280).url()} alt="" />
+          <img src={(n.banner as Media)?.url ?? undefined} alt="" />
+          {/* <img src={nd.banner && urlFor(n.banner).height(1280).url()} alt="" /> */}
         </div>
         <div className="ht">
           <div className="confine">
@@ -45,7 +64,10 @@ export default async function NewsRead({ params }: Props) {
             </div>
             <div className="b">
               <div className="tlist">
-                {[n.category.name ?? null, ...n.tags].map((t: any) => {
+                {[
+                  (n.category as NewsCategory)?.name ?? null,
+                  ...(n.tags as string[]),
+                ].map((t: any) => {
                   return (
                     <div className="tags" key={t}>
                       <p className="t">{t}</p>
@@ -55,7 +77,7 @@ export default async function NewsRead({ params }: Props) {
               </div>
 
               <div className="date">
-                <p>{new Date(n.date).toDateString()}</p>
+                <p>{new Date(n["published-date"] ?? "").toDateString()}</p>
               </div>
             </div>
           </div>
@@ -69,7 +91,7 @@ export default async function NewsRead({ params }: Props) {
           </Link>
         </div>
         <article className="at">
-          <PortableText
+          {/* <PortableText
             value={n.article}
             components={{
               types: {
@@ -78,7 +100,8 @@ export default async function NewsRead({ params }: Props) {
                 },
               },
             }}
-          />
+          /> */}
+          <RichText data={n.article}></RichText>
         </article>
         <div className="r"></div>
       </section>

@@ -7,10 +7,15 @@ import { BiStar } from "react-icons/bi";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { urlFor } from "./db/sanity";
+import { Home, Media } from "@/payload-types";
 
 type Props = {};
 
-export default function HomeTalent({ tal }: any) {
+export default function HomeTalent({
+  tal,
+}: {
+  tal: Home["talent-infinite-scroll"];
+}) {
   const {
     pageRef: ref,
     animateScope: scope,
@@ -54,10 +59,11 @@ export default function HomeTalent({ tal }: any) {
       <div className="tl">
         <motion.div className="wrapper" style={{ x: x }}>
           <div className="scroller" ref={ref}>
-            {tal?.map((t: any) => {
+            {tal?.map((t) => {
               return (
-                <div className="tl-s" key={"tal-one" + t._key}>
-                  <img src={urlFor(t).height(1000).url()} alt="" />
+                <div className="tl-s" key={"tal-one" + t.id}>
+                  {/* <img src={urlFor(t).height(1000).url()} alt="" /> */}
+                  <img src={(t.talent as Media)?.url ?? undefined} alt="" />
                 </div>
               );
             })}
@@ -71,8 +77,8 @@ export default function HomeTalent({ tal }: any) {
           <div className="scroller">
             {tal?.map((t: any) => {
               return (
-                <div className="tl-s" key={"tal-two" + t._key}>
-                  <img src={urlFor(t).height(1000).url()} alt="" />
+                <div className="tl-s" key={"tal-two" + t.id}>
+                  <img src={(t.talent as Media)?.url ?? undefined} alt="" />
                 </div>
               );
             })}
@@ -80,8 +86,8 @@ export default function HomeTalent({ tal }: any) {
           <div className="scroller">
             {tal?.map((t: any) => {
               return (
-                <div className="tl-s" key={"tal-three" + t._key}>
-                  <img src={urlFor(t).height(1000).url()} alt="" />
+                <div className="tl-s" key={"tal-three" + t.id}>
+                  <img src={(t.talent as Media)?.url ?? undefined} alt="" />
                 </div>
               );
             })}

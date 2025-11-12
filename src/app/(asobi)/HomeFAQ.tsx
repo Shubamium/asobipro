@@ -1,4 +1,6 @@
 "use client";
+import { Home } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import { motion, AnimatePresence } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { PortableText } from "next-sanity";
@@ -7,7 +9,7 @@ import { GoTriangleDown } from "react-icons/go";
 
 type Props = {};
 
-export default function HomeFAQ({ faq }: any) {
+export default function HomeFAQ({ faq }: { faq: Home["home-faq"] }) {
   const t = useTranslations("home");
 
   return (
@@ -16,8 +18,8 @@ export default function HomeFAQ({ faq }: any) {
       <div className="dzig b"></div>
 
       <div className="question-container">
-        {faq?.map((f: any, index: number) => {
-          return <Question d={f} key={f._key} />;
+        {faq?.map((f, index: number) => {
+          return <Question d={f} key={f.id + "question"} />;
         })}
       </div>
       <div className="fq-h">
@@ -55,9 +57,10 @@ export function Question({ d }: any) {
             className="q-bar"
           >
             <h3>{t("answer")}</h3>
-            <PortableText
+            {/* <PortableText
               value={locale === "en" ? d.aen : d.aid}
-            ></PortableText>
+            ></PortableText> */}
+            <RichText data={locale === "en" ? d.aen : d.aid}></RichText>
           </motion.div>
         )}
       </AnimatePresence>

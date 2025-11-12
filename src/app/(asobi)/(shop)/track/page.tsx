@@ -7,7 +7,6 @@ import AudisiControl from "../../audisi/AudisiControl";
 import OrderSummary from "../orderSummary/OrderSummary";
 import { Order, Product } from "@/payload-types";
 import { CartItem, useCart } from "../CartProvider/CartProvider";
-import { cartTotal } from "../cart/page";
 import { GetOrderDetail, GetProductList } from "@/services/ProductData";
 export default function Track({}: Props) {
   const [pdl, setPdl] = React.useState(new Map<string, Product>());

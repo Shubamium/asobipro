@@ -8,7 +8,7 @@ import OrderSummary from "../orderSummary/OrderSummary";
 import { IoCheckmarkCircle, IoCloseCircle } from "react-icons/io5";
 import { BsClipboard, BsClipboard2 } from "react-icons/bs";
 import { BiCopy } from "react-icons/bi";
-import { CartItem, useCart } from "../CartProvider/CartProvider";
+import { CartItem, cartTotal, useCart } from "../CartProvider/CartProvider";
 import {
   GetProductList,
   SubmitOrder,
@@ -18,7 +18,7 @@ import { Media, Product } from "@/payload-types";
 import { ToRupiahStr } from "@/services/currency";
 import { FaSpinner } from "react-icons/fa6";
 
-export default function CartCheckoutConfirm({}: Props) {
+export default function Cart({}: Props) {
   const [status, setStatus] = useState("Cart");
   const [orderID, setOrderID] = useState<null | string>(null);
   const { cart, removeFromCart, changeQty, clearCart } = useCart();
@@ -52,7 +52,7 @@ export default function CartCheckoutConfirm({}: Props) {
       <AudisiControl
         pages={{
           Cart: (
-            <Cart
+            <CartDisplayer
               onCheckout={() => {
                 setStatus("Checkout");
               }}
@@ -90,15 +90,7 @@ export default function CartCheckoutConfirm({}: Props) {
   );
 }
 
-export const cartTotal = (cart: CartItem[], pdl: Map<String, Product>) => {
-  let total = 0;
-  cart.forEach((i) => {
-    total += i.qty * (pdl.get(i.productId)?.price ?? 0);
-  });
-  return total;
-};
-
-function Cart({
+function CartDisplayer({
   onCheckout,
   items,
   pdl,

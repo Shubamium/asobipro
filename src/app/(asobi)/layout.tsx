@@ -10,6 +10,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { getUserLocale } from "@/services/locale";
 import { CartProvider } from "./(shop)/CartProvider/CartProvider";
 
+export const revalidate = 15;
 const protest = Protest_Strike({
   variable: "--fontH",
   weight: ["400"],

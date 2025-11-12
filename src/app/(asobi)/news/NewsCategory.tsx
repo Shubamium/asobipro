@@ -6,9 +6,14 @@ import { urlFor } from "../db/sanity";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-type Props = {};
+import { Media, NewsCategory as NCT, News as NT } from "@/payload-types";
+type Props = {
+  cat: NCT[];
+  active?: string;
+  nl: NT[];
+};
 
-export default function NewsCategory({ cat, active, nl }: any) {
+export default function NewsCategory({ cat, active, nl }: Props) {
   const router = useRouter();
   const t = useTranslations("news");
   return (
@@ -16,21 +21,21 @@ export default function NewsCategory({ cat, active, nl }: any) {
       <div className="confine">
         <nav className="main-nav gb">
           <div className="wrapper">
-            {cat?.map((c: any) => {
+            {cat?.map((c) => {
               return (
                 <button
-                  className={`btn btn-nav ${c.slug.current === active ? "act" : ""} `}
+                  className={`btn btn-nav ${c.slug === active ? "act" : ""} `}
                   onClick={() => {
                     const thisurl = new URL(window.location.href);
 
                     thisurl.searchParams.set("c", "Category 1");
 
-                    router.push("/news?c=" + c.slug.current, {
+                    router.push("/news?c=" + c.slug, {
                       scroll: false,
                     });
                     // router.refresh();
                   }}
-                  key={"category button " + c._id}
+                  key={"category button " + c.id}
                 >
                   <span>{c.name}</span>
                 </button>
@@ -52,7 +57,8 @@ export default function NewsCategory({ cat, active, nl }: any) {
           <img src="/d/glow.svg" alt="" className="bg-blur" />
 
           <AnimatePresence mode="wait">
-            {nl?.map((n: any) => {
+            {nl?.map((n) => {
+              const tagl = n.tags?.map((t) => t ?? "") as string[];
               return (
                 <motion.div
                   animate={{
@@ -67,14 +73,15 @@ export default function NewsCategory({ cat, active, nl }: any) {
                     y: 200,
                     opacity: 0,
                   }}
-                  key={n._id}
+                  key={n.id}
                 >
                   <News
                     title={n.title}
-                    excerpt={n.excerpt.substr(0, 100) + "..."}
-                    img={urlFor(n.banner).height(800).url()}
-                    tags={[n.category.name, ...n.tags]}
-                    slug={n.slug.current}
+                    excerpt={n.excerpt ?? ""}
+                    // img={urlFor(n.banner).height(800).url()}
+                    img={(n.banner as Media)?.url ?? "/g/nthumb.png"}
+                    tags={[(n.category as NCT)?.name, ...tagl]}
+                    slug={n.slug}
                   />
                 </motion.div>
               );

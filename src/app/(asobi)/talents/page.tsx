@@ -7,19 +7,40 @@ import { getTranslations } from "next-intl/server";
 import { fetchData, urlFor } from "../db/sanity";
 import GenerationControl from "./GenerationControl";
 import { AnimatePresence } from "motion/react";
+import { getPayload } from "payload";
+import payloadConfig from "@/payload.config";
+import { Media } from "@/payload-types";
 type Props = {
   searchParams: Promise<{
-    g: string;
+    g?: string;
   }>;
 };
 
 export default async function Page({ searchParams }: Props) {
   const t = await getTranslations("talent");
-  let gl = await fetchData<any[]>(`*[
-		_type == 'generation']{...}`);
+  // let gl = await fetchData<any[]>(`*[
+  // 	_type == 'generation']{...}`);
 
-  gl = gl.reverse();
-  const act = (await searchParams).g ?? gl[0].slug.current;
+  // gl = gl.reverse();
+
+  const p = await getPayload({
+    config: await payloadConfig,
+  });
+
+  const tlg = await p.find({
+    collection: "talent-generation",
+  });
+  const tlgMap = new Map();
+  tlg.docs.forEach((g) => tlgMap.set(g.slug, g.id));
+
+  const act = (await searchParams).g;
+  const categoryCheck = act
+    ? {
+        generation: {
+          in: [tlgMap.get(act)],
+        },
+      }
+    : {};
   const tl = await fetchData<any[]>(`
 		*[_type == 'talent' && generation -> slug.current == '${act}']{
 			name,
@@ -27,6 +48,15 @@ export default async function Page({ searchParams }: Props) {
 			pfp
 		}
 	`);
+
+  const actCheck = act ? { equals: act } : {};
+  const tld = await p.find({
+    collection: "talents",
+    where: {
+      ...(categoryCheck as any),
+    },
+  });
+
   return (
     <TransitionContainer key={"talent"} id="p_talent">
       <section id="tl-h" className="general-h">
@@ -35,11 +65,11 @@ export default async function Page({ searchParams }: Props) {
       </section>
 
       <section id="tl-l">
-        <GenerationControl gl={gl} act={act} />
+        <GenerationControl gl={tlg.docs.reverse()} act={act} />
 
         <div className="list">
           <AnimatePresence mode="wait">
-            {tl?.map((t: any, index: number) => {
+            {tld.docs?.map((t, index: number) => {
               return (
                 <RouterLink
                   initial={{
@@ -65,12 +95,13 @@ export default async function Page({ searchParams }: Props) {
                     ease: "backOut",
                   }}
                   className="btn tc"
-                  key={t._id}
-                  to={`/talent/${t.slug.current}`}
+                  key={t.id}
+                  to={`/talent/${t.slug}`}
                 >
                   <div className="wrapper">
                     <img
-                      src={t.pfp && urlFor(t.pfp).height(800).url()}
+                      // src={t.pfp && urlFor(t.pfp).height(800).url()}
+                      src={(t.pfp as Media)?.url ?? undefined}
                       alt=""
                       className="tal-img"
                     />

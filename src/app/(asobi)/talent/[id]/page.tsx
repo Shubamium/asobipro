@@ -11,6 +11,9 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { fetchData, urlFor } from "@/app/(asobi)/db/sanity";
 import { redirect } from "next/navigation";
 import TalentContact from "./TalentContact";
+import { getPayload } from "payload";
+import payloadConfig from "@/payload.config";
+import { Media } from "@/payload-types";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -20,24 +23,35 @@ export default async function Page({ params }: Props) {
   const locale = await getLocale();
   const ct = (await params).id;
 
-  const td = await fetchData<any>(`
-		*[_type == 'talent' && slug.current == '${ct}'][0]{
-			...,
-			vo{
-				d,
-				vf{
-					asset->{
-						url
-					}
-				}
-			}
-		}
-	`);
+  // const td = await fetchData<any>(`
+  // 	*[_type == 'talent' && slug.current == '${ct}'][0]{
+  // 		...,
+  // 		vo{
+  // 			d,
+  // 			vf{
+  // 				asset->{
+  // 					url
+  // 				}
+  // 			}
+  // 		}
+  // 	}
+  // `);
+  const p = await getPayload({
+    config: await payloadConfig,
+  });
+  const tdl = await p.find({
+    collection: "talents",
+    where: {
+      slug: {
+        equals: ct,
+      },
+    },
+  });
 
-  if (!td) {
+  if (!tdl || tdl.docs.length === 0) {
     redirect("/talents");
   }
-
+  const td = tdl.docs[0];
   return (
     <TransitionContainer key={"talent-name"} id="p_talentd">
       <section id="talent-hero">
@@ -54,14 +68,14 @@ export default async function Page({ params }: Props) {
             </Link>
             <div className="dzig nzig"></div>
             <h2 className="hs">{td.name}</h2>
-            <p className="desc">{td.intro}</p>
+            <p className="desc">{td["intro-text"]}</p>
 
-            {td.trailer && (
+            {td["Video Trailer ID"] && (
               <div className="ytembed">
                 <iframe
                   width="560"
                   height="315"
-                  src={`https://www.youtube.com/embed/${td.trailer}`}
+                  src={`https://www.youtube.com/embed/${td["Video Trailer ID"]}`}
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -70,26 +84,29 @@ export default async function Page({ params }: Props) {
               </div>
             )}
             <div className="mini-contact">
-              {td.contact.yt && (
+              {td.contacts?.youtube && (
                 <a
-                  href={td.contact.yt.l}
+                  href={td.contacts.youtube.link ?? undefined}
                   target="_blank"
                   className="btn hv  btn-mc"
                 >
                   <FaYoutube />
                 </a>
               )}
-              {td.contact.ig && (
+              {td.contacts?.instagram && (
                 <a
-                  href={td.contact.ig.l}
+                  href={td.contacts.instagram.link ?? undefined}
                   target="_blank"
                   className="btn hv  btn-mc"
                 >
                   <FaInstagram />
                 </a>
               )}
-              {td.contact.x && (
-                <a href={td.contact.x.l} className="btn  hv btn-mc">
+              {td.contacts?.x && (
+                <a
+                  href={td.contacts.x.link ?? undefined}
+                  className="btn  hv btn-mc"
+                >
                   <FaDiscord />
                 </a>
               )}
@@ -97,7 +114,7 @@ export default async function Page({ params }: Props) {
           </div>
           <div className="r">
             <img
-              src={td.art?.hbm && urlFor(td.art.hbm).url()}
+              src={(td.arts?.hbd as Media)?.url ?? undefined}
               alt=""
               className="tal-arts"
             />
@@ -107,7 +124,7 @@ export default async function Page({ params }: Props) {
       </section>
       <div id="vocal">
         <img
-          src={td.art?.vb && urlFor(td.art.vb).url()}
+          src={(td.arts?.vbg as Media)?.url ?? undefined}
           alt=""
           className="bg-side"
         />
@@ -116,8 +133,12 @@ export default async function Page({ params }: Props) {
           <div className="r">
             <div className="panel">
               <div className="wrapper">
-                <p className="dia">{td.vo.d}</p>
-                {td.vo.vf && <AudioButton file={td.vo.vf.asset.url} />}
+                <p className="dia">{td["dialouge-text"]}</p>
+                {td["audio-file"] && (
+                  <AudioButton
+                    file={(td["audio-file"] as Media)?.url ?? "/other.mp3"}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -136,19 +157,16 @@ export default async function Page({ params }: Props) {
 
               <div className="bio-p">
                 <p>{td.bio}</p>
-                <img
-                  src={td.art.logo && urlFor(td.art.logo).height(700).url()}
-                  alt=""
-                />
+                <img src={(td.arts?.logo as Media)?.url ?? undefined} alt="" />
               </div>
 
               <div className="td-d">
                 <div className="info-list">
-                  {td.il?.map((il: any) => {
+                  {td["info-list"]?.map((il) => {
                     return (
-                      <div className="i" key={il._key}>
+                      <div className="i" key={il.id}>
                         <h2>{locale && "en" ? il.ten : il.tid}</h2>
-                        <p>{il.v}</p>
+                        <p>{il.value}</p>
                       </div>
                     );
                   })}
@@ -162,7 +180,7 @@ export default async function Page({ params }: Props) {
             </div>
             <div className="r">
               <img
-                src={td.art.fb && urlFor(td.art.fb).url()}
+                src={(td.arts?.fbd as Media)?.url ?? undefined}
                 alt=""
                 className="fb-art"
               />
@@ -182,7 +200,7 @@ export default async function Page({ params }: Props) {
           <p>{t("video_sub")}</p>
         </div>
         <div className="r">
-          {td.fv?.map((v: any, index: number) => {
+          {td["featured-videos"]?.map((v, index: number) => {
             return (
               <div className="ytembed" key={v + "" + index}>
                 <iframe

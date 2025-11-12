@@ -14,6 +14,13 @@ import { Product } from "./collections/shop/Product";
 import { ProdCategory } from "./collections/shop/ProductCategory";
 import Order from "./collections/shop/Order";
 import { Home } from "./collections/globals/Home";
+import { Talents } from "./collections/talents/Talents";
+import { Generation } from "./collections/talents/Generation";
+import { News } from "./collections/news/News";
+import { NewsCategory } from "./collections/news/NewsCategory";
+import { FeaturedNews } from "./collections/news/Featured";
+import { Schedule } from "./collections/Schedule";
+import { Team } from "./collections/Team";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -24,8 +31,22 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Product, ProdCategory, Order],
-  globals: [Home],
+  collections: [
+    Team,
+    Schedule,
+    Talents,
+    Generation,
+    News,
+    NewsCategory,
+    // FeaturedNews,
+    Product,
+    ProdCategory,
+    Order,
+
+    Users,
+    Media,
+  ],
+  globals: [Home, FeaturedNews],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

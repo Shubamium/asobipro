@@ -1,31 +1,33 @@
 "use client";
 import React from "react";
 import { urlFor } from "../db/sanity";
+import { Media, Team } from "@/payload-types";
 
 type Props = {};
 
-export default function TeamList({ td }: { td: any }) {
+export default function TeamList({ td }: { td: Team[] }) {
   return (
     // <div>TeamList</div>
     <div className="list">
-      {td?.map((tim: any) => {
+      {td?.map((tim) => {
         return (
           <div
             className="team"
-            key={tim._id}
+            key={tim.id}
             onClick={() => {
-              tim.url && window.open(tim.url);
+              tim.link && window.open(tim.link);
             }}
           >
             <div className="wrapper">
               <img
-                src={tim.pfp && urlFor(tim.pfp).height(300).url()}
+                src={(tim.pfp as Media)?.url ?? undefined}
+                // src={tim.pfp && urlFor(tim.pfp).height(300).url()}
                 alt=""
                 className="pfp"
               />
               <div className="r">
-                <h2 className="handle">{tim.n}</h2>
-                <p className="title">{tim.r}</p>
+                <h2 className="handle">{tim.name}</h2>
+                <p className="title">{tim.role}</p>
               </div>
             </div>
           </div>

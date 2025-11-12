@@ -2,29 +2,38 @@ import React, { useTransition } from "react";
 import TransitionContainer from "../components/PageTransitionWrapper/TransitionContainer";
 import SchedRow from "./SchedRow";
 import { getTranslations } from "next-intl/server";
-import { fetchData } from "../db/sanity";
+import { getPayload } from "payload";
+import payloadConfig from "@/payload.config";
 
 type Props = {};
 
 export default async function Page({}: Props) {
   const t = await getTranslations("schedule");
-  const s = await fetchData<any[]>(`*[_type == 'schedules']{
-		...,
-		_id,
-		talent -> {
-			name,
-			pfp,
-			slug
-		},
-		schedule_list[]{
-			...,
-			ml[] {
-				pfp,
-				name,
-				link
-			}
-		}
-	}`);
+
+  const p = await getPayload({
+    config: await payloadConfig,
+  });
+
+  const s = await p.find({
+    collection: "schedule",
+  });
+  // const s = await fetchData<any[]>(`*[_type == 'schedules']{
+  // 	...,
+  // 	_id,
+  // 	talent -> {
+  // 		name,
+  // 		pfp,
+  // 		slug
+  // 	},
+  // 	schedule_list[]{
+  // 		...,
+  // 		ml[] {
+  // 			pfp,
+  // 			name,
+  // 			link
+  // 		}
+  // 	}
+  // }`);
   console.log(s);
   return (
     <TransitionContainer key={"sched"} id="p_sched">
@@ -33,8 +42,8 @@ export default async function Page({}: Props) {
         <p>{t("schedule_sub")}</p>
       </section>
       <section id="s-list">
-        {s?.map((sd: any, id: number) => {
-          return <SchedRow sd={sd} key={sd._id + "-" + id} />;
+        {s.docs?.map?.((sd, id: number) => {
+          return <SchedRow sd={sd} key={sd.id + "-" + id} />;
         })}
         {/* <SchedRow /> */}
         {/* <SchedRow /> */}

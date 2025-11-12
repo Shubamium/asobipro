@@ -9,12 +9,20 @@ import { RiFacebookCircleFill } from "react-icons/ri";
 import HomeFAQ from "./HomeFAQ";
 import TransitionContainer from "./components/PageTransitionWrapper/TransitionContainer";
 import { getTranslations } from "next-intl/server";
-import { fetchData } from "./db/sanity";
+
+import { getPayload } from "payload";
+import payloadConfig from "@/payload.config";
 export default async function Home() {
   const t = await getTranslations("home");
-  const hd = await fetchData<any>(`
-		*[_type == 'home' && preset == 'main'][0]{...}
-	`);
+  // const hd = await fetchData<any>(`
+  // 	*[_type == 'home' && preset == 'main'][0]{...}
+  // `);
+
+  const p = await getPayload({
+    config: await payloadConfig,
+  });
+  const hd = await p.findGlobal({ slug: "Home" });
+
   return (
     <TransitionContainer key={"home"} id={"p_home"}>
       <section id="hero">
@@ -33,7 +41,7 @@ export default async function Home() {
         </article>
       </section>
 
-      <HomeTalent tal={hd.tis} />
+      <HomeTalent tal={hd["talent-infinite-scroll"]} />
       <BrandStrip />
 
       <section id="audition">
@@ -157,7 +165,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <HomeFAQ faq={hd.faq} />
+      <HomeFAQ faq={hd["home-faq"]} />
     </TransitionContainer>
   );
 }

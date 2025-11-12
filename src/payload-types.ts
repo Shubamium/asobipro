@@ -67,11 +67,17 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
-    media: Media;
+    team: Team;
+    schedule: Schedule;
+    talents: Talent;
+    'talent-generation': TalentGeneration;
+    news: News;
+    'news-category': NewsCategory;
     product: Product;
     'product-category': ProductCategory;
     order: Order;
+    users: User;
+    media: Media;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -79,11 +85,17 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
+    schedule: ScheduleSelect<false> | ScheduleSelect<true>;
+    talents: TalentsSelect<false> | TalentsSelect<true>;
+    'talent-generation': TalentGenerationSelect<false> | TalentGenerationSelect<true>;
+    news: NewsSelect<false> | NewsSelect<true>;
+    'news-category': NewsCategorySelect<false> | NewsCategorySelect<true>;
     product: ProductSelect<false> | ProductSelect<true>;
     'product-category': ProductCategorySelect<false> | ProductCategorySelect<true>;
     order: OrderSelect<false> | OrderSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -92,8 +104,14 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    Home: Home;
+    'featured-news': FeaturedNew;
+  };
+  globalsSelect: {
+    Home: HomeSelect<false> | HomeSelect<true>;
+    'featured-news': FeaturedNewsSelect<false> | FeaturedNewsSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -123,27 +141,16 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "team".
  */
-export interface User {
+export interface Team {
   id: string;
+  name: string;
+  pfp?: (string | null) | Media;
+  role?: string | null;
+  link?: string | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -163,6 +170,139 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "schedule".
+ */
+export interface Schedule {
+  id: string;
+  name: string;
+  talent?: (string | null) | Talent;
+  'schedule-list': {
+    'stream-name'?: string | null;
+    'stream-date'?: string | null;
+    thumbnail?: (string | null) | Media;
+    'stream-link'?: string | null;
+    members?:
+      | {
+          pfp?: (string | null) | Media;
+          name?: string | null;
+          link?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talents".
+ */
+export interface Talent {
+  id: string;
+  name: string;
+  generation?: (string | null) | TalentGeneration;
+  pfp?: (string | null) | Media;
+  slug: string;
+  'intro-text': string;
+  'dialouge-text'?: string | null;
+  bio?: string | null;
+  'info-list'?:
+    | {
+        tid?: string | null;
+        ten?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Only write the id, the part after: watch?v=(id)
+   */
+  'Video Trailer ID'?: string | null;
+  'featured-videos'?: string[] | null;
+  /**
+   * Web Audio Format (mp3,ogg,wav)
+   */
+  'audio-file'?: (string | null) | Media;
+  arts?: {
+    hbd?: (string | null) | Media;
+    fbd?: (string | null) | Media;
+    vbg?: (string | null) | Media;
+    logo?: (string | null) | Media;
+  };
+  contacts?: {
+    'discord-link'?: string | null;
+    youtube?: {
+      'follower-count'?: string | null;
+      link?: string | null;
+    };
+    instagram?: {
+      'follower-count'?: string | null;
+      link?: string | null;
+    };
+    x?: {
+      'follower-count'?: string | null;
+      link?: string | null;
+    };
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talent-generation".
+ */
+export interface TalentGeneration {
+  id: string;
+  'generation-name': string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news".
+ */
+export interface News {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt?: string | null;
+  banner: string | Media;
+  'published-date'?: string | null;
+  category: string | NewsCategory;
+  tags?: string[] | null;
+  article: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-category".
+ */
+export interface NewsCategory {
+  id: string;
+  name: string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -245,6 +385,30 @@ export interface Order {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -268,12 +432,28 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
-        value: string | User;
+        relationTo: 'team';
+        value: string | Team;
       } | null)
     | ({
-        relationTo: 'media';
-        value: string | Media;
+        relationTo: 'schedule';
+        value: string | Schedule;
+      } | null)
+    | ({
+        relationTo: 'talents';
+        value: string | Talent;
+      } | null)
+    | ({
+        relationTo: 'talent-generation';
+        value: string | TalentGeneration;
+      } | null)
+    | ({
+        relationTo: 'news';
+        value: string | News;
+      } | null)
+    | ({
+        relationTo: 'news-category';
+        value: string | NewsCategory;
       } | null)
     | ({
         relationTo: 'product';
@@ -286,6 +466,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'order';
         value: string | Order;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: string | User;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: string | Media;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -331,43 +519,135 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "team_select".
  */
-export interface UsersSelect<T extends boolean = true> {
+export interface TeamSelect<T extends boolean = true> {
+  name?: T;
+  pfp?: T;
+  role?: T;
+  link?: T;
   updatedAt?: T;
   createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "schedule_select".
  */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
+export interface ScheduleSelect<T extends boolean = true> {
+  name?: T;
+  talent?: T;
+  'schedule-list'?:
+    | T
+    | {
+        'stream-name'?: T;
+        'stream-date'?: T;
+        thumbnail?: T;
+        'stream-link'?: T;
+        members?:
+          | T
+          | {
+              pfp?: T;
+              name?: T;
+              link?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talents_select".
+ */
+export interface TalentsSelect<T extends boolean = true> {
+  name?: T;
+  generation?: T;
+  pfp?: T;
+  slug?: T;
+  'intro-text'?: T;
+  'dialouge-text'?: T;
+  bio?: T;
+  'info-list'?:
+    | T
+    | {
+        tid?: T;
+        ten?: T;
+        value?: T;
+        id?: T;
+      };
+  'Video Trailer ID'?: T;
+  'featured-videos'?: T;
+  'audio-file'?: T;
+  arts?:
+    | T
+    | {
+        hbd?: T;
+        fbd?: T;
+        vbg?: T;
+        logo?: T;
+      };
+  contacts?:
+    | T
+    | {
+        'discord-link'?: T;
+        youtube?:
+          | T
+          | {
+              'follower-count'?: T;
+              link?: T;
+            };
+        instagram?:
+          | T
+          | {
+              'follower-count'?: T;
+              link?: T;
+            };
+        x?:
+          | T
+          | {
+              'follower-count'?: T;
+              link?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talent-generation_select".
+ */
+export interface TalentGenerationSelect<T extends boolean = true> {
+  'generation-name'?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news_select".
+ */
+export interface NewsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  banner?: T;
+  'published-date'?: T;
+  category?: T;
+  tags?: T;
+  article?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news-category_select".
+ */
+export interface NewsCategorySelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -426,6 +706,46 @@ export interface OrderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -463,6 +783,108 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Home".
+ */
+export interface Home {
+  id: string;
+  'talent-infinite-scroll'?:
+    | {
+        talent?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  'home-faq'?:
+    | {
+        qid?: string | null;
+        aid?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        qen?: string | null;
+        aen?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featured-news".
+ */
+export interface FeaturedNew {
+  id: string;
+  'featured-left-top'?: (string | null) | News;
+  'featured-right'?: (string | null) | News;
+  'featured-left-bottom-a'?: (string | null) | News;
+  'featured-right-bottom-b'?: (string | null) | News;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  'talent-infinite-scroll'?:
+    | T
+    | {
+        talent?: T;
+        id?: T;
+      };
+  'home-faq'?:
+    | T
+    | {
+        qid?: T;
+        aid?: T;
+        qen?: T;
+        aen?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "featured-news_select".
+ */
+export interface FeaturedNewsSelect<T extends boolean = true> {
+  'featured-left-top'?: T;
+  'featured-right'?: T;
+  'featured-left-bottom-a'?: T;
+  'featured-right-bottom-b'?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -8,9 +8,12 @@ import { urlFor } from "../db/sanity";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { AnimatePresence, motion } from "motion/react";
-type Props = {};
+import { Media, Schedule, Talent } from "@/payload-types";
+type Props = {
+  sd: Schedule;
+};
 
-export default function SchedRow({ sd }: any) {
+export default function SchedRow({ sd }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("schedule");
   const doScroll = (px: number) => {
@@ -28,6 +31,7 @@ export default function SchedRow({ sd }: any) {
   useEffect(() => {
     setVisible(!mq);
   }, [mq]);
+  const td = sd.talent as Talent;
   return (
     <div className="s-rw">
       <div className="tl-card">
@@ -35,18 +39,16 @@ export default function SchedRow({ sd }: any) {
           <div className="wrapper">
             <div className="pfp">
               <img
-                src={sd.talent.pfp && urlFor(sd.talent.pfp).height(600).url()}
+                // src={sd.talent.pfp && urlFor(sd.talent.pfp).height(600).url()}
+                src={(td?.pfp as Media)?.url ?? undefined}
                 alt=""
                 className="img"
               />
             </div>
             <div className="r">
-              <h2 className="n">{sd.talent.name}</h2>
+              <h2 className="n">{td.name}</h2>
               <div className="action">
-                <Link
-                  href={"/talent/" + sd.talent.slug.current}
-                  className="btn hv view"
-                >
+                <Link href={"/talent/" + td.slug} className="btn hv view">
                   {t("vp")}
                 </Link>
                 <button
@@ -84,7 +86,7 @@ export default function SchedRow({ sd }: any) {
       <div className="sched-list" ref={scrollRef}>
         <AnimatePresence>
           {visible &&
-            sd.schedule_list?.map((scard: any, id: number) => {
+            sd["schedule-list"]?.map((scard, id: number) => {
               return (
                 <motion.div
                   animate={{ x: 0, opacity: 1 }}
@@ -92,22 +94,23 @@ export default function SchedRow({ sd }: any) {
                   exit={{ x: -400, opacity: 0 }}
                   className="scard"
                   transition={{ delay: 0.2 * id }}
-                  key={scard._key}
+                  key={scard.id}
                 >
                   <div className="collab-list">
                     {/* <img src="/g/htal1.png" alt="" className="collab" /> */}
                     {/* <img src="/g/htal1.png" alt="" className="collab" /> */}
-                    {scard.ml?.map((ml: any) => {
+                    {scard?.members?.map((ml) => {
                       return (
                         <a
-                          href={ml.link}
+                          href={ml.link ?? undefined}
                           className="btn hv"
                           target="_blank"
                           key={ml.name}
                         >
                           <img
-                            src={ml.pfp && urlFor(ml.pfp).url()}
-                            alt={ml.name}
+                            // src={ml.pfp && urlFor(ml.pfp).url()}
+                            src={(ml.pfp as Media)?.url ?? undefined}
+                            alt={ml.name ?? undefined}
                             className="collab "
                           />
                         </a>
@@ -116,20 +119,27 @@ export default function SchedRow({ sd }: any) {
                   </div>
                   <div className="l">
                     <img
-                      src={scard.th && urlFor(scard.th).height(600).url()}
+                      // src={scard.th && urlFor(scard.th).height(600).url()}
+                      src={(scard.thumbnail as Media)?.url ?? undefined}
                       alt=""
                       className="thumb"
                     />
                   </div>
                   <div className="r">
-                    <h2 className="title">{scard.sn}</h2>
-                    <p className="d">{new Date(scard.d).toDateString()}</p>
+                    <h2 className="title">{scard["stream-name"]}</h2>
+                    <p className="d">
+                      {new Date(scard["stream-date"] ?? "").toDateString()}{" "}
+                      &nbsp;
+                      {new Date(
+                        scard["stream-date"] ?? ""
+                      ).toLocaleTimeString()}
+                    </p>
                     {/* <p className="d member">
                       {scard.ml?.map((ml: any) => ml.name).join(", ")}
                     </p> */}
-                    {scard.surl && (
+                    {scard["stream-link"] && (
                       <a
-                        href={scard.surl}
+                        href={scard["stream-link"]}
                         target="_blank"
                         className="btn hv btn-vs"
                       >
