@@ -28,9 +28,9 @@ export default function Header({}: Props) {
     <>
       <header id="header">
         <div className="confine">
-          <div className="logo-part">
+          <Link className="logo-part btn hv" href={"/"}>
             <img src="/g/logo.png" alt="" className="" />
-          </div>
+          </Link>
           <nav className="main-nav top gb">
             <div className="wrapper">
               <Link
