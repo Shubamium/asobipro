@@ -31,9 +31,7 @@ export default function Cart({}: Props) {
   const total = cartTotal(cart, productDataLookup);
   return (
     <main id="p_cart">
-      <div
-        className={`loading ${loading || productDataLookup.size === 0 ? "l" : "o"}`}
-      >
+      <div className={`loading ${loading ? "l" : "o"}`}>
         <></>
         <FaSpinner />
         <p>Loading...</p>
