@@ -133,7 +133,7 @@ export default async function Home() {
           </div>
         </div>
         <img src="/d/glow.svg" alt="" className="glow bg-blur" />
-
+        {/* 
         <div className="mc confine">
           <div className="mc-h social-h">
             <h2 className="hs">{t("merch_title")}</h2>
@@ -162,7 +162,7 @@ export default async function Home() {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
 
       <HomeFAQ faq={hd["home-faq"]} />

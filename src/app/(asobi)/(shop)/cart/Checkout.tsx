@@ -63,6 +63,7 @@ export function Checkout({
             carts: cart,
           };
           console.log(proof, compressedProff, compressedFile);
+
           const res = await SubmitOrder(payload);
           if (res) {
             // alert("Order submitted succesfully!");

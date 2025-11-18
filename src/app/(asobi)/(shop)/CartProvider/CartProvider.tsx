@@ -31,6 +31,7 @@ export function cartTotal(cart: CartItem[], pdl: Map<String, Product>) {
   });
   return total;
 }
+
 export function CartProvider({ children }: any) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [initCart, setInitCart] = useState(false);

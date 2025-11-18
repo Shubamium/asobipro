@@ -3,13 +3,18 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
 import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { loadFull } from "tsparticles";
 
 type Props = {};
 
 export default function HomeParticle({}: Props) {
   const [init, setInit] = useState(false);
+  const mobile = useMediaQuery({
+    query: "(max-width:1024px)",
+  });
   useEffect(() => {
+    if (mobile) return;
     initParticlesEngine(async (engine) => {
       // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -23,6 +28,7 @@ export default function HomeParticle({}: Props) {
     });
   }, []);
   return (
+    !mobile &&
     init && (
       <div className="home-particle">
         <Particles
