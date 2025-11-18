@@ -12,7 +12,7 @@ import { Checkout } from "./Checkout";
 import { Confirm } from "./Confirm";
 
 export default function Cart({}: Props) {
-  const [status, setStatus] = useState("Confirm");
+  const [status, setStatus] = useState("Cart");
   const [orderID, setOrderID] = useState<null | string>(null);
   const { cart, removeFromCart, changeQty, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
