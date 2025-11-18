@@ -25,9 +25,6 @@ export default function Cart({}: Props) {
       const lookup = await GetProductList(cart.map((i) => i.productId));
       setProductDataLookup(lookup);
     }
-    if (cart.length > 0) {
-      fetchProductLookups();
-    }
   }, [cart]);
 
   const total = cartTotal(cart, productDataLookup);
