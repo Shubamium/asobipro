@@ -34,6 +34,7 @@ export default function Cart({}: Props) {
       <div
         className={`loading ${loading || productDataLookup.size === 0 ? "l" : "o"}`}
       >
+        <></>
         <FaSpinner />
         <p>Loading...</p>
       </div>
