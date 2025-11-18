@@ -6,6 +6,7 @@ import { ToRupiahStr } from "@/services/currency";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { useCart } from "../../CartProvider/CartProvider";
+import { useRouter } from "next/navigation";
 type Props = {
   pd: Product;
 };
@@ -19,7 +20,7 @@ export default function ProductPage({ pd }: Props) {
   const [selectedVariant, setSelectedVariant] = useState(0);
 
   const { addToCart } = useCart();
-
+  const router = useRouter();
   return (
     <main id="p_product">
       <div className="pd">
@@ -99,12 +100,14 @@ export default function ProductPage({ pd }: Props) {
             <button
               className="btn btn-main hv"
               onClick={() => {
-                alert("Succefully added to cart!" + pd.id + qty);
+                alert("Product added to cart!");
+
                 addToCart({
                   productId: pd.id,
                   qty,
                   variant: pd.variants?.[selectedVariant] ?? "NO_VARIANTS", // NO VARIANTS IF Variant is not sycned or empty
                 });
+                router.push("/cart");
               }}
             >
               Add to Cart

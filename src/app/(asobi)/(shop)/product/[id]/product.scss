@@ -17,7 +17,18 @@
     gap: 2em;
     min-height: 1000px;
     padding-top: 100px;
+    @media screen and (max-width: 550px) {
+      min-height: auto;
+      max-width: 95%;
+    }
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
     .l {
+      @media screen and (max-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+      }
       .product-main {
         height: auto;
         border: 5px solid white;
@@ -33,12 +44,22 @@
         gap: 1em;
         justify-content: flex-start;
         flex-basis: 80px;
+        @media screen and (max-width: 1024px) {
+          flex-shrink: 1;
+        }
         img {
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
           object-fit: cover;
           flex-grow: 1;
           max-height: 100px;
           height: 100%;
+          @media screen and (max-width: 1024px) {
+            flex-shrink: 1;
+            min-width: 0%;
+          }
+          @media screen and (max-width: 550px) {
+            width: 100%;
+          }
         }
       }
     }
@@ -50,19 +71,35 @@
         max-width: fit-content;
         padding: 0.15em 1em;
         border-radius: 1em;
+        @media screen and (max-width: 420px) {
+          font-size: 1rem;
+        }
       }
 
       .pn {
         font-size: 3rem;
+        @media screen and (max-width: 550px) {
+          font-size: 2.4rem;
+        }
+        @media screen and (max-width: 420px) {
+          font-size: 2rem;
+        }
       }
       .price {
         color: var(--lblue);
         font-size: 2rem;
         font-weight: bold;
         font-family: var(--fontH);
+
+        @media screen and (max-width: 420px) {
+          font-size: 1.2rem;
+        }
       }
       .desc {
         margin: 1em 0;
+        @media screen and (max-width: 420px) {
+          font-size: 0.9rem;
+        }
       }
 
       .variants {
@@ -74,12 +111,18 @@
           display: flex;
           gap: 0.5em;
           flex-wrap: wrap;
+          @media screen and (max-width: 420px) {
+            gap: 0.1em;
+          }
           .v {
             color: var(--lblue);
             border: 3px solid var(--lblue);
             padding: 0.25em 1em;
             border-radius: 1em;
             font-size: 1.3rem;
+            @media screen and (max-width: 420px) {
+              font-size: 1rem;
+            }
             &:hover {
               background: var(--lblue);
               color: white;
@@ -97,6 +140,14 @@
         display: flex;
         gap: 1em;
         margin: 2em 0;
+        @media screen and (max-width: 550px) {
+          flex-wrap: wrap;
+        }
+        .btn-main {
+          @media screen and (max-width: 550px) {
+            font-size: 1.2rem;
+          }
+        }
       }
     }
   }

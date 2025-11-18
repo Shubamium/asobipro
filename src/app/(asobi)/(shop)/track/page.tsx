@@ -95,7 +95,9 @@ export default function Track({}: Props) {
               required
             />
           </div>
-          <button className="btn hv btn-main">CHECK</button>
+          <button className="btn hv btn-main" type="submit">
+            CHECK
+          </button>
         </form>
       </div>
       {orderData == null && (

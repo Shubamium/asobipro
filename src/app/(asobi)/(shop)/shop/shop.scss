@@ -17,6 +17,15 @@
     display: flex;
     justify-content: space-between;
     margin-top: 100px;
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      gap: 1em;
+      flex-direction: column-reverse;
+    }
+
+    @media screen and (max-width: 550px) {
+      max-width: 95%;
+    }
     .searchbar {
       min-width: 30%;
       background: white;
@@ -25,11 +34,20 @@
       &:has(input:focus) {
         outline: 3px solid var(--lblue);
       }
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
 
       .btn {
         border: none;
         font-size: 1.4rem;
         border-radius: 0.5em;
+        @media screen and (max-width: 1024px) {
+          font-size: 1rem;
+        }
+        @media screen and (max-width: 420px) {
+          font-size: 1.2rem;
+        }
         &:hover {
           color: white;
           background: var(--blue);
@@ -55,6 +73,9 @@
         font-family: var(--fontP);
         color: var(--lblue);
         font-size: 1.2rem;
+        @media screen and (max-width: 420px) {
+          padding-left: 2em;
+        }
         &:focus {
           outline: none;
         }
@@ -71,6 +92,9 @@
     .action {
       display: flex;
       gap: 1em;
+      @media screen and (max-width: 420px) {
+        gap: 0.5em;
+      }
       .btn-shoph {
         background: var(--lblue);
         color: white;
@@ -83,6 +107,14 @@
         font-size: 1.3rem;
         border-radius: 0.25em;
 
+        @media screen and (max-width: 1024px) {
+          font-size: 1rem;
+          min-width: auto;
+          gap: 1em;
+        }
+        @media screen and (max-width: 420px) {
+          font-size: 0.9rem;
+        }
         .filterico {
           position: absolute;
           left: 0%;
@@ -94,6 +126,10 @@
         svg {
           width: 25px;
           height: 25px;
+          @media screen and (max-width: 420px) {
+            width: 15px;
+            height: 15px;
+          }
         }
       }
     }
@@ -108,6 +144,19 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-top: 20px;
+    @media screen and (max-width: 1280px) {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 0 0 100px;
+      justify-content: flex-start;
+      max-width: 90%;
+    }
+    @media screen and (max-width: 768px) {
+      gap: 1em 0.6em;
+    }
+    @media screen and (max-width: 420px) {
+      justify-content: center;
+    }
     .pcard {
       position: relative;
       box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.15);
@@ -124,11 +173,23 @@
           font-weight: bold;
           text-align: right;
         }
+        @media screen and (max-width: 768px) {
+          p {
+            font-size: 0.7rem;
+          }
+        }
       }
       border: 4px solid var(--lblue);
       border-radius: 1em;
       padding: 1em;
       width: 100%;
+      @media screen and (max-width: 1280px) {
+        flex-basis: 300px;
+      }
+      @media screen and (max-width: 768px) {
+        flex-basis: 220px;
+        padding: 0.5em;
+      }
       background: url("/b/zig90.png"), white;
       transition: all 300ms ease;
       &:hover {
@@ -145,19 +206,34 @@
           height: 100%;
           object-fit: cover;
         }
+        @media screen and (max-width: 768px) {
+          height: auto;
+          display: flex;
+          width: 100%;
+        }
       }
       .info {
         margin-top: 1em;
         min-height: 100px;
+        .n {
+          @media screen and (max-width: 768px) {
+            font-size: 1.1rem;
+          }
+        }
         .desc {
           font-size: 0.8rem;
           color: var(--lblue);
+          max-height: 200px;
+          overflow-y: auto;
         }
       }
       .paction {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media screen and (max-width: 550px) {
+          flex-wrap: wrap;
+        }
         .price {
           font-size: 1.2rem;
           font-weight: bolder;
@@ -165,6 +241,9 @@
           background: linear-gradient(to top, var(--blue), var(--lblue));
           background-clip: text;
           color: transparent;
+          @media screen and (max-width: 420px) {
+            font-size: 1rem;
+          }
         }
         .btn-buy {
           color: white;
@@ -173,6 +252,9 @@
           border: none;
           padding: 0.25em 1em;
           border-radius: 1em;
+          @media screen and (max-width: 768px) {
+            font-size: 1rem;
+          }
         }
       }
     }

@@ -12,7 +12,7 @@ import { Checkout } from "./Checkout";
 import { Confirm } from "./Confirm";
 
 export default function Cart({}: Props) {
-  const [status, setStatus] = useState("Cart");
+  const [status, setStatus] = useState("Confirm");
   const [orderID, setOrderID] = useState<null | string>(null);
   const { cart, removeFromCart, changeQty, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,9 @@ export default function Cart({}: Props) {
   const total = cartTotal(cart, productDataLookup);
   return (
     <main id="p_cart">
-      <div className={`loading ${loading ? "l" : "o"}`}>
+      <div
+        className={`loading ${loading || productDataLookup.size === 0 ? "l" : "o"}`}
+      >
         <FaSpinner />
         <p>Loading...</p>
       </div>

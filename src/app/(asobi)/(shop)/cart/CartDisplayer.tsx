@@ -3,6 +3,8 @@ import { Media, Product } from "@/payload-types";
 import { CartItem } from "../CartProvider/CartProvider";
 import { Fragment } from "react";
 import { ToRupiahStr } from "@/services/currency";
+import { FaXmark } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa";
 
 export function CartDisplayer({
   onCheckout,
@@ -98,7 +100,8 @@ export function CartDisplayer({
                         removeFromCart(i.productId, i.variant);
                       }}
                     >
-                      REMOVE
+                      {/* <span>REMOVE</span> */}
+                      <FaTrash />
                     </button>
                   </div>
                   <p className="price">Rp. {ToRupiahStr(pd.price)}</p>

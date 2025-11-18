@@ -29,6 +29,10 @@
       display: flex;
       gap: 1em;
       align-items: center;
+      @media screen and (max-width: 420px) {
+        gap: 0.3em;
+        justify-content: center;
+      }
       .language {
         background: white;
         width: 50px;
@@ -154,6 +158,13 @@
         svg {
           width: 30px;
           height: 30px;
+        }
+        @media screen and (max-width: 420px) {
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+          padding: 0.3em 1em;
         }
       }
       .btn-audition {
