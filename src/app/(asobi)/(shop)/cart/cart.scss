@@ -232,10 +232,13 @@
       left: calc(50% - 1500px);
       z-index: -100;
       top: 50%;
-      filter: blur(300px);
+      // filter: blur(300px);
       user-select: none;
       pointer-events: none;
       opacity: 0.6;
+      @media screen and (max-width: 420px) {
+        display: none;
+      }
     }
     .checkout-h {
       display: grid;

@@ -23,7 +23,7 @@ export default async function Page({}: Props) {
   return (
     <TransitionContainer key={"team"} id="p_team">
       <section id="tl">
-        <img src="/d/glow.svg" alt="" className="bg-blur" />
+        <img src="/d/bgblur.webp" alt="" className="bg-blur" />
         <div className="confine">
           <section className="general-h">
             <h2 className="hs">{t("name")}</h2>

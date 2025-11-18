@@ -35,7 +35,7 @@ export default async function Page({}: Props) {
         </section>
       </div>
 
-      <img src="/d/glow.svg" alt="" className="bg-blur" />
+      <img src="/d/bgblur.webp" alt="" className="bg-blur" />
       <AudisiControl
         // guide={<Guidelines g={a.gl} />}
         // require={<Require r={a.rq} />}

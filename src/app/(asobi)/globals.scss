@@ -38,7 +38,7 @@ body {
 }
 
 .bg-blur {
-  filter: blur(950px);
+  // filter: blur(950px);
   opacity: 0.8;
   @extend .de;
 }
@@ -361,7 +361,7 @@ button {
 
   .a-panel {
     background: #4e7ae01c;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
     border: 5px solid white;
     border-radius: 4em;
     margin-top: 100px;
@@ -447,6 +447,9 @@ button {
     left: -20%;
     z-index: -5;
     opacity: 0.4;
+    @media screen and (max-width: 420px) {
+      display: none;
+    }
   }
   #a-require {
     padding-bottom: 150px;
@@ -589,7 +592,7 @@ button {
       background: rgba(19, 31, 71, 0.413);
       z-index: 50;
       opacity: 1;
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: center;
       flex-direction: column;

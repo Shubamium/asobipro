@@ -231,6 +231,9 @@
         left: 50%;
         transform: translateX(-60%);
         opacity: 0.4;
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
       }
       .news {
         // width: auto;

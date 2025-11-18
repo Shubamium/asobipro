@@ -108,7 +108,7 @@ export function Checkout({
           <label htmlFor="addr">Delivery Address</label>
           <textarea name="addr" id="addr"></textarea>
         </div>
-        <img src="/d/glow.svg" alt="" className="glow bg-slur" />
+        <img src="/d/bgblur.webp" alt="" className="glow bg-slur" />
 
         <OrderSummary hasSubmit={true} cart={cart} pdl={pdl} total={total} />
       </form>

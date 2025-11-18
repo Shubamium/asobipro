@@ -62,6 +62,9 @@
           height: 100%;
           scale: 1.5;
         }
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
       }
       .bg-grad {
         background: linear-gradient(to top, var(--lblue) 0%, #4e7ae002 50%);
@@ -648,6 +651,9 @@
       scale: 1.1;
       opacity: 0.6;
       // filter: blur(0px);
+      @media screen and (max-width: 420px) {
+        display: none;
+      }
     }
     .mc {
       margin-top: 100px;

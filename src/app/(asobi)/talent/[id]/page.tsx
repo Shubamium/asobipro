@@ -61,7 +61,7 @@ export default async function Page({ params }: Props) {
         <div className="confine">
           <div className="ring"></div>
           <div className="sidepan"></div>
-          <img src="/d/glow.svg" alt="" className="bg-blurs bg-blur" />
+          <img src="/d/bgblur.webp" alt="" className="bg-blurs bg-blur" />
           <div className="l">
             <Link href={"/talents"} className="btn hv btn-ret">
               <IoReturnUpBack /> Talent List
@@ -147,7 +147,7 @@ export default async function Page({ params }: Props) {
 
       <section id="talent-detail">
         <div className="panel">
-          <img src="/d/glow.svg" alt="" className="bg-blur" />
+          <img src="/d/bgblur.webp" alt="" className="bg-blur" />
           <div className="wrapper">
             <div className="l">
               <div className="td-h">

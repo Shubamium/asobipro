@@ -68,7 +68,7 @@
         opacity: 1;
         z-index: -50;
         opacity: 0.6;
-        backdrop-filter: blur(100px);
+        // backdrop-filter: blur(100px);
         // mix-blend-mode: color;
       }
       .bg-blurs {
@@ -81,7 +81,10 @@
         scale: 1.8;
         opacity: 0.2;
         z-index: -20;
-        filter: blur(1500px);
+        // filter: blur(1500px);\
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
       }
       .l {
         display: flex;
@@ -408,6 +411,9 @@
         transform: translateX(-50%);
         left: 80%;
         opacity: 0.6;
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
       }
       &::before {
         content: "";

@@ -54,7 +54,7 @@ export default function NewsCategory({ cat, active, nl }: Props) {
           </div>
         </nav>
         <div className="news-list">
-          <img src="/d/glow.svg" alt="" className="bg-blur" />
+          <img src="/d/bgblur.webp" alt="" className="bg-blur" />
 
           <AnimatePresence mode="wait">
             {nl?.map((n) => {

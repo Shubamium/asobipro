@@ -28,7 +28,7 @@ export default async function Home() {
       <section id="hero">
         <article className="main-panel">
           <div className="bg-blur de">
-            <img src="/d/glow.svg" alt="" />
+            <img src="/d/bgblur.webp" alt="" />
           </div>
           <div className="bg-grad de"></div>
           <div className="bg-panel de"></div>
@@ -132,7 +132,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-        <img src="/d/glow.svg" alt="" className="glow bg-blur" />
+        <img src="/d/bgblur.webp" alt="" className="glow bg-blur" />
         {/* 
         <div className="mc confine">
           <div className="mc-h social-h">

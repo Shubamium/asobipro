@@ -14,7 +14,6 @@ export default function HomeParticle({}: Props) {
     query: "(max-width:1024px)",
   });
   useEffect(() => {
-    if (mobile) return;
     initParticlesEngine(async (engine) => {
       // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -28,7 +27,6 @@ export default function HomeParticle({}: Props) {
     });
   }, []);
   return (
-    !mobile &&
     init && (
       <div className="home-particle">
         <Particles

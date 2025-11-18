@@ -16,6 +16,9 @@
     top: -15%;
     left: 44%;
     transform: translateX(-50%);
+    @media screen and (max-width: 550px) {
+      display: none;
+    }
   }
 
   .general-h {

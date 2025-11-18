@@ -97,7 +97,7 @@ export default function AudisiControl({
           {t("apply")}
         </button> */}
       </div>
-      {/* <img src="/d/glow.svg" alt="" className="bg-blur" /> */}
+      {/* <img src="/d/bgblur.webp" alt="" className="bg-blur" /> */}
 
       <AnimatePresence mode="wait">
         <motion.div
