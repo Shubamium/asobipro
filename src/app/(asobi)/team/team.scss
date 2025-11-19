@@ -132,5 +132,20 @@
         }
       }
     }
+
+    .tcl {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      .team-cat {
+        margin-bottom: 1em;
+        .catnam {
+          font-size: 1.8rem;
+          font-weight: bold;
+          margin-bottom: 0.25em;
+        }
+      }
+    }
   }
 }

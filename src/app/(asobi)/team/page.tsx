@@ -29,7 +29,9 @@ export default async function Page({}: Props) {
             <h2 className="hs">{t("name")}</h2>
             <p>{t("sub")}</p>
           </section>
-          <TeamList td={td.docs} />
+          <div className="tcl">
+            <TeamList td={td.docs} />
+          </div>
         </div>
       </section>
     </TransitionContainer>

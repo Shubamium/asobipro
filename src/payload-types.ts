@@ -147,10 +147,16 @@ export interface UserAuthOperations {
  */
 export interface Team {
   id: string;
-  name: string;
-  pfp?: (string | null) | Media;
-  role?: string | null;
-  link?: string | null;
+  'category-name': string;
+  'team-list'?:
+    | {
+        name: string;
+        pfp?: (string | null) | Media;
+        role?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -524,10 +530,16 @@ export interface PayloadMigration {
  * via the `definition` "team_select".
  */
 export interface TeamSelect<T extends boolean = true> {
-  name?: T;
-  pfp?: T;
-  role?: T;
-  link?: T;
+  'category-name'?: T;
+  'team-list'?:
+    | T
+    | {
+        name?: T;
+        pfp?: T;
+        role?: T;
+        link?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
