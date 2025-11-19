@@ -67,6 +67,7 @@ export default function HomeTalent({
                 </div>
               );
             })}
+
             {/* <div className="tl-s">
               <img src="/g/htal2.png" alt="" />
             </div>

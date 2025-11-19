@@ -306,14 +306,18 @@
         flex-shrink: 0;
       }
       .scroller {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        // display: grid;
+        // grid-template-columns: 1fr 1fr 1fr;
+        display: flex;
+        flex-grow: 1;
         flex-shrink: 0;
+
+        // width: 100vw;
         height: 100%;
-        width: 100vw;
         opacity: 1;
         .tl-s {
           height: var(--h);
+          width: 33vw;
           img {
             height: 100%;
             width: 100%;

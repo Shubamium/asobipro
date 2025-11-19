@@ -41,15 +41,15 @@ export default async function Page({ searchParams }: Props) {
         },
       }
     : {};
-  const tl = await fetchData<any[]>(`
-		*[_type == 'talent' && generation -> slug.current == '${act}']{
-			name,
-			slug,
-			pfp
-		}
-	`);
+  // const tl = await fetchData<any[]>(`
+  // 	*[_type == 'talent' && generation -> slug.current == '${act}']{
+  // 		name,
+  // 		slug,
+  // 		pfp
+  // 	}
+  // `);
 
-  const actCheck = act ? { equals: act } : {};
+  // const actCheck = act ? { equals: act } : {};
   const tld = await p.find({
     collection: "talents",
     where: {

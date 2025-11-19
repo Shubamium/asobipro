@@ -175,7 +175,7 @@ export default async function Page({ params }: Props) {
                     <p>Info Description</p>
                   </div> */}
                 </div>
-                <TalentContact td={td} />
+                <TalentContact td={td.contacts} />
               </div>
             </div>
             <div className="r">

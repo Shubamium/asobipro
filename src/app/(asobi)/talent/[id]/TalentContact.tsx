@@ -1,21 +1,22 @@
 "use client";
+import { Talent } from "@/payload-types";
 import React from "react";
 import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 type Props = {};
 
-export default function TalentContact({ td }: any) {
+export default function TalentContact({ td }: { td: Talent["contacts"] }) {
   return (
     <div className="social-count">
-      {td.contact?.yt && (
+      {td?.youtube && (
         <div
           className="btn hv sc y"
           onClick={() => {
-            window.open(td.contact.yt.l);
+            td.youtube?.link && window.open(td.youtube?.link);
           }}
         >
           <div className="d">
-            <h2>{td.contact.yt.fc}</h2>
+            <h2>{td.youtube["follower-count"]}</h2>
             <p>YOUTUBE</p>
           </div>
           <div className="ic">
@@ -23,7 +24,7 @@ export default function TalentContact({ td }: any) {
           </div>
         </div>
       )}
-      {td.contact?.dc && (
+      {td?.["discord-link"] && (
         <div className="btn sc d">
           <div className="d">
             {/* <h2>12.4K+</h2> */}
@@ -34,15 +35,16 @@ export default function TalentContact({ td }: any) {
           </div>
         </div>
       )}
-      {td.contact?.ig && (
+      {td?.instagram && (
         <div
           className="btn hv sc i"
           onClick={() => {
-            window.open(td.contact.ig.l);
+            //  window.open(td.contact.ig.l);
+            td.instagram?.link && window.open(td.instagram?.link);
           }}
         >
           <div className="d">
-            <h2>{td.contact?.ig.fc ?? ""}</h2>
+            <h2>{td.instagram["follower-count"] ?? ""}</h2>
             <p>INSTAGRAM</p>
           </div>
           <div className="ic x">
@@ -50,15 +52,16 @@ export default function TalentContact({ td }: any) {
           </div>
         </div>
       )}
-      {td.contact?.x && (
+      {td?.x && (
         <div
           className="btn hv sc x"
           onClick={() => {
-            window.open(td.contact.x.l);
+            // window.open(td.contact.x.l);
+            td.x?.link && window.open(td.x.link);
           }}
         >
           <div className="d">
-            <h2>{td.contact?.x.fc ?? ""}</h2>
+            <h2>{td.x["follower-count"] ?? ""}</h2>
             <p>X</p>
           </div>
           <div className="ic x">
