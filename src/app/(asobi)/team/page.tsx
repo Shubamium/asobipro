@@ -19,7 +19,10 @@ export default async function Page({}: Props) {
   });
   const td = await p.find({
     collection: "team",
+    sort: ["_order"],
   });
+
+  console.log(td);
   return (
     <TransitionContainer key={"team"} id="p_team">
       <section id="tl">

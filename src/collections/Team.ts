@@ -2,6 +2,7 @@ import { CollectionConfig } from "payload";
 
 export const Team: CollectionConfig = {
   slug: "team",
+  orderable: true,
   fields: [
     {
       name: "category-name",

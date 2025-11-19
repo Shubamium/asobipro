@@ -147,6 +147,7 @@ export interface UserAuthOperations {
  */
 export interface Team {
   id: string;
+  _order?: string | null;
   'category-name': string;
   'team-list'?:
     | {
@@ -530,6 +531,7 @@ export interface PayloadMigration {
  * via the `definition` "team_select".
  */
 export interface TeamSelect<T extends boolean = true> {
+  _order?: T;
   'category-name'?: T;
   'team-list'?:
     | T
