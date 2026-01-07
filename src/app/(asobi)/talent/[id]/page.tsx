@@ -102,9 +102,9 @@ export default async function Page({ params }: Props) {
                   <FaInstagram />
                 </a>
               )}
-              {td.contacts?.x && (
+              {td.contacts?.["discord-link"] && (
                 <a
-                  href={td.contacts.x.link ?? undefined}
+                  href={td.contacts["discord-link"] ?? undefined}
                   className="btn  hv btn-mc"
                 >
                   <FaDiscord />
