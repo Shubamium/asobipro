@@ -25,7 +25,7 @@ export default function HomeFAQ({ faq }: { faq: Home["home-faq"] }) {
       <div className="fq-h">
         <h2 className="hs"> FAQ</h2>
         <p>{t("faq_sub")}</p>
-        <img src="/g/htal2.png" alt="" className="bg-img" />
+        <img src="/g/bg-bottom.png" alt="" className="bg-img" />
       </div>
     </section>
   );
