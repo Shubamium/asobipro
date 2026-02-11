@@ -24,7 +24,8 @@ const merri = Open_Sans({
 
 export const metadata: Metadata = {
   title: "Asobu Production",
-  description: "A place for all things Asobi",
+  description:
+    "Asobu Production adalah agensi VTuber yang menghadirkan hiburan, cerita, dan musik untuk menyebarkan senyum ke seluruh dunia.",
 };
 
 export default async function RootLayout({

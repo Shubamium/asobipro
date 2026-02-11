@@ -9,30 +9,32 @@
     "audition": "AUDITION"
   },
   "footer": {
-    "mini_about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "mini_about": "Asobu Production is a VTuber agency delivering entertainment, storytelling, and music to spread smiles worldwide.",
     "copyright": "©ASOBI PRODUCTION 2025 ALL RIGHTS RESERVED",
     "attribution": "WEBSITE DESIGN by"
   },
   "home": {
     "hero_topText": "INDONESIAN VIRTUAL",
     "hero_bottomText": "YOUTUBER AGENCY",
-    "hero_tagline": "Tagline utama - Temukan Stars Kesayangan kamu!",
-    "talent_stars": "Temukan Stars Kesayangan kamu!",
+    "hero_tagline": "Smiles Without Limits, Creativity Without End",
+    "talent_stars": "Find Your Favorite Talent!",
     "talent_meet": "MEET OUR",
     "talent_tal": "TALENTS!",
     "audisi_title": "AUDISI",
-    "audisi_sub": "Kamu juga bisa jadi Virtual Youtuber!",
-    "audisi_step1": "Daftar Audisi",
-    "audisi_step2": "Diskusi Karakter",
-    "audisi_step3": "Daftar Audisi",
-    "audisi_noteTop": "Wow! Hanya dengan 3 langkah* kamu bisa menjadi Virtual YouTuber",
-    "audisi_noteBot": "(*) Proses sampai debut dapat memakan waktu hingga 1 tahun.",
+    "audisi_sub": "You Can Become a Virtual YouTuber!",
+    "audisi_step1": "Audition Registration",
+    "audisi_step2": "Character Discussion",
+    "audisi_step3": "Debut",
+    "audisi_noteTop": "3 Steps to Become a Virtual YouTuber at Asobu Production!",
+    "audisi_noteBot": "(*) Estimated debut process can take up to 1 year.",
+
     "media_title": "MEDIA SOCIAL",
     "media_sub": "Jangan lewatkan informasi menarik!",
     "merch_title": "MERCHANDISE",
     "merch_sub": "Beli merchandise dari Stars kesayangan kamu!",
     "merch_buy": "Beli Sekarang",
-    "faq_sub": "Beli merchandise dari Stars kesayangan kamu!"
+    "faq_sub": "What is Asobu?",
+    "answer": "Asobu stands for Asobi Raibu, combining entertainment and live performance into a single virtual experience."
   },
   "talent": {
     "list_sub": "Klik untuk Memilih Talent Kesayangan kamu!",
