@@ -69,7 +69,7 @@ export default buildConfig({
       },
       config: {
         region: "eu-east-1",
-        endpoint: "http://newapi.minio.asobuproduction.com",
+        endpoint: "https://newapi.minio.asobuproduction.com",
         credentials: {
           accessKeyId: process.env.MINIOA ?? "",
           secretAccessKey: process.env.MINIOK ?? "",
