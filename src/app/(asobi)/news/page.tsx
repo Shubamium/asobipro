@@ -29,7 +29,7 @@ export default async function Page({ searchParams }: Props) {
   });
   const ncdMap = new Map();
   ncd.docs.forEach((c) => ncdMap.set(c.slug, c.id));
-
+  console.log(ncdMap);
   // const nl = await fetchData<any>(`
   // 	*[_type == 'news_featured' && preset == 'main'][0]{
   // 		fn_lt ->{
@@ -74,7 +74,7 @@ export default async function Page({ searchParams }: Props) {
   const fnl = await p.findGlobal({
     slug: "featured-news",
   });
-  const activeC = (await searchParams).c ?? ncd.docs[0].slug;
+  const activeC = (await searchParams).c ?? ncd.docs[0]?.slug;
   console.log(activeC);
   const catCheck = activeC ? { in: [ncdMap.get(activeC)] } : {};
 
@@ -104,14 +104,16 @@ export default async function Page({ searchParams }: Props) {
   const fn_r = fnl["featured-right"] as NT;
 
   const renderNews = (news: NT) => {
+    if (!news) return <></>;
     const tagl = news.tags?.map((t) => t ?? "") as string[];
+    const cat = (news.category as NCT)?.name;
     return (
       <News
         title={news.title}
         excerpt={news.excerpt ?? ""}
         // img={urlFor(news.banner).height(800).url()}
         img={(news.banner as Media)?.url ?? undefined}
-        tags={[(news.category as NCT)?.name, ...tagl]}
+        tags={tagl ? [cat, ...tagl] : [cat]}
         slug={news.slug}
       />
     );
